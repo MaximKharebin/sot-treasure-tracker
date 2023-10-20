@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">SoT Treasure Tracker</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="dark_mode_def_value" translatable="false">1</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="language_title">Select language</string>
+    <string name="language">Language</string>
+
+    <string name="menu_home">World Map</string>
+    <string name="menu_treasure">Treasure Tracker</string>
+    <string name="menu_slideshow">Cooking Timer</string>
+
+    <string name="treasure_total_price_gold">%1$d–%2$d </string>
+    <string name="treasure_total_price_doubloons">%1$d </string>
+    <string name="treasure_emissary_value">EV: %1$d</string>
+
+    <string name="treasure_item_price">%1$d–%2$d</string>
+    <string name="treasure_item_emissary_value">Emissary Value: %1$d</string>
+    <string name="treasure_item_quantity">%1$d</string>
+
+    <string name="treasure_less_than_0_warning">"You cannot have less than 0 treasure"</string>
+</resources>

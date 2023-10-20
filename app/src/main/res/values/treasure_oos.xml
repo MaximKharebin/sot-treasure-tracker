@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_regular_skulls">"Regular Bounty Skulls"</string>
+    <string name="skull_villainous_bounty_skull">Villainous Bounty Skull</string>
+    <string name="skull_hateful_bounty_skull">Hateful Bounty Skull</string>
+    <string name="skull_disgraced_bounty_skull">Disgraced Bounty Skull</string>
+    <string name="skull_foul_bounty_skull">Foul Bounty Skull</string>
+
+    <string name="title_coral_skulls">"Coral Skulls"</string>
+    <string name="skull_coral_villainous_bounty_skull">Villainous Coral Skull</string>
+    <string name="skull_coral_hateful_bounty_skull">Hateful Coral Skull</string>
+    <string name="skull_coral_disgraced_bounty_skull">Disgraced Coral Skull</string>
+    <string name="skull_coral_foul_bounty_skull">Foul Coral Skull</string>
+
+    <string name="title_ashen_skulls">"Ashen Bounty Skulls"</string>
+    <string name="skull_ashen_villainous_bounty_skull">Ashen Villainous Bounty Skull</string>
+    <string name="skull_ashen_hateful_bounty_skull">Ashen Hateful Bounty Skull</string>
+    <string name="skull_ashen_disgraced_bounty_skull">Ashen Disgraced Bounty Skull</string>
+    <string name="skull_ashen_foul_bounty_skull">Ashen Foul Bounty Skull</string>
+
+    <string name="title_ghostly_skulls">"Ghostly Skulls"</string>
+    <string name="skull_skull_of_the_damned">Skull of the Damned</string>
+    <string name="skull_captain_skull_of_the_damned">Captain Skull of the Damned</string>
+
+    <string name="title_powerful_skulls">"Powerful Skulls"</string>
+    <string name="skull_ashen_winds_skull">Ashen Winds Skull</string>
+    <string name="skull_stronghold_skull">Stronghold Skull</string>
+    <string name="skull_skeleton_captains_skull">"Skeleton Captain's Skull"</string>
+
+</resources>

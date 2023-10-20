@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_athenas_chests">"Athena's chests"</string>
+    <string name="chest_of_legends">Chest of Legends</string>
+    <string name="ashen_chest_of_legends">Ashen Chest of Legends</string>
+
+    <string name="title_athenas_artefacts">"Athena's Artefacts"</string>
+    <string name="gilded_relic_of_ancient_fortune">Gilded Relic of Ancient Fortune</string>
+    <string name="chalice_of_ancient_fortune">Chalice of Ancient Fortune</string>
+
+    <string name="title_athenas_skulls">"Athena's Skulls"</string>
+    <string name="villainous_skull_of_ancient_fortune">Villainous Skull of Ancient Fortune</string>
+    <string name="skull_of_ancient_fortune">Skull of Ancient Fortune</string>
+
+    <string name="title_athenas_trade_goods">"Athena's Trade Goods"</string>
+    <string name="keg_of_ancient_black_powder">Keg of Ancient Black Powder</string>
+    <string name="crate_of_legendary_voyages">Crate of Legendary Voyages</string>
+
+    <string name="title_athenas_legend_of_the_veil_treasure">"Legend of the Veil Treasure"</string>
+    <string name="athenas_relic">"Athena's Relic"</string>
+    <string name="skull_of_athenas_blessing">"Skull of Athena's Blessing"</string>
+    <string name="offering_of_legendary_goods">"Offering of Legendary Goods"</string>
+    <string name="legendary_fortune_keeper">"Legendary Fortune Keeper"</string>
+    <string name="artifact_of_legendary_hunger">"Artifact of Legendary Hunger"</string>
+    <string name="jar_of_athenas_incense">"Jar of Athena's Incense"</string>
+</resources>

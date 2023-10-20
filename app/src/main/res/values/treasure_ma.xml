@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_regular_crates">"Regular crates"</string>
+    <string name="crate_of_exquisite_spices">Crate of Exquisite Spices</string>
+    <string name="crate_of_exotic_silks">Crate of Exotic Silks</string>
+    <string name="crate_of_rare_tea">Crate of Rare Tea</string>
+    <string name="crate_of_fine_sugar">Crate of Fine Sugar</string>
+
+    <string name="title_devils_roar_crates">"Devil's Roar Crates"</string>
+    <string name="crate_of_precious_gemstones">Crate of Precious Gemstones</string>
+    <string name="crate_of_extraordinary_minerals">Crate of Extraordinary Minerals</string>
+    <string name="crate_of_fine_ore">Crate of Fine Ore</string>
+    <string name="crate_of_volcanic_stoner">Crate of Volcanic Stone</string>
+
+    <string name="title_coral_coffers">Coral Coffers</string>
+    <string name="coffer_of_forgotten_jewels">Coffer of Forgotten Jewels</string>
+    <string name="coffer_of_timeworn_metals">Coffer of Timeworn Metals</string>
+    <string name="coffer_of_antiquated_coffee">Coffer of Antiquated Coffee</string>
+    <string name="coffer_of_aged_grog">Coffer of Aged Grog</string>
+
+    <string name="title_valuable_crates">"Valuable crates"</string>
+    <string name="crate_of_ancient_bone_dust">Crate of Ancient Bone Dust</string>
+    <string name="ashes_of_the_damned">Ashes of the Damned</string>
+
+    <string name="title_resource_crates">"Resource Crates"</string>
+    <string name="basic_resource_crate">"Wood Crate&#xA;Cannonball Crate&#xA;Fruit Crate"</string>
+    <string name="storage_crate_of_the_damned">"Storage Crate of the Damned"</string>
+    <string name="cannonball_crate_of_the_damned">"Cannonball Crate of the Damned"</string>
+    <string name="firework_crate">"Firework Crate"</string>
+    <string name="firebomb_crate">"Firebomb Crate"</string>
+    <string name="ammo_crate">"Ammo Crate"</string>
+
+    <string name="title_regular_cargo">"Regular Cargo"</string>
+    <string name="crate_of_plants">"Crate of Plants"</string>
+    <string name="crate_of_luxurious_cloth">"Crate of Luxurious Cloth"</string>
+    <string name="crate_of_rum_bottles">"Crate of Rum Bottles"</string>
+
+    <string name="title_devils_roar_cargo">"Devil's Roar Cargo"</string>
+    <string name="crate_of_devils_plants">"Crate of Devil's Plants"</string>
+    <string name="crate_of_devils_luxurious_cloth">"Crate of Devil's Luxurious Cloth"</string>
+    <string name="crate_of_devils_rum_bottles">"Crate of Devil's Rum Bottles"</string>
+</resources>

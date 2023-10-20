@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_shared_treasure">Shared Treasure</string>
+    <string name="sapphire_gems">Sapphire Mermaid Gem&#xA;Sapphire Siren Gem</string>
+    <string name="emerald_gems">Emerald Mermaid Gem&#xA;Emerald Siren Gem</string>
+    <string name="ruby_gems">Ruby Mermaid Gem&#xA;Ruby Siren Gem</string>
+    <string name="treasure_chest">Treasure Chest</string>
+    <string name="coral_treasure_chest">Coral Treasure Chest</string>
+
+    <string name="title_reapers_treasure">"Reaper's Treasure"</string>
+    <string name="reapers_chest">"Reaper’s Chest"</string>
+    <string name="reapers_bounty">"Reaper’s Bounty"</string>
+    <string name="humble_gift">Humble Gift</string>
+    <string name="generous_gift">Generous Gift</string>
+
+    <string name="title_broken_emissary_flags">"Broken Emissary Flags"</string>
+    <string name="broken_emissary_flag_grade_1">Broken Emissary Flag (Grade I)</string>
+    <string name="broken_emissary_flag_grade_2">Broken Emissary Flag (Grade II)</string>
+    <string name="broken_emissary_flag_grade_3">Broken Emissary Flag (Grade III)</string>
+    <string name="broken_emissary_flag_grade_4">Broken Emissary Flag (Grade IV)</string>
+    <string name="broken_emissary_flag_grade_5">Broken Emissary Flag (Grade V)</string>
+
+    <string name="title_captains_logbook">"Captain's Logbook"</string>
+    <string name="noteworthy_captains_logbook">"Noteworthy Captain's Logbook"</string>
+    <string name="accomplished_captains_logbook">"Accomplished Captain's Logbook"</string>
+    <string name="remarkable_captains_logbook">"Remarkable Captain's Logbook"</string>
+    <string name="extraordinary_captains_logbook">"Extraordinary Captain's Logbook"</string>
+
+    <string name="title_bilge_rats">Bilge Rats Treasure</string>
+    <string name="ashen_tomes">Ashen Tomes</string>
+    <string name="ashen_chest">Ashen Chest</string>
+    <string name="ashen_key">Ashen Key</string>
+    <string name="ritual_skull">Ritual Skull</string>
+    <string name="rag_and_bone_crates">Rag and Bone Crates</string>
+
+    <string name="title_standalone_treasure">Standalone Treasure</string>
+    <string name="box_of_wondrous_secrets">Box of Wondrous Secrets</string>
+</resources>
