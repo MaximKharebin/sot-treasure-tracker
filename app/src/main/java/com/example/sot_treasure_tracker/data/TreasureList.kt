@@ -1,5 +1,7 @@
 package com.example.sot_treasure_tracker.data
 
-interface TreasureList<T> {
-    val treasure: List<TreasureCategory<T>>
+import com.example.sot_treasure_tracker.data.model.TreasureCategory
+
+interface TreasureList {
+    val treasure: List<TreasureCategory>
 }

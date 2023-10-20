@@ -9,7 +9,7 @@ import com.example.sot_treasure_tracker.presentation.MainFragment
 
 class ViewPagerAdapter(
     private val fragment: MainFragment,
-    private val storage: TreasureStorage
+    private val treasureStorage: TreasureStorage
 ) : RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,22 +22,13 @@ class ViewPagerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, pageIndex: Int) {
-        val pageContent = when (pageIndex) {
-            0 -> storage.goldHoardersStorage
-            1 -> storage.merchantAllianceStorage
-            2 -> storage.orderOfSoulsStorage
-            3 -> storage.athenaFortuneStorage
-            4 -> storage.otherStorage
-            5 -> storage.otherStorage
-            else -> null
-        }
+        val pageContent = treasureStorage.storage[pageIndex]
 
-        val adapter = TreasureCategoryAdapter(fragment, storage, pageIndex, pageContent)
+        val adapter = TreasureCategoryAdapter(fragment, treasureStorage, pageIndex, pageContent)
         holder.pageRecyclerView.adapter = adapter
     }
 
-    /* TODO("Hardcoded return value. Need to do something with the way [storage] works") */
-    override fun getItemCount(): Int = 6
+    override fun getItemCount(): Int = treasureStorage.storage.size
 
     inner class ViewHolder (
         binding: ItemViewPagerBinding

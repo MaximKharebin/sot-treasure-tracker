@@ -9,5 +9,5 @@
         android:id="@+id/FirstFragment"
         android:name="com.example.sot_treasure_tracker.presentation.MainFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_tracker" />
+        tools:layout="@layout/fragment_main" />
 </navigation>

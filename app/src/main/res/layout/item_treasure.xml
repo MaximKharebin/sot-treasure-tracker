@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_marginBottom="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/nameTextView"
@@ -66,21 +67,13 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:contentDescription="Increment treasure"
-                app:icon="@drawable/ic_btn_add"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:icon="@drawable/ic_btn_add" />
 
             <TextView
                 android:id="@+id/quantityTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/btnAdd"
-                app:layout_constraintStart_toStartOf="@+id/btnAdd"
-                app:layout_constraintTop_toBottomOf="@+id/btnAdd"
                 tools:text="000" />
 
             <Button
@@ -89,10 +82,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:contentDescription="Decrement treasure"
-                app:icon="@drawable/ic_btn_remove"
-                app:layout_constraintEnd_toEndOf="@+id/tvQuantity"
-                app:layout_constraintStart_toStartOf="@+id/tvQuantity"
-                app:layout_constraintTop_toBottomOf="@+id/tvQuantity" />
+                app:icon="@drawable/ic_btn_remove" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

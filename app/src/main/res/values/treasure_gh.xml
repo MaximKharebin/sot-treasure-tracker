@@ -31,22 +31,22 @@
     <string name="chest_cursed_chest_of_a_thousand_grogs">"Chest of a Thousand Grogs"</string>
 
     <string name="title_jeweled_artefacts">"Jeweled tier artefacts"</string>
-    <string name="artefact_jeweled_regular">"Peculiar Relic&#xA;Opulent Curio&#xA;Adorned Receptacle"</string>
+    <string name="artefact_jeweled_regular">"Peculiar Relic,&#xA;Opulent Curio,&#xA;Adorned Receptacle"</string>
     <string name="artefact_peculiar_coral_relic">"Peculiar Coral Relic"</string>
     <string name="artefact_magmas_grail">"Magma's Grail"</string>
 
     <string name="title_gold_artefacts">"Gold tier artefacts"</string>
-    <string name="artefact_gold_regular">"Golden Reliquary&#xA;Ornate Carafe&#xA;Gilded Chalice"</string>
+    <string name="artefact_gold_regular">"Golden Reliquary,&#xA;Ornate Carafe,&#xA;Gilded Chalice"</string>
     <string name="artefact_golden_coral_reliquary">"Golden Coral Reliquary"</string>
     <string name="artefact_devils_remnant">"Devil's Remnant"</string>
 
     <string name="title_silver_artefacts">"Silver tier artefacts"</string>
-    <string name="artefact_silver_regular">"Decorative Coffer&#xA;Elaborate Flagon&#xA;Silvered Cup"</string>
+    <string name="artefact_silver_regular">"Decorative Coffer,&#xA;Elaborate Flagon,&#xA;Silvered Cup"</string>
     <string name="artefact_silvered_coral_cup">"Silvered Coral Cup"</string>
     <string name="artefact_brimstone_casket">"Brimstone Casket"</string>
 
     <string name="title_bronze_artefacts">"Bronze tier artefacts"</string>
-    <string name="artefact_bronze_regular">"Mysterious Vessel&#xA;Bronze Secret-Keeper&#xA;Ancient Goblet"</string>
+    <string name="artefact_bronze_regular">"Mysterious Vessel,&#xA;Bronze Secret-Keeper,&#xA;Ancient Goblet"</string>
     <string name="artefact_mysterious_coral_vessel">"Mysterious Coral Vessel"</string>
     <string name="artefact_roaring_goblet">"Roaring Goblet"</string>
 </resources>

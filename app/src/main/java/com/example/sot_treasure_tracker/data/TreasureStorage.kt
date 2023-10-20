@@ -5,11 +5,15 @@ import com.example.sot_treasure_tracker.data.storage.GoldHoardersStorage
 import com.example.sot_treasure_tracker.data.storage.MerchantAllianceStorage
 import com.example.sot_treasure_tracker.data.storage.OrderOfSoulsStorage
 import com.example.sot_treasure_tracker.data.storage.OtherStorage
+import com.example.sot_treasure_tracker.data.storage.ReapersBonesStorage
 
 object TreasureStorage {
-    val goldHoardersStorage = GoldHoardersStorage.treasure
-    val merchantAllianceStorage = MerchantAllianceStorage.treasure
-    val orderOfSoulsStorage = OrderOfSoulsStorage.treasure
-    val athenaFortuneStorage = AthenaFortuneStorage.treasure
-    val otherStorage = OtherStorage.treasure
+    val storage = listOf(
+        GoldHoardersStorage.treasure,
+        MerchantAllianceStorage.treasure,
+        OrderOfSoulsStorage.treasure,
+        AthenaFortuneStorage.treasure,
+        ReapersBonesStorage.treasure,
+        OtherStorage.treasure
+    )
 }
