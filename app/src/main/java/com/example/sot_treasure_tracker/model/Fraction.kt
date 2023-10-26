@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.data.model
+package com.example.sot_treasure_tracker.model
 
 enum class Fraction {
     GOLD_HOARDERS,

@@ -1,6 +1,5 @@
 package com.example.sot_treasure_tracker.presentation
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +14,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.data.TreasureStorage
-import com.example.sot_treasure_tracker.data.model.Fraction
+import com.example.sot_treasure_tracker.model.Fraction
 import com.example.sot_treasure_tracker.data.model.Treasure
 import com.example.sot_treasure_tracker.databinding.FragmentMainBinding
 import com.example.sot_treasure_tracker.presentation.adapters.ViewPagerAdapter
-import com.example.sot_treasure_tracker.presentation.model.ControlPanelState
+import com.example.sot_treasure_tracker.model.ControlPanelState
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

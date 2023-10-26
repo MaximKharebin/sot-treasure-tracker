@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.presentation.model
+package com.example.sot_treasure_tracker.model
 
 data class ValueParams(
     val gold: IntRange,

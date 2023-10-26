@@ -4,7 +4,7 @@ import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.data.model.Price
 import com.example.sot_treasure_tracker.data.model.TreasureCategory
 import com.example.sot_treasure_tracker.data.TreasureList
-import com.example.sot_treasure_tracker.data.model.Fraction
+import com.example.sot_treasure_tracker.model.Fraction
 import com.example.sot_treasure_tracker.data.model.Treasure
 
 object AthenaFortuneStorage : TreasureList {

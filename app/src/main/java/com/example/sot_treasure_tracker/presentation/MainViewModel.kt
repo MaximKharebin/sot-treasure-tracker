@@ -1,9 +1,9 @@
 package com.example.sot_treasure_tracker.presentation
 
 import androidx.lifecycle.ViewModel
-import com.example.sot_treasure_tracker.data.model.Fraction
-import com.example.sot_treasure_tracker.presentation.model.ControlPanelState
-import com.example.sot_treasure_tracker.presentation.model.ValueParams
+import com.example.sot_treasure_tracker.model.Fraction
+import com.example.sot_treasure_tracker.model.ControlPanelState
+import com.example.sot_treasure_tracker.model.ValueParams
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

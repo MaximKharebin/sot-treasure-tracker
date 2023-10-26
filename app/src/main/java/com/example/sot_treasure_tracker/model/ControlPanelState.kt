@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.presentation.model
+package com.example.sot_treasure_tracker.model
 
 sealed class ControlPanelState {
     data object Opened : ControlPanelState()
