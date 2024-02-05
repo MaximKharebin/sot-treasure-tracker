@@ -112,31 +112,31 @@ object ReapersBonesStorage : TreasureList {
                     name = R.string.ashen_tomes,
                     price = Price.Doubloons(10),
                     emissaryValue = 1080,
-                    canSellTo = listOf(Fraction.REAPERS_BONES, Fraction.OTHER)
+                    canSellTo = listOf(Fraction.REAPERS_BONES)
                 ),
                 Treasure(
                     name = R.string.ashen_chest,
                     price = Price.Doubloons(5),
                     emissaryValue = 540,
-                    canSellTo = listOf(Fraction.REAPERS_BONES, Fraction.OTHER)
+                    canSellTo = listOf(Fraction.REAPERS_BONES)
                 ),
                 Treasure(
                     name = R.string.ashen_key,
                     price = Price.Doubloons(5),
                     emissaryValue = 900,
-                    canSellTo = listOf(Fraction.REAPERS_BONES, Fraction.OTHER)
+                    canSellTo = listOf(Fraction.REAPERS_BONES)
                 ),
                 Treasure(
                     name = R.string.ritual_skull,
                     price = Price.Doubloons(10),
                     emissaryValue = 750,
-                    canSellTo = listOf(Fraction.REAPERS_BONES, Fraction.OTHER)
+                    canSellTo = listOf(Fraction.REAPERS_BONES)
                 ),
                 Treasure(
                     name = R.string.rag_and_bone_crates,
                     price = Price.Doubloons(5),
                     emissaryValue = 1080,
-                    canSellTo = listOf(Fraction.REAPERS_BONES, Fraction.OTHER)
+                    canSellTo = listOf(Fraction.MERCHANT_ALLIANCE)
                 ),
             )
         ),

@@ -1,22 +1,23 @@
 package com.example.sot_treasure_tracker.presentation.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sot_treasure_tracker.databinding.ItemTreasureCategoryBinding
-import com.example.sot_treasure_tracker.data.model.TreasureCategory
-import com.example.sot_treasure_tracker.data.TreasureStorage
 import com.example.sot_treasure_tracker.data.model.Treasure
-import com.example.sot_treasure_tracker.presentation.MainFragment
+import com.example.sot_treasure_tracker.data.model.TreasureCategory
+import com.example.sot_treasure_tracker.databinding.ItemTreasureCategoryBinding
 
 class TreasureCategoryAdapter(
-    private var fragment: MainFragment,
-    private val treasureStorage: TreasureStorage,
+    private val storage: List<List<TreasureCategory>>,
     private var pageIndex: Int,
-    private var pageContent: List<TreasureCategory>
-) : RecyclerView.Adapter<TreasureCategoryAdapter.ViewHolder>() {
+    private var pageContent: List<TreasureCategory>,
+    private var increment: (Treasure) -> Unit
+) : ListAdapter<Treasure, TreasureCategoryAdapter.ViewHolder>(DiffUtilCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int, ) : ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemTreasureCategoryBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -28,18 +29,28 @@ class TreasureCategoryAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = pageContent[position]
 
-        holder.categoryName.text = fragment.getString(category.categoryTitle)
+        holder.categoryName.text = holder.context.getString(category.categoryTitle)
 
-        val adapter = TreasureAdapter(fragment, pageIndex, category.categoryItems)
+        val adapter = TreasureAdapter(pageIndex, category.categoryItems) { increment(it) }
         holder.categoryRecyclerView.adapter = adapter
     }
 
-    override fun getItemCount(): Int = treasureStorage.storage[pageIndex].size
+    override fun getItemCount(): Int = storage[pageIndex].size
 
-    inner class ViewHolder (
+    inner class ViewHolder(
         binding: ItemTreasureCategoryBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        val context: Context = binding.root.context
+
         val categoryRecyclerView = binding.categoryRecyclerView
         val categoryName = binding.categoryNameTextView
     }
+}
+
+class DiffUtilCallback : DiffUtil.ItemCallback<Treasure>() {
+    override fun areItemsTheSame(oldItem: Treasure, newItem: Treasure): Boolean = true
+
+    override fun areContentsTheSame(oldItem: Treasure, newItem: Treasure): Boolean = oldItem == newItem
+
 }

@@ -6,5 +6,6 @@ enum class Fraction {
     ORDER_OF_SOULS,
     ATHENAS_FORTUNE,
     REAPERS_BONES,
-    OTHER
+    SHARED,
+    UNIQUE
 }

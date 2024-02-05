@@ -1,5 +1,7 @@
 package com.example.sot_treasure_tracker.presentation.adapters
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,13 +9,12 @@ import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.data.model.Price
 import com.example.sot_treasure_tracker.data.model.Treasure
 import com.example.sot_treasure_tracker.databinding.ItemTreasureBinding
-import com.example.sot_treasure_tracker.presentation.MainFragment
 import com.google.android.material.snackbar.Snackbar
 
 class TreasureAdapter(
-    private var fragment: MainFragment,
     private var pageIndex: Int,
-    private var category: List<Treasure>
+    private var category: List<Treasure>,
+    private var increment: (Treasure) -> Unit
 ) : RecyclerView.Adapter<TreasureAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemTreasureBinding.inflate(
@@ -29,10 +30,15 @@ class TreasureAdapter(
 
         holder.apply {
             when (treasure.price) {
-                is Price.Gold ->{
-                    val price = (treasure.price).price
-                    treasurePrice.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.img_currency_gold, 0, 0, 0)
-                    treasurePrice.text = fragment.getString(
+                is Price.Gold -> {
+                    val price = (treasure.price).gold
+                    treasurePrice.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.img_currency_gold,
+                        0,
+                        0,
+                        0
+                    )
+                    treasurePrice.text = context.getString(
                         R.string.treasure_item_price,
                         price.first,
                         price.last
@@ -40,42 +46,51 @@ class TreasureAdapter(
                 }
 
                 is Price.Doubloons -> {
-                    val price = (treasure.price).price
-                    treasurePrice.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.img_currency_doubloons, 0, 0, 0)
-                    treasurePrice.text = fragment.getString(
+                    val price = (treasure.price).doubloons
+                    treasurePrice.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.img_currency_doubloons,
+                        0,
+                        0,
+                        0
+                    )
+                    treasurePrice.text = context.getString(
                         R.string.treasure_item_quantity,
                         price,
                     )
                 }
             }
 
-            treasureName.text = fragment.getString(treasure.name)
-            treasureValue.text = fragment.getString(
+            treasureName.text = context.getString(treasure.name)
+            treasureValue.text = context.getString(
                 R.string.treasure_item_emissary_value,
                 treasure.emissaryValue
             )
-            treasureQuantity.text = fragment.getString(
+            treasureQuantity.text = context.getString(
                 R.string.treasure_item_quantity,
                 treasure.quantity
             )
 
             incrementButton.setOnClickListener {
-                Snackbar.make(it, "Increment treasure: ${treasure.name}", Snackbar.LENGTH_LONG).show()
-                fragment.incrementTreasure(treasure, pageIndex)
+                Snackbar.make(it, "Increment treasure: ${treasure.quantity}", Snackbar.LENGTH_SHORT)
+                    .show()
+                increment(treasure)
             }
 
             decrementButton.setOnClickListener {
-                Snackbar.make(it, "Decrement treasure: ${treasure.name}", Snackbar.LENGTH_LONG).show()
-                fragment.decrementTreasure(treasure, pageIndex)
+                Snackbar.make(it, "Decrement treasure: ${treasure.quantity}", Snackbar.LENGTH_SHORT)
+                    .show()
+                increment(treasure)
             }
         }
     }
 
     override fun getItemCount(): Int = category.size
 
-    inner class ViewHolder (
+    inner class ViewHolder(
         binding: ItemTreasureBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        val context: Context = binding.root.context
 
         val treasureName = binding.nameTextView
         val treasurePrice = binding.priceTextView
