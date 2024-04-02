@@ -1,60 +1,60 @@
-package com.example.sot_treasure_tracker.data.storage
+package com.example.sot_treasure_tracker.data.catalog
 
 import com.example.sot_treasure_tracker.R
-import com.example.sot_treasure_tracker.data.model.Price
-import com.example.sot_treasure_tracker.data.model.TreasureCategory
-import com.example.sot_treasure_tracker.data.TreasureList
-import com.example.sot_treasure_tracker.model.Fraction
-import com.example.sot_treasure_tracker.data.model.Treasure
+import com.example.sot_treasure_tracker.components.Price
+import com.example.sot_treasure_tracker.data.models.TreasureCategory
+import com.example.sot_treasure_tracker.data.models.Treasure
+import com.example.sot_treasure_tracker.components.Fraction
+import com.example.sot_treasure_tracker.data.models.TreasureItem
 
-object OtherStorage : TreasureList {
-    override val treasure = listOf(
+object Other : Treasure {
+    override val treasure: List<TreasureCategory> = listOf(
         TreasureCategory(
             categoryTitle = R.string.title_shared_treasure,
             categoryItems = listOf(
-                Treasure(
+                TreasureItem(
                     name = R.string.sapphire_gems,
                     price = Price.Gold(1000..1000),
                     emissaryValue = 3000,
-                    canSellTo = listOf(Fraction.SHARED)
+                    canSellTo = Fraction.SHARED
                 ),
-                Treasure(
+                TreasureItem(
                     name = R.string.emerald_gems,
                     price = Price.Gold(1500..1500),
                     emissaryValue = 4500,
-                    canSellTo = listOf(Fraction.SHARED)
+                    canSellTo = Fraction.SHARED
                 ),
-                Treasure(
+                TreasureItem(
                     name = R.string.ruby_gems,
                     price = Price.Gold(2000..2000),
                     emissaryValue = 6000,
-                    canSellTo = listOf(Fraction.SHARED)
+                    canSellTo = Fraction.SHARED
                 ),
-                Treasure(
+                TreasureItem(
                     name = R.string.treasure_chest,
                     price = Price.Gold(250..520),
                     emissaryValue = 0,
-                    canSellTo = listOf(Fraction.SHARED)
+                    canSellTo = Fraction.SHARED
                 ),
-                Treasure(
+                TreasureItem(
                     name = R.string.coral_treasure_chest,
                     price = Price.Gold(375..780),
                     emissaryValue = 0,
-                    canSellTo = listOf(Fraction.SHARED)
-                ),
+                    canSellTo = Fraction.SHARED
+                )
             )
         ),
 
         TreasureCategory(
             categoryTitle = R.string.title_standalone_treasure,
             categoryItems = listOf(
-                Treasure(
+                TreasureItem(
                     name = R.string.box_of_wondrous_secrets,
                     price = Price.Gold(25000..25000),
                     emissaryValue = 0,
-                    canSellTo = listOf(Fraction.UNIQUE)
-                ),
+                    canSellTo = Fraction.UNIQUE
+                )
             )
-        ),
+        )
     )
 }

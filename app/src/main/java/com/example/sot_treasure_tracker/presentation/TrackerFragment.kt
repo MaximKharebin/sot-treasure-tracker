@@ -1,7 +1,6 @@
 package com.example.sot_treasure_tracker.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,24 +14,24 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.sot_treasure_tracker.R
-import com.example.sot_treasure_tracker.data.TreasureStorage
-import com.example.sot_treasure_tracker.data.model.Treasure
-import com.example.sot_treasure_tracker.data.model.TreasureCategory
-import com.example.sot_treasure_tracker.model.Fraction
+import com.example.sot_treasure_tracker.data.models.Catalog
+import com.example.sot_treasure_tracker.data.models.TreasureItem
+import com.example.sot_treasure_tracker.data.models.TreasureCategory
+import com.example.sot_treasure_tracker.components.Fraction
 import com.example.sot_treasure_tracker.databinding.FragmentMainBinding
-import com.example.sot_treasure_tracker.presentation.adapters.ViewPagerAdapter
-import com.example.sot_treasure_tracker.model.ControlPanelState
+import com.example.sot_treasure_tracker.presentation.components.ControlPanelState
+import com.example.sot_treasure_tracker.presentation.components.Event
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class MainFragment : Fragment() {
+class TrackerFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: TrackerViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,11 +44,24 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupViewPager(TreasureStorage.storage)
 
-        collectLatestFlow(viewModel.storageState) { storageState ->
+        collectLatestFlow(viewModel.catalog) { catalog ->
+            setupViewPager(catalog.items)
+        }
 
-            when (storageState.emissary.fraction) {
+        collectLatestFlow(viewModel.costValues) { costValues ->
+            val goldRangeString = listOf(
+                costValues.gold.first,
+                costValues.gold.last
+            ).joinToString("–")
+
+            binding.goldTextView.text = goldRangeString
+            binding.doubloonsTextView.text = costValues.doubloons.toString()
+            binding.valueTextView.text = costValues.emissaryValue.toString()
+        }
+
+        collectLatestFlow(viewModel.emissaryValues) { emissaryValues ->
+            when (emissaryValues.fraction) {
                 Fraction.GOLD_HOARDERS -> binding.spinner.setSelection(Fraction.GOLD_HOARDERS.ordinal)
                 Fraction.MERCHANT_ALLIANCE -> binding.spinner.setSelection(Fraction.MERCHANT_ALLIANCE.ordinal)
                 Fraction.ORDER_OF_SOULS -> binding.spinner.setSelection(Fraction.ORDER_OF_SOULS.ordinal)
@@ -59,18 +71,8 @@ class MainFragment : Fragment() {
                 Fraction.UNIQUE -> binding.spinner.setSelection(Fraction.GOLD_HOARDERS.ordinal)
             }
 
-            binding.seekBar.progress = storageState.emissary.level
-
-            val goldRangeString = listOf(
-                storageState.treasureValue.gold.first,
-                storageState.treasureValue.gold.last
-            ).joinToString("–")
-
-            binding.goldTextView.text = goldRangeString
-            binding.doubloonsTextView.text = storageState.treasureValue.doubloons.toString()
-            binding.valueTextView.text = storageState.treasureValue.emissaryValue.toString()
+            binding.seekBar.progress = emissaryValues.level
         }
-
 
         collectLatestFlow(viewModel.controlPanelState) { state ->
             when (state) {
@@ -150,8 +152,11 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-    fun incrementTreasure(treasure: Treasure) {
-        viewModel.onEvent(Event.IncrementTreasure(treasure, 0))
+    private fun incrementTreasure(treasureItem: TreasureItem, doIncrement: Boolean) {
+        if (doIncrement)
+            viewModel.onEvent(Event.IncrementTreasure(treasureItem, 0))
+        else
+            viewModel.onEvent(Event.DecrementTreasure(treasureItem, 0))
     }
 
 
@@ -165,7 +170,7 @@ class MainFragment : Fragment() {
 
 
     private fun setupViewPager(storage: List<List<TreasureCategory>>) {
-        val adapter = ViewPagerAdapter(storage) { treasure -> incrementTreasure(treasure) }
+        val adapter = TrackerAdapter(storage) { treasure, doIncrement -> incrementTreasure(treasure, doIncrement) }
         binding.viewPager.adapter = adapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             val icons = listOf(

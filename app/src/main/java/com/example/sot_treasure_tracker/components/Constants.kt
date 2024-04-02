@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker
+package com.example.sot_treasure_tracker.components
 
 object Constants {
     const val APP_PREFERENCES = "APP_PREFERENCES"

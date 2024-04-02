@@ -1,17 +1,16 @@
-package com.example.sot_treasure_tracker.presentation.adapters
+package com.example.sot_treasure_tracker.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sot_treasure_tracker.data.model.Treasure
+import com.example.sot_treasure_tracker.data.models.TreasureItem
 import com.example.sot_treasure_tracker.databinding.ItemViewPagerBinding
-import com.example.sot_treasure_tracker.data.model.TreasureCategory
-import com.example.sot_treasure_tracker.presentation.MainFragment
+import com.example.sot_treasure_tracker.data.models.TreasureCategory
 
-class ViewPagerAdapter(
+class TrackerAdapter(
     private val storage: List<List<TreasureCategory>>,
-    private var increment: (Treasure) -> Unit
-) : RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>() {
+    private var increment: (TreasureItem, Boolean) -> Unit
+) : RecyclerView.Adapter<TrackerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemViewPagerBinding.inflate(
@@ -25,7 +24,9 @@ class ViewPagerAdapter(
     override fun onBindViewHolder(holder: ViewHolder, pageIndex: Int) {
         val pageContent = storage[pageIndex]
 
-        val adapter = TreasureCategoryAdapter(storage, pageIndex, pageContent) { increment(it) }
+        val adapter = TreasureCategoryAdapter(storage, pageIndex, pageContent) { treasureItem, doIncrement ->
+            increment(treasureItem, doIncrement)
+        }
         holder.pageRecyclerView.adapter = adapter
     }
 

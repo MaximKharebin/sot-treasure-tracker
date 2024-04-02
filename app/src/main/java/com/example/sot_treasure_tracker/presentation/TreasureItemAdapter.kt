@@ -1,21 +1,32 @@
-package com.example.sot_treasure_tracker.presentation.adapters
+package com.example.sot_treasure_tracker.presentation
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sot_treasure_tracker.R
-import com.example.sot_treasure_tracker.data.model.Price
-import com.example.sot_treasure_tracker.data.model.Treasure
+import com.example.sot_treasure_tracker.components.Price
+import com.example.sot_treasure_tracker.data.models.TreasureItem
 import com.example.sot_treasure_tracker.databinding.ItemTreasureBinding
 import com.google.android.material.snackbar.Snackbar
 
-class TreasureAdapter(
+class TreasureItemAdapter(
     private var pageIndex: Int,
-    private var category: List<Treasure>,
-    private var increment: (Treasure) -> Unit
-) : RecyclerView.Adapter<TreasureAdapter.ViewHolder>() {
+    private var category: List<TreasureItem>,
+    private var increment: (TreasureItem, Boolean) -> Unit
+) : RecyclerView.Adapter<TreasureItemAdapter.ViewHolder>() {
+
+    private fun updateCategory(changeBy: Int, category: List<TreasureItem>, treasure: TreasureItem) {
+        val treasureIndex = category.indexOf(treasure)
+        val newCategory = ArrayList(category)
+        val updatedQuantity = treasure.copy(quantity = treasure.quantity + changeBy)
+        newCategory[treasureIndex] = updatedQuantity
+
+        val diffCallback = ItemCardDiffCallback(category, newCategory)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        diffResult.dispatchUpdatesTo(this@TreasureItemAdapter)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemTreasureBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -71,15 +82,15 @@ class TreasureAdapter(
             )
 
             incrementButton.setOnClickListener {
-                Snackbar.make(it, "Increment treasure: ${treasure.quantity}", Snackbar.LENGTH_SHORT)
-                    .show()
-                increment(treasure)
+                increment(treasure, true)
+                updateCategory(1, category, treasure)
             }
 
             decrementButton.setOnClickListener {
-                Snackbar.make(it, "Decrement treasure: ${treasure.quantity}", Snackbar.LENGTH_SHORT)
-                    .show()
-                increment(treasure)
+                if (treasure.quantity > 0) {
+                    increment(treasure, false)
+                    updateCategory(-1, category, treasure)
+                }
             }
         }
     }
@@ -99,5 +110,23 @@ class TreasureAdapter(
 
         val incrementButton = binding.incrementButton
         val decrementButton = binding.decrementButton
+    }
+
+    inner class ItemCardDiffCallback (
+        private val oldList: List<TreasureItem>,
+        private val newList: List<TreasureItem>,
+    ) : DiffUtil.Callback() {
+
+        override fun getOldListSize(): Int = oldList.size
+
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = true
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldQuantity = oldList[oldItemPosition].quantity
+            val newQuantity = newList[newItemPosition].quantity
+            return (oldQuantity == newQuantity)
+        }
     }
 }
