@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_reapers_boxes">"Reaper's Boxes"</string>
+    <string name="reapers_chest">"Reaper’s Chest"</string>
+    <string name="reapers_bounty">"Reaper’s Bounty"</string>
+    <string name="humble_gift">Humble Gift</string>
+    <string name="generous_gift">Generous Gift</string>
+
+    <string name="title_broken_emissary_flags">"Broken Emissary Flags"</string>
+    <string name="broken_emissary_flag_grade_1">Broken Emissary Flag (Grade I)</string>
+    <string name="broken_emissary_flag_grade_2">Broken Emissary Flag (Grade II)</string>
+    <string name="broken_emissary_flag_grade_3">Broken Emissary Flag (Grade III)</string>
+    <string name="broken_emissary_flag_grade_4">Broken Emissary Flag (Grade IV)</string>
+    <string name="broken_emissary_flag_grade_5">Broken Emissary Flag (Grade V)</string>
+
+    <string name="title_captains_logbook">"Captain's Logbook"</string>
+    <string name="noteworthy_captains_logbook">"Noteworthy Captain's Logbook"</string>
+    <string name="accomplished_captains_logbook">"Accomplished Captain's Logbook"</string>
+    <string name="remarkable_captains_logbook">"Remarkable Captain's Logbook"</string>
+    <string name="extraordinary_captains_logbook">"Extraordinary Captain's Logbook"</string>
+</resources>

@@ -1,42 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_regular_crates">"Regular crates"</string>
-    <string name="crate_of_exquisite_spices">Crate of Exquisite Spices</string>
-    <string name="crate_of_exotic_silks">Crate of Exotic Silks</string>
-    <string name="crate_of_rare_tea">Crate of Rare Tea</string>
-    <string name="crate_of_fine_sugar">Crate of Fine Sugar</string>
+    <string name="title_regular_crates">Regular crates</string>
+    <string name="ma_crate_of_immaculate_diamonds">Crate of Immaculate Diamonds</string>
+    <string name="ma_crate_of_exquisite_spices">Crate of Exquisite Spices</string>
+    <string name="ma_crate_of_exotic_silks">Crate of Exotic Silks</string>
+    <string name="ma_crate_of_rare_tea">Crate of Rare Tea</string>
+    <string name="ma_crate_of_fine_sugar">Crate of Fine Sugar</string>
 
     <string name="title_devils_roar_crates">"Devil's Roar Crates"</string>
-    <string name="crate_of_precious_gemstones">Crate of Precious Gemstones</string>
-    <string name="crate_of_extraordinary_minerals">Crate of Extraordinary Minerals</string>
-    <string name="crate_of_fine_ore">Crate of Fine Ore</string>
-    <string name="crate_of_volcanic_stoner">Crate of Volcanic Stone</string>
+    <string name="ma_crate_of_precious_gemstones">Crate of Precious Gemstones</string>
+    <string name="ma_crate_of_extraordinary_minerals">Crate of Extraordinary Minerals</string>
+    <string name="ma_crate_of_fine_ore">Crate of Fine Ore</string>
+    <string name="ma_crate_of_volcanic_stoner">Crate of Volcanic Stone</string>
 
-    <string name="title_coral_coffers">Coral Coffers</string>
-    <string name="coffer_of_forgotten_jewels">Coffer of Forgotten Jewels</string>
-    <string name="coffer_of_timeworn_metals">Coffer of Timeworn Metals</string>
-    <string name="coffer_of_antiquated_coffee">Coffer of Antiquated Coffee</string>
-    <string name="coffer_of_aged_grog">Coffer of Aged Grog</string>
+    <string name="title_encounter_and_quest_crates">Encounter and Quest Crates</string>
+    <string name="ma_crate_of_ancient_bone_dust">Crate of Ancient Bone Dust</string>
+    <string name="ma_ashes_of_the_damned">Ashes of the Damned</string>
 
-    <string name="title_valuable_crates">"Valuable crates"</string>
-    <string name="crate_of_ancient_bone_dust">Crate of Ancient Bone Dust</string>
-    <string name="ashes_of_the_damned">Ashes of the Damned</string>
+    <string name="title_resource_crates">Resource Crates</string>
+    <string name="ma_special_resource_crates">Firework Crate&#xA;Firebomb Crate</string>
+    <string name="ma_ghostly_resource_crates">Storage Crate of the Damned&#xA;Cannonball Crate of the Damned</string>
+    <string name="ma_basic_resource_crates">Wood Crate&#xA;Cannonball Crate&#xA;Fruit Crate</string>
+    <string name="ma_crate_of_the_dark_brethren">Crate of the Dark Brethren</string>
+    <string name="ma_ammo_crate">Ammo Crate</string>
 
-    <string name="title_resource_crates">"Resource Crates"</string>
-    <string name="basic_resource_crate">"Wood Crate&#xA;Cannonball Crate&#xA;Fruit Crate"</string>
-    <string name="storage_crate_of_the_damned">"Storage Crate of the Damned"</string>
-    <string name="cannonball_crate_of_the_damned">"Cannonball Crate of the Damned"</string>
-    <string name="firework_crate">"Firework Crate"</string>
-    <string name="firebomb_crate">"Firebomb Crate"</string>
-    <string name="ammo_crate">"Ammo Crate"</string>
+    <string name="ma_scrolls_of_charted_waters">Scrolls of Charted Waters</string>
+    <string name="ma_scrolls_of_shrouded_waters">Scrolls of Shrouded Waters</string>
+    <string name="ma_scrolls_of_undiscovered_waters">Scrolls of Undiscovered Waters</string>
 
-    <string name="title_regular_cargo">"Regular Cargo"</string>
-    <string name="crate_of_plants">"Crate of Plants"</string>
-    <string name="crate_of_luxurious_cloth">"Crate of Luxurious Cloth"</string>
-    <string name="crate_of_rum_bottles">"Crate of Rum Bottles"</string>
+    <string name="title_coffers">Coffers</string>
+    <string name="ma_coffer_of_forgotten_jewels">Coffer of Forgotten Jewels</string>
+    <string name="ma_coffer_of_timeworn_metals">Coffer of Timeworn Metals</string>
+    <string name="ma_coffer_of_antiquated_coffee">Coffer of Antiquated Coffee</string>
+    <string name="ma_coffer_of_aged_grog">Coffer of Aged Grog</string>
+
+    <string name="title_merchant_manifests">Merchant Manifest</string>
+    <string name="ma_revered_merchant_manifest">Revered Merchant Manifest</string>
+    <string name="ma_eminent_merchant_manifest">Eminent Merchant Manifest</string>
+    <string name="ma_esteemed_merchant_manifest">Esteemed Merchant Manifest</string>
+    <string name="ma_prosperous_merchant_manifest">Prosperous Merchant Manifest</string>
+
+    <string name="title_explosives">Explosives</string>
+    <string name="ma_gunpowder_barrel">Gunpowder Barrel</string>
+    <string name="ma_stronghold_gunpowder_barrel">Stronghold Gunpowder Barrel</string>
+
+    <string name="title_regular_cargo">Regular Cargo</string>
+    <string name="ma_crate_of_plants">Crate of Plants</string>
+    <string name="ma_crate_of_luxurious_cloth">Crate of Luxurious Cloth</string>
+    <string name="ma_crate_of_rum_bottles">Crate of Rum Bottles</string>
 
     <string name="title_devils_roar_cargo">"Devil's Roar Cargo"</string>
-    <string name="crate_of_devils_plants">"Crate of Devil's Plants"</string>
-    <string name="crate_of_devils_luxurious_cloth">"Crate of Devil's Luxurious Cloth"</string>
-    <string name="crate_of_devils_rum_bottles">"Crate of Devil's Rum Bottles"</string>
+    <string name="ma_crate_of_devils_plants">"Crate of Devil's Plants"</string>
+    <string name="ma_crate_of_devils_luxurious_cloth">"Crate of Devil's Luxurious Cloth"</string>
+    <string name="ma_crate_of_devils_rum_bottles">"Crate of Devil's Rum Bottles"</string>
 </resources>

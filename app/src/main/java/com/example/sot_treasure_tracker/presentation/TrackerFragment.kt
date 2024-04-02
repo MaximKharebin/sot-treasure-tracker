@@ -14,10 +14,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.sot_treasure_tracker.R
-import com.example.sot_treasure_tracker.data.models.Catalog
 import com.example.sot_treasure_tracker.data.models.TreasureItem
 import com.example.sot_treasure_tracker.data.models.TreasureCategory
-import com.example.sot_treasure_tracker.components.Fraction
+import com.example.sot_treasure_tracker.components.SellFractions
 import com.example.sot_treasure_tracker.databinding.FragmentMainBinding
 import com.example.sot_treasure_tracker.presentation.components.ControlPanelState
 import com.example.sot_treasure_tracker.presentation.components.Event
@@ -61,14 +60,14 @@ class TrackerFragment : Fragment() {
         }
 
         collectLatestFlow(viewModel.emissaryValues) { emissaryValues ->
-            when (emissaryValues.fraction) {
-                Fraction.GOLD_HOARDERS -> binding.spinner.setSelection(Fraction.GOLD_HOARDERS.ordinal)
-                Fraction.MERCHANT_ALLIANCE -> binding.spinner.setSelection(Fraction.MERCHANT_ALLIANCE.ordinal)
-                Fraction.ORDER_OF_SOULS -> binding.spinner.setSelection(Fraction.ORDER_OF_SOULS.ordinal)
-                Fraction.ATHENAS_FORTUNE -> binding.spinner.setSelection(Fraction.ATHENAS_FORTUNE.ordinal)
-                Fraction.REAPERS_BONES -> binding.spinner.setSelection(Fraction.REAPERS_BONES.ordinal)
-                Fraction.SHARED -> binding.spinner.setSelection(Fraction.GOLD_HOARDERS.ordinal)
-                Fraction.UNIQUE -> binding.spinner.setSelection(Fraction.GOLD_HOARDERS.ordinal)
+            when (emissaryValues.sellFractions) {
+                SellFractions.GOLD_HOARDERS -> binding.spinner.setSelection(SellFractions.GOLD_HOARDERS.ordinal)
+                SellFractions.MERCHANT_ALLIANCE -> binding.spinner.setSelection(SellFractions.MERCHANT_ALLIANCE.ordinal)
+                SellFractions.ORDER_OF_SOULS -> binding.spinner.setSelection(SellFractions.ORDER_OF_SOULS.ordinal)
+                SellFractions.ATHENAS_FORTUNE -> binding.spinner.setSelection(SellFractions.ATHENAS_FORTUNE.ordinal)
+                SellFractions.REAPERS_BONES -> binding.spinner.setSelection(SellFractions.REAPERS_BONES.ordinal)
+                SellFractions.SHARED -> binding.spinner.setSelection(SellFractions.GOLD_HOARDERS.ordinal)
+                SellFractions.UNIQUE -> binding.spinner.setSelection(SellFractions.GOLD_HOARDERS.ordinal)
             }
 
             binding.seekBar.progress = emissaryValues.level
@@ -113,7 +112,7 @@ class TrackerFragment : Fragment() {
                 position: Int,
                 id: Long,
             ) {
-                viewModel.onEvent(Event.ChangeEmissaryFraction(Fraction.entries[position]))
+                viewModel.onEvent(Event.ChangeEmissaryFraction(SellFractions.entries[position]))
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

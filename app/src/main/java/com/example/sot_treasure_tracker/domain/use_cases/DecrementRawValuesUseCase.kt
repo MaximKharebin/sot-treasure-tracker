@@ -2,7 +2,7 @@ package com.example.sot_treasure_tracker.domain.use_cases
 
 import com.example.sot_treasure_tracker.components.Price
 import com.example.sot_treasure_tracker.data.models.TreasureItem
-import com.example.sot_treasure_tracker.components.Fraction
+import com.example.sot_treasure_tracker.components.SellFractions
 import com.example.sot_treasure_tracker.presentation.components.TrackerRawValues
 
 class DecrementRawValuesUseCase {
@@ -14,7 +14,7 @@ class DecrementRawValuesUseCase {
         val doubloonsPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
         val emissaryValuePerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
 
-        Fraction.entries.forEach { fraction ->
+        SellFractions.entries.forEach { fraction ->
             if (treasureItem.canSellTo == fraction) {
                 when (treasureItem.price) {
                     is Price.Gold -> {

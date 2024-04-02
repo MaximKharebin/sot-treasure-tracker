@@ -16,11 +16,15 @@
     <string name="keg_of_ancient_black_powder">Keg of Ancient Black Powder</string>
     <string name="crate_of_legendary_voyages">Crate of Legendary Voyages</string>
 
-    <string name="title_athenas_legend_of_the_veil_treasure">"Legend of the Veil Treasure"</string>
+    <string name="title_athenas_legend_of_the_veil_treasure">Legendary Artefacts</string>
     <string name="athenas_relic">"Athena's Relic"</string>
     <string name="skull_of_athenas_blessing">"Skull of Athena's Blessing"</string>
     <string name="offering_of_legendary_goods">"Offering of Legendary Goods"</string>
     <string name="legendary_fortune_keeper">"Legendary Fortune Keeper"</string>
     <string name="artifact_of_legendary_hunger">"Artifact of Legendary Hunger"</string>
     <string name="jar_of_athenas_incense">"Jar of Athena's Incense"</string>
+
+    <string name="talisman_of_fortunes">Talisman of Fortunes</string>
+    <string name="talisman_of_great_fortunes">Talisman of Great Fortunes</string>
+    <string name="talisman_of_magnificent_fortunes">Talisman of Magnificent Fortunes</string>
 </resources>

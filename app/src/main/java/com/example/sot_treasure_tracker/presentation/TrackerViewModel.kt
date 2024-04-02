@@ -52,7 +52,7 @@ class TrackerViewModel : ViewModel() {
             }
 
             is Event.ChangeEmissaryFraction -> {
-                _emissaryValues.value = emissaryValues.value.copy(fraction = event.fraction)
+                _emissaryValues.value = emissaryValues.value.copy(sellFractions = event.sellFractions)
                 updateMultipliedValues()
             }
 

@@ -1,7 +1,5 @@
 package com.example.sot_treasure_tracker.presentation.components
 
-import com.example.sot_treasure_tracker.components.Fraction
-
 data class CostValues(
     val gold: IntRange = 0..0,
     val doubloons: Int = 0,

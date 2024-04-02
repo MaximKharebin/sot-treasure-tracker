@@ -1,7 +1,7 @@
 package com.example.sot_treasure_tracker.domain.use_cases
 
 import com.example.sot_treasure_tracker.presentation.components.EmissaryValues
-import com.example.sot_treasure_tracker.components.Fraction
+import com.example.sot_treasure_tracker.components.SellFractions
 import com.example.sot_treasure_tracker.presentation.components.TrackerMultipliedValues
 import com.example.sot_treasure_tracker.presentation.components.TrackerRawValues
 
@@ -14,7 +14,7 @@ class MultiplyRawValuesUseCase {
         val doubloonsPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
         val emissaryValuePerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
 
-        for (fraction in Fraction.entries) {
+        for (fraction in SellFractions.entries) {
             minGoldPerFraction[fraction.ordinal] = trackerRawValues.minGold[fraction.ordinal]
             maxGoldPerFraction[fraction.ordinal] = trackerRawValues.maxGold[fraction.ordinal]
             doubloonsPerFraction[fraction.ordinal] = trackerRawValues.doubloons[fraction.ordinal]
@@ -22,24 +22,24 @@ class MultiplyRawValuesUseCase {
         }
 
         fun calculateRegularFraction(multiplier: Float): TrackerMultipliedValues {
-            minGoldPerFraction[emissaryValues.fraction.ordinal] =
-                trackerRawValues.minGold[emissaryValues.fraction.ordinal] * multiplier
-            maxGoldPerFraction[emissaryValues.fraction.ordinal] =
-                trackerRawValues.maxGold[emissaryValues.fraction.ordinal] * multiplier
-            doubloonsPerFraction[emissaryValues.fraction.ordinal] =
-                trackerRawValues.doubloons[emissaryValues.fraction.ordinal] * multiplier
-            emissaryValuePerFraction[emissaryValues.fraction.ordinal] =
-                trackerRawValues.emissaryValue[emissaryValues.fraction.ordinal] * multiplier
+            minGoldPerFraction[emissaryValues.sellFractions.ordinal] =
+                trackerRawValues.minGold[emissaryValues.sellFractions.ordinal] * multiplier
+            maxGoldPerFraction[emissaryValues.sellFractions.ordinal] =
+                trackerRawValues.maxGold[emissaryValues.sellFractions.ordinal] * multiplier
+            doubloonsPerFraction[emissaryValues.sellFractions.ordinal] =
+                trackerRawValues.doubloons[emissaryValues.sellFractions.ordinal] * multiplier
+            emissaryValuePerFraction[emissaryValues.sellFractions.ordinal] =
+                trackerRawValues.emissaryValue[emissaryValues.sellFractions.ordinal] * multiplier
 
-            if (emissaryValues.fraction != Fraction.ATHENAS_FORTUNE) {
-                minGoldPerFraction[Fraction.SHARED.ordinal] =
-                    trackerRawValues.minGold[Fraction.SHARED.ordinal] * multiplier
-                maxGoldPerFraction[Fraction.SHARED.ordinal] =
-                    trackerRawValues.maxGold[Fraction.SHARED.ordinal] * multiplier
-                doubloonsPerFraction[Fraction.SHARED.ordinal] =
-                    trackerRawValues.doubloons[Fraction.SHARED.ordinal] * multiplier
-                emissaryValuePerFraction[Fraction.SHARED.ordinal] =
-                    trackerRawValues.emissaryValue[Fraction.SHARED.ordinal] * multiplier
+            if (emissaryValues.sellFractions != SellFractions.ATHENAS_FORTUNE) {
+                minGoldPerFraction[SellFractions.SHARED.ordinal] =
+                    trackerRawValues.minGold[SellFractions.SHARED.ordinal] * multiplier
+                maxGoldPerFraction[SellFractions.SHARED.ordinal] =
+                    trackerRawValues.maxGold[SellFractions.SHARED.ordinal] * multiplier
+                doubloonsPerFraction[SellFractions.SHARED.ordinal] =
+                    trackerRawValues.doubloons[SellFractions.SHARED.ordinal] * multiplier
+                emissaryValuePerFraction[SellFractions.SHARED.ordinal] =
+                    trackerRawValues.emissaryValue[SellFractions.SHARED.ordinal] * multiplier
             }
 
             return TrackerMultipliedValues(
@@ -51,8 +51,8 @@ class MultiplyRawValuesUseCase {
         }
 
         fun calculateReapersFraction(multiplier: Float): TrackerMultipliedValues {
-            Fraction.entries.forEach { fractions ->
-                if (fractions != Fraction.SHARED && fractions != Fraction.UNIQUE) {
+            SellFractions.entries.forEach { fractions ->
+                if (fractions != SellFractions.SHARED && fractions != SellFractions.UNIQUE) {
                     minGoldPerFraction[fractions.ordinal] =
                         trackerRawValues.minGold[fractions.ordinal] * multiplier
                     maxGoldPerFraction[fractions.ordinal] =
@@ -72,11 +72,11 @@ class MultiplyRawValuesUseCase {
             )
         }
 
-        return when (emissaryValues.fraction) {
-            Fraction.GOLD_HOARDERS,
-            Fraction.MERCHANT_ALLIANCE,
-            Fraction.ORDER_OF_SOULS,
-            Fraction.ATHENAS_FORTUNE -> {
+        return when (emissaryValues.sellFractions) {
+            SellFractions.GOLD_HOARDERS,
+            SellFractions.MERCHANT_ALLIANCE,
+            SellFractions.ORDER_OF_SOULS,
+            SellFractions.ATHENAS_FORTUNE -> {
                 when (emissaryValues.level) {
                     0 -> {
                         calculateRegularFraction(1f)
@@ -107,7 +107,7 @@ class MultiplyRawValuesUseCase {
                 }
             }
 
-            Fraction.REAPERS_BONES -> {
+            SellFractions.REAPERS_BONES -> {
                 when (emissaryValues.level) {
                     0 -> {
                         calculateReapersFraction(1f)
@@ -138,14 +138,14 @@ class MultiplyRawValuesUseCase {
                 }
             }
 
-            Fraction.UNIQUE -> TrackerMultipliedValues(
+            SellFractions.UNIQUE -> TrackerMultipliedValues(
                 minGold = minGoldPerFraction,
                 maxGold = maxGoldPerFraction,
                 doubloons = doubloonsPerFraction,
                 emissaryValue = emissaryValuePerFraction
             )
 
-            Fraction.SHARED -> TrackerMultipliedValues(
+            SellFractions.SHARED -> TrackerMultipliedValues(
                 minGold = minGoldPerFraction,
                 maxGold = maxGoldPerFraction,
                 doubloons = doubloonsPerFraction,
