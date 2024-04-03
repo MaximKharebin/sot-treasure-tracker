@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.presentation
+package com.example.sot_treasure_tracker.presentation.tracker
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,6 @@ import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.components.Price
 import com.example.sot_treasure_tracker.data.models.TreasureItem
 import com.example.sot_treasure_tracker.databinding.ItemTreasureBinding
-import com.google.android.material.snackbar.Snackbar
 
 class TreasureItemAdapter(
     private var pageIndex: Int,
@@ -41,7 +40,7 @@ class TreasureItemAdapter(
 
         holder.apply {
             when (treasure.price) {
-                is Price.Gold -> {
+                is Price.GoldRange -> {
                     val price = (treasure.price).gold
                     treasurePrice.setCompoundDrawablesRelativeWithIntrinsicBounds(
                         R.drawable.img_currency_gold,

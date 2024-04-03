@@ -3,8 +3,8 @@ package com.example.sot_treasure_tracker.data.catalog
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.components.Price
 import com.example.sot_treasure_tracker.data.models.TreasureCategory
-import com.example.sot_treasure_tracker.data.models.Treasure
 import com.example.sot_treasure_tracker.components.SellFractions
+import com.example.sot_treasure_tracker.data.models.Treasure
 import com.example.sot_treasure_tracker.data.models.TreasureItem
 
 object Other : Treasure {
@@ -14,19 +14,19 @@ object Other : Treasure {
             categoryItems = listOf(
                 TreasureItem(
                     name = R.string.ruby_gems,
-                    price = Price.Gold(2000..2000),
+                    price = Price.GoldRange(2000..2000),
                     emissaryValue = 6000,
                     canSellTo = SellFractions.SHARED
                 ),
                 TreasureItem(
                     name = R.string.emerald_gems,
-                    price = Price.Gold(1500..1500),
+                    price = Price.GoldRange(1500..1500),
                     emissaryValue = 4500,
                     canSellTo = SellFractions.SHARED
                 ),
                 TreasureItem(
                     name = R.string.sapphire_gems,
-                    price = Price.Gold(1000..1000),
+                    price = Price.GoldRange(1000..1000),
                     emissaryValue = 3000,
                     canSellTo = SellFractions.SHARED
                 )
@@ -38,13 +38,13 @@ object Other : Treasure {
             categoryItems = listOf(
                 TreasureItem(
                     name = R.string.treasure_chest,
-                    price = Price.Gold(250..520),
+                    price = Price.GoldRange(250..520),
                     emissaryValue = 0,
                     canSellTo = SellFractions.SHARED
                 ),
                 TreasureItem(
                     name = R.string.coral_treasure_chest,
-                    price = Price.Gold(375..780),
+                    price = Price.GoldRange(375..780),
                     emissaryValue = 0,
                     canSellTo = SellFractions.SHARED
                 )
@@ -56,19 +56,19 @@ object Other : Treasure {
             categoryItems = listOf(
                 TreasureItem(
                     name = R.string.ruby_breath_of_the_sea,
-                    price = Price.Gold(8000..8000),
+                    price = Price.GoldRange(8000..8000),
                     emissaryValue = 24000,
                     canSellTo = SellFractions.SHARED
                 ),
                 TreasureItem(
                     name = R.string.emerald_breath_of_the_sea,
-                    price = Price.Gold(6000..6000),
+                    price = Price.GoldRange(6000..6000),
                     emissaryValue = 18000,
                     canSellTo = SellFractions.SHARED
                 ),
                 TreasureItem(
                     name = R.string.sapphire_breath_of_the_sea,
-                    price = Price.Gold(4000..4000),
+                    price = Price.GoldRange(4000..4000),
                     emissaryValue = 12000,
                     canSellTo = SellFractions.SHARED
                 )
@@ -116,13 +116,13 @@ object Other : Treasure {
             categoryItems = listOf(
                 TreasureItem(
                     name = R.string.box_of_wondrous_secrets,
-                    price = Price.Gold(25000..25000),
+                    price = Price.GoldRange(25000..25000),
                     emissaryValue = 0,
                     canSellTo = SellFractions.UNIQUE
                 ),
                 TreasureItem(
                     name = R.string.skull_of_siren_song,
-                    price = Price.Gold(50000..50000),
+                    price = Price.GoldRange(50000..50000),
                     emissaryValue = 0,
                     canSellTo = SellFractions.UNIQUE
                 )

@@ -3,7 +3,7 @@ package com.example.sot_treasure_tracker.domain.use_cases
 import com.example.sot_treasure_tracker.components.Price
 import com.example.sot_treasure_tracker.data.models.TreasureItem
 import com.example.sot_treasure_tracker.components.SellFractions
-import com.example.sot_treasure_tracker.presentation.components.TrackerRawValues
+import com.example.sot_treasure_tracker.components.TrackerRawValues
 
 class IncrementRawValuesUseCase {
 
@@ -17,7 +17,7 @@ class IncrementRawValuesUseCase {
         SellFractions.entries.forEach { fraction ->
             if (treasureItem.canSellTo == fraction) {
                 when (treasureItem.price) {
-                    is Price.Gold -> {
+                    is Price.GoldRange -> {
                         minGoldPerFraction[fraction.ordinal] =
                             trackerRawValues.minGold[fraction.ordinal] + treasureItem.price.gold.first
                         maxGoldPerFraction[fraction.ordinal] =

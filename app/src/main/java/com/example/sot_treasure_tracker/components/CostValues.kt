@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.presentation.components
+package com.example.sot_treasure_tracker.components
 
 data class CostValues(
     val gold: IntRange = 0..0,

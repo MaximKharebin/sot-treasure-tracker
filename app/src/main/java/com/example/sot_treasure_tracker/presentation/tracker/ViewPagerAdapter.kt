@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.presentation
+package com.example.sot_treasure_tracker.presentation.tracker
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +7,10 @@ import com.example.sot_treasure_tracker.data.models.TreasureItem
 import com.example.sot_treasure_tracker.databinding.ItemViewPagerBinding
 import com.example.sot_treasure_tracker.data.models.TreasureCategory
 
-class TrackerAdapter(
+class ViewPagerAdapter(
     private val storage: List<List<TreasureCategory>>,
     private var increment: (TreasureItem, Boolean) -> Unit
-) : RecyclerView.Adapter<TrackerAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemViewPagerBinding.inflate(

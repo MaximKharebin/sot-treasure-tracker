@@ -1,16 +1,17 @@
-package com.example.sot_treasure_tracker.presentation
+package com.example.sot_treasure_tracker.presentation.tracker
 
 import androidx.lifecycle.ViewModel
-import com.example.sot_treasure_tracker.data.models.Catalog
+import com.example.sot_treasure_tracker.data.catalog.Catalog
 import com.example.sot_treasure_tracker.domain.use_cases.DecrementRawValuesUseCase
 import com.example.sot_treasure_tracker.domain.use_cases.MultiplyRawValuesUseCase
 import com.example.sot_treasure_tracker.domain.use_cases.IncrementRawValuesUseCase
-import com.example.sot_treasure_tracker.presentation.components.ControlPanelState
-import com.example.sot_treasure_tracker.presentation.components.CostValues
-import com.example.sot_treasure_tracker.presentation.components.EmissaryValues
-import com.example.sot_treasure_tracker.presentation.components.Event
-import com.example.sot_treasure_tracker.presentation.components.TrackerMultipliedValues
-import com.example.sot_treasure_tracker.presentation.components.TrackerRawValues
+import com.example.sot_treasure_tracker.components.ControlPanelState
+import com.example.sot_treasure_tracker.components.CostValues
+import com.example.sot_treasure_tracker.components.EmissaryGrades
+import com.example.sot_treasure_tracker.presentation.tracker.components.Event
+import com.example.sot_treasure_tracker.components.RepresentableFractions
+import com.example.sot_treasure_tracker.components.TrackerMultipliedValues
+import com.example.sot_treasure_tracker.components.TrackerRawValues
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -27,8 +28,11 @@ class TrackerViewModel : ViewModel() {
     private val _costValues = MutableStateFlow(CostValues())
     val costValues = _costValues.asStateFlow()
 
-    private val _emissaryValues = MutableStateFlow(EmissaryValues())
-    val emissaryValues = _emissaryValues.asStateFlow()
+    private val _representedFraction = MutableStateFlow<RepresentableFractions?>(null)
+    val representedFraction = _representedFraction.asStateFlow()
+
+    private val _emissaryGrade = MutableStateFlow<EmissaryGrades?>(null)
+    val emissaryGrade = _emissaryGrade.asStateFlow()
 
     private val _controlPanelState = MutableStateFlow<ControlPanelState>(ControlPanelState.Opened)
     val controlPanelState = _controlPanelState.asStateFlow()
@@ -51,13 +55,13 @@ class TrackerViewModel : ViewModel() {
                 updateMultipliedValues()
             }
 
-            is Event.ChangeEmissaryFraction -> {
-                _emissaryValues.value = emissaryValues.value.copy(sellFractions = event.sellFractions)
+            is Event.ChangeRepresentedFraction -> {
+                _representedFraction.value = event.representableFractions
                 updateMultipliedValues()
             }
 
-            is Event.ChangeEmissaryLevel -> {
-                _emissaryValues.value = emissaryValues.value.copy(level = event.level)
+            is Event.ChangeEmissaryGrade -> {
+                _emissaryGrade.value = event.grade
                 updateMultipliedValues()
             }
 
@@ -70,7 +74,7 @@ class TrackerViewModel : ViewModel() {
 
     private fun updateMultipliedValues() {
         MULTIPLIED_VALUES = multiplyRawValuesUseCase
-            .execute(RAW_VALUES, emissaryValues.value)
+            .execute(RAW_VALUES, representedFraction.value, emissaryGrade.value)
 
         updateStorageStateTreasureValues(MULTIPLIED_VALUES)
     }

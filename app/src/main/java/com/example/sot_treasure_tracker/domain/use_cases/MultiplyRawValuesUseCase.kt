@@ -1,13 +1,17 @@
 package com.example.sot_treasure_tracker.domain.use_cases
 
-import com.example.sot_treasure_tracker.presentation.components.EmissaryValues
+import com.example.sot_treasure_tracker.components.EmissaryGrades
+import com.example.sot_treasure_tracker.components.RepresentableFractions
 import com.example.sot_treasure_tracker.components.SellFractions
-import com.example.sot_treasure_tracker.presentation.components.TrackerMultipliedValues
-import com.example.sot_treasure_tracker.presentation.components.TrackerRawValues
+import com.example.sot_treasure_tracker.components.TrackerMultipliedValues
+import com.example.sot_treasure_tracker.components.TrackerRawValues
 
 class MultiplyRawValuesUseCase {
 
-    fun execute(trackerRawValues: TrackerRawValues, emissaryValues: EmissaryValues): TrackerMultipliedValues {
+    fun execute(
+        trackerRawValues: TrackerRawValues,
+        representableFractions: RepresentableFractions?,
+        emissaryGrade: EmissaryGrades?): TrackerMultipliedValues {
 
         val minGoldPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
         val maxGoldPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
@@ -21,17 +25,17 @@ class MultiplyRawValuesUseCase {
             emissaryValuePerFraction[fraction.ordinal] = trackerRawValues.emissaryValue[fraction.ordinal]
         }
 
-        fun calculateRegularFraction(multiplier: Float): TrackerMultipliedValues {
-            minGoldPerFraction[emissaryValues.sellFractions.ordinal] =
-                trackerRawValues.minGold[emissaryValues.sellFractions.ordinal] * multiplier
-            maxGoldPerFraction[emissaryValues.sellFractions.ordinal] =
-                trackerRawValues.maxGold[emissaryValues.sellFractions.ordinal] * multiplier
-            doubloonsPerFraction[emissaryValues.sellFractions.ordinal] =
-                trackerRawValues.doubloons[emissaryValues.sellFractions.ordinal] * multiplier
-            emissaryValuePerFraction[emissaryValues.sellFractions.ordinal] =
-                trackerRawValues.emissaryValue[emissaryValues.sellFractions.ordinal] * multiplier
+        fun calculateRegularFraction(multiplier: Float, fractions: RepresentableFractions): TrackerMultipliedValues {
+            minGoldPerFraction[fractions.ordinal] =
+                trackerRawValues.minGold[fractions.ordinal] * multiplier
+            maxGoldPerFraction[fractions.ordinal] =
+                trackerRawValues.maxGold[fractions.ordinal] * multiplier
+            doubloonsPerFraction[fractions.ordinal] =
+                trackerRawValues.doubloons[fractions.ordinal] * multiplier
+            emissaryValuePerFraction[fractions.ordinal] =
+                trackerRawValues.emissaryValue[fractions.ordinal] * multiplier
 
-            if (emissaryValues.sellFractions != SellFractions.ATHENAS_FORTUNE) {
+            if (representableFractions != RepresentableFractions.ATHENAS_FORTUNE) {
                 minGoldPerFraction[SellFractions.SHARED.ordinal] =
                     trackerRawValues.minGold[SellFractions.SHARED.ordinal] * multiplier
                 maxGoldPerFraction[SellFractions.SHARED.ordinal] =
@@ -72,80 +76,68 @@ class MultiplyRawValuesUseCase {
             )
         }
 
-        return when (emissaryValues.sellFractions) {
-            SellFractions.GOLD_HOARDERS,
-            SellFractions.MERCHANT_ALLIANCE,
-            SellFractions.ORDER_OF_SOULS,
-            SellFractions.ATHENAS_FORTUNE -> {
-                when (emissaryValues.level) {
-                    0 -> {
-                        calculateRegularFraction(1f)
-                    }
-
-                    1 -> {
-                        calculateRegularFraction(1.33f)
-                    }
-
-                    2 -> {
-                        calculateRegularFraction(1.66f)
-                    }
-
-                    3 -> {
-                        calculateRegularFraction(2f)
-                    }
-
-                    4 -> {
-                        calculateRegularFraction(2.5f)
-                    }
-
-                    else -> TrackerMultipliedValues(
-                        minGold = minGoldPerFraction,
-                        maxGold = maxGoldPerFraction,
-                        doubloons = doubloonsPerFraction,
-                        emissaryValue = emissaryValuePerFraction
-                    )
-                }
-            }
-
-            SellFractions.REAPERS_BONES -> {
-                when (emissaryValues.level) {
-                    0 -> {
-                        calculateReapersFraction(1f)
-                    }
-
-                    1 -> {
-                        calculateReapersFraction(1.33f)
-                    }
-
-                    2 -> {
-                        calculateReapersFraction(1.66f)
-                    }
-
-                    3 -> {
-                        calculateReapersFraction(2f)
-                    }
-
-                    4 -> {
-                        calculateReapersFraction(2.5f)
-                    }
-
-                    else -> TrackerMultipliedValues(
-                        minGold = minGoldPerFraction,
-                        maxGold = maxGoldPerFraction,
-                        doubloons = doubloonsPerFraction,
-                        emissaryValue = emissaryValuePerFraction
-                    )
-                }
-            }
-
-            SellFractions.UNIQUE -> TrackerMultipliedValues(
+        if (representableFractions == null || emissaryGrade == null) {
+            return TrackerMultipliedValues(
                 minGold = minGoldPerFraction,
                 maxGold = maxGoldPerFraction,
                 doubloons = doubloonsPerFraction,
                 emissaryValue = emissaryValuePerFraction
             )
+        }
 
-            SellFractions.SHARED -> TrackerMultipliedValues(
+        return when (representableFractions) {
+            RepresentableFractions.GOLD_HOARDERS,
+            RepresentableFractions.MERCHANT_ALLIANCE,
+            RepresentableFractions.ORDER_OF_SOULS,
+            RepresentableFractions.ATHENAS_FORTUNE -> {
+                 when (emissaryGrade) {
+                    EmissaryGrades.FIRST_GRADE -> {
+                        calculateRegularFraction(1f, representableFractions)
+                    }
+
+                    EmissaryGrades.SECOND_GRADE -> {
+                        calculateRegularFraction(1.33f, representableFractions)
+                    }
+
+                    EmissaryGrades.THIRD_GRADE -> {
+                        calculateRegularFraction(1.66f, representableFractions)
+                    }
+
+                    EmissaryGrades.FORTH_GRADE -> {
+                        calculateRegularFraction(2f, representableFractions)
+                    }
+
+                    EmissaryGrades.FIFTH_GRADE -> {
+                        calculateRegularFraction(2.5f, representableFractions)
+                    }
+                }
+            }
+
+            RepresentableFractions.REAPERS_BONES -> {
+                when (emissaryGrade) {
+                    EmissaryGrades.FIRST_GRADE -> {
+                        calculateReapersFraction(1f)
+                    }
+
+                    EmissaryGrades.SECOND_GRADE -> {
+                        calculateReapersFraction(1.33f)
+                    }
+
+                    EmissaryGrades.THIRD_GRADE -> {
+                        calculateReapersFraction(1.66f)
+                    }
+
+                    EmissaryGrades.FORTH_GRADE -> {
+                        calculateReapersFraction(2f)
+                    }
+
+                    EmissaryGrades.FIFTH_GRADE -> {
+                        calculateReapersFraction(2.5f)
+                    }
+                }
+            }
+
+            RepresentableFractions.GUILD -> TrackerMultipliedValues(
                 minGold = minGoldPerFraction,
                 maxGold = maxGoldPerFraction,
                 doubloons = doubloonsPerFraction,

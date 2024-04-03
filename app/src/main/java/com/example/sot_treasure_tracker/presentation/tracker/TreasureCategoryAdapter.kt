@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.presentation
+package com.example.sot_treasure_tracker.presentation.tracker
 
 import android.content.Context
 import android.view.LayoutInflater

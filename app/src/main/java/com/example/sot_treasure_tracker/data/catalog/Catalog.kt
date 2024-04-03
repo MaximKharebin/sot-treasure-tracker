@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.data.models
+package com.example.sot_treasure_tracker.data.catalog
 
 import com.example.sot_treasure_tracker.data.catalog.AthenaFortune
 import com.example.sot_treasure_tracker.data.catalog.GoldHoarders
