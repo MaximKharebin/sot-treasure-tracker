@@ -6,5 +6,6 @@ enum class RepresentableFractions {
     ORDER_OF_SOULS,
     ATHENAS_FORTUNE,
     REAPERS_BONES,
-    GUILD
+    GUILD,
+    UNSELECTED
 }

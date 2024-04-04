@@ -16,7 +16,11 @@ class TreasureItemAdapter(
     private var increment: (TreasureItem, Boolean) -> Unit
 ) : RecyclerView.Adapter<TreasureItemAdapter.ViewHolder>() {
 
-    private fun updateCategory(changeBy: Int, category: List<TreasureItem>, treasure: TreasureItem) {
+    private fun updateCategory(
+        changeBy: Int,
+        category: List<TreasureItem>,
+        treasure: TreasureItem
+    ) {
         val treasureIndex = category.indexOf(treasure)
         val newCategory = ArrayList(category)
         val updatedQuantity = treasure.copy(quantity = treasure.quantity + changeBy)
@@ -26,6 +30,7 @@ class TreasureItemAdapter(
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         diffResult.dispatchUpdatesTo(this@TreasureItemAdapter)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemTreasureBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -42,14 +47,9 @@ class TreasureItemAdapter(
             when (treasure.price) {
                 is Price.GoldRange -> {
                     val price = (treasure.price).gold
-                    treasurePrice.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        R.drawable.img_currency_gold,
-                        0,
-                        0,
-                        0
-                    )
+                    setCurrencyImg(holder, R.drawable.img_currency_gold)
                     treasurePrice.text = context.getString(
-                        R.string.treasure_item_price,
+                        R.string.treasure_price_range,
                         price.first,
                         price.last
                     )
@@ -57,14 +57,9 @@ class TreasureItemAdapter(
 
                 is Price.Doubloons -> {
                     val price = (treasure.price).doubloons
-                    treasurePrice.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                        R.drawable.img_currency_doubloons,
-                        0,
-                        0,
-                        0
-                    )
+                    setCurrencyImg(holder, R.drawable.img_currency_doubloons)
                     treasurePrice.text = context.getString(
-                        R.string.treasure_item_quantity,
+                        R.string.treasure_price_single,
                         price,
                     )
                 }
@@ -72,11 +67,11 @@ class TreasureItemAdapter(
 
             treasureName.text = context.getString(treasure.name)
             treasureValue.text = context.getString(
-                R.string.treasure_item_emissary_value,
+                R.string.treasure_emissary_value,
                 treasure.emissaryValue
             )
             treasureQuantity.text = context.getString(
-                R.string.treasure_item_quantity,
+                R.string.treasure_quantity,
                 treasure.quantity
             )
 
@@ -96,6 +91,12 @@ class TreasureItemAdapter(
 
     override fun getItemCount(): Int = category.size
 
+    private fun setCurrencyImg(holder: ViewHolder, drawable: Int) {
+        holder.treasurePrice.setCompoundDrawablesRelativeWithIntrinsicBounds(
+            drawable, 0, 0, 0
+        )
+    }
+
     inner class ViewHolder(
         binding: ItemTreasureBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -111,7 +112,7 @@ class TreasureItemAdapter(
         val decrementButton = binding.decrementButton
     }
 
-    inner class ItemCardDiffCallback (
+    inner class ItemCardDiffCallback(
         private val oldList: List<TreasureItem>,
         private val newList: List<TreasureItem>,
     ) : DiffUtil.Callback() {

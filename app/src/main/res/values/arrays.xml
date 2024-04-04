@@ -1,11 +1,12 @@
 <resources>
     <string-array name="emissary_companies">
-        <item>"Gold Hoarders"</item>
-        <item>"Merchant Alliance"</item>
-        <item>"Order of Souls"</item>
+        <item>Gold Hoarder"</item>
+        <item>Merchant Alliance</item>
+        <item>Order of Souls</item>
         <item>"Athena's Fortune"</item>
         <item>"Reaper's Bones"</item>
-        <item>"Guild"</item>
+        <item>Guild</item>
+        <item>None</item>
     </string-array>
 
     <!-- Reply Preference -->

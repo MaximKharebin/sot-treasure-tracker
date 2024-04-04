@@ -1,5 +1,6 @@
 package com.example.sot_treasure_tracker.presentation.tracker
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.sot_treasure_tracker.data.catalog.Catalog
 import com.example.sot_treasure_tracker.domain.use_cases.DecrementRawValuesUseCase
@@ -28,10 +29,10 @@ class TrackerViewModel : ViewModel() {
     private val _costValues = MutableStateFlow(CostValues())
     val costValues = _costValues.asStateFlow()
 
-    private val _representedFraction = MutableStateFlow<RepresentableFractions?>(null)
+    private val _representedFraction = MutableStateFlow(RepresentableFractions.UNSELECTED)
     val representedFraction = _representedFraction.asStateFlow()
 
-    private val _emissaryGrade = MutableStateFlow<EmissaryGrades?>(null)
+    private val _emissaryGrade = MutableStateFlow(EmissaryGrades.FIRST_GRADE)
     val emissaryGrade = _emissaryGrade.asStateFlow()
 
     private val _controlPanelState = MutableStateFlow<ControlPanelState>(ControlPanelState.Opened)
@@ -57,6 +58,7 @@ class TrackerViewModel : ViewModel() {
 
             is Event.ChangeRepresentedFraction -> {
                 _representedFraction.value = event.representableFractions
+                Log.d("TAGTAGTAG", "Selected Fraction: ${representedFraction.value}")
                 updateMultipliedValues()
             }
 

@@ -81,9 +81,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintBottom_toTopOf="@+id/dropDownTextInputLayout"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="000000" />
+            tools:text="Emissary value: 000000" />
 
         <TextView
             android:id="@+id/goldTextView"
@@ -92,9 +92,8 @@
             android:layout_margin="8dp"
             android:drawablePadding="8dp"
             app:drawableLeftCompat="@drawable/img_currency_gold"
-            app:layout_constraintBottom_toBottomOf="@+id/doubloonsTextView"
-            app:layout_constraintEnd_toStartOf="@+id/doubloonsTextView"
-            app:layout_constraintTop_toTopOf="@+id/doubloonsTextView"
+            app:layout_constraintBottom_toTopOf="@+id/valueTextView"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="000000–000000" />
 
         <TextView
@@ -104,17 +103,35 @@
             android:layout_margin="8dp"
             android:drawablePadding="8dp"
             app:drawableLeftCompat="@drawable/img_currency_doubloons"
-            app:layout_constraintBottom_toTopOf="@+id/spinner"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/goldTextView"
+            app:layout_constraintStart_toEndOf="@+id/goldTextView"
+            app:layout_constraintTop_toTopOf="@+id/goldTextView"
             tools:text="000000" />
 
-        <Spinner
-            android:id="@+id/spinner"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dropDownTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:entries="@array/emissary_companies"
-            android:spinnerMode="dialog"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar" />
+            android:layout_height="wrap_content"
+            android:hint="Represented Emissary"
+            app:layout_constraintBottom_toTopOf="@+id/seekBar">
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                tools:text="Gold Hoarders"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <Spinner-->
+<!--            android:id="@+id/spinner"-->
+<!--            style="@android:style/Widget.Material.Spinner"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:entries="@array/emissary_companies"-->
+<!--            android:spinnerMode="dropdown"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/seekBar"-->
+<!--            tools:layout_editor_absoluteX="16dp" />-->
 
         <SeekBar
             android:id="@+id/seekBar"

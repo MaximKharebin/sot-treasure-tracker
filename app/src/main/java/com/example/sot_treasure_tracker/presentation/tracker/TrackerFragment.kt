@@ -1,12 +1,16 @@
 package com.example.sot_treasure_tracker.presentation.tracker
 
+import android.graphics.BlendMode
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,6 +25,7 @@ import com.example.sot_treasure_tracker.components.ControlPanelState
 import com.example.sot_treasure_tracker.components.EmissaryGrades
 import com.example.sot_treasure_tracker.presentation.tracker.components.Event
 import com.example.sot_treasure_tracker.components.RepresentableFractions
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
@@ -32,6 +37,7 @@ class TrackerFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: TrackerViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,40 +56,60 @@ class TrackerFragment : Fragment() {
         }
 
         collectLatestFlow(viewModel.costValues) { costValues ->
-            val goldRangeString = listOf(
+            Log.d("TAGTAGTAG", "Cost Values: ${costValues}")
+            binding.goldTextView.text = getString(
+                R.string.treasure_price_range,
                 costValues.gold.first,
                 costValues.gold.last
-            ).joinToString("–")
+            )
 
-            binding.goldTextView.text = goldRangeString
-            binding.doubloonsTextView.text = costValues.doubloons.toString()
-            binding.valueTextView.text = costValues.emissaryValue.toString()
+            binding.doubloonsTextView.text = getString(
+                R.string.treasure_price_single,
+                costValues.doubloons
+            )
+
+            binding.valueTextView.text = getString(
+                R.string.treasure_emissary_value,
+                costValues.emissaryValue
+            )
         }
 
         collectLatestFlow(viewModel.representedFraction) { fraction ->
+            val fractions = resources.getStringArray(R.array.emissary_companies)
+            val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, fractions)
+            binding.autoCompleteTextView.setAdapter(arrayAdapter)
+            binding.autoCompleteTextView.isFocusableInTouchMode = false
+
             when (fraction) {
-                RepresentableFractions.GOLD_HOARDERS -> binding.spinner.setSelection(
-                    RepresentableFractions.GOLD_HOARDERS.ordinal
+                RepresentableFractions.UNSELECTED -> {
+                    binding.autoCompleteTextView.setText(
+                        fractions.get(RepresentableFractions.UNSELECTED.ordinal), false
+                    )
+                }
+
+                RepresentableFractions.GOLD_HOARDERS -> binding.autoCompleteTextView.setText(
+                    fractions.get(RepresentableFractions.GOLD_HOARDERS.ordinal), false
                 )
 
-                RepresentableFractions.MERCHANT_ALLIANCE -> binding.spinner.setSelection(
-                    RepresentableFractions.MERCHANT_ALLIANCE.ordinal
+                RepresentableFractions.MERCHANT_ALLIANCE -> binding.autoCompleteTextView.setText(
+                    fractions.get(RepresentableFractions.MERCHANT_ALLIANCE.ordinal), false
                 )
 
-                RepresentableFractions.ORDER_OF_SOULS -> binding.spinner.setSelection(
-                    RepresentableFractions.ORDER_OF_SOULS.ordinal
+                RepresentableFractions.ORDER_OF_SOULS -> binding.autoCompleteTextView.setText(
+                    fractions.get(RepresentableFractions.ORDER_OF_SOULS.ordinal), false
                 )
 
-                RepresentableFractions.ATHENAS_FORTUNE -> binding.spinner.setSelection(
-                    RepresentableFractions.ATHENAS_FORTUNE.ordinal
+                RepresentableFractions.ATHENAS_FORTUNE -> binding.autoCompleteTextView.setText(
+                    fractions.get(RepresentableFractions.ATHENAS_FORTUNE.ordinal), false
                 )
 
-                RepresentableFractions.REAPERS_BONES -> binding.spinner.setSelection(
-                    RepresentableFractions.REAPERS_BONES.ordinal
+                RepresentableFractions.REAPERS_BONES -> binding.autoCompleteTextView.setText(
+                    fractions.get(RepresentableFractions.REAPERS_BONES.ordinal), false
                 )
 
-                RepresentableFractions.GUILD -> binding.spinner.setSelection(RepresentableFractions.GUILD.ordinal)
-                null -> {}
+                RepresentableFractions.GUILD -> binding.autoCompleteTextView.setText(
+                    fractions.get(RepresentableFractions.GUILD.ordinal), false
+                )
             }
         }
 
@@ -111,31 +137,32 @@ class TrackerFragment : Fragment() {
         collectLatestFlow(viewModel.controlPanelState) { state ->
             when (state) {
                 ControlPanelState.Closed -> {
-                    setButtonIcon(R.drawable.ic_double_arrow_up)
+                    setControlPanelButtonIcon(R.drawable.ic_double_arrow_up)
                     binding.seekBar.isVisible = false
-                    binding.spinner.isVisible = false
+                    binding.autoCompleteTextView.isVisible = false
                 }
 
                 ControlPanelState.Opened -> {
-                    setButtonIcon(R.drawable.ic_double_arrow_down)
+                    setControlPanelButtonIcon(R.drawable.ic_double_arrow_down)
                     binding.seekBar.isVisible = true
-                    binding.spinner.isVisible = true
+                    binding.autoCompleteTextView.isVisible = true
                 }
             }
         }
 
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long,
-            ) {
-                viewModel.onEvent(Event.ChangeRepresentedFraction(RepresentableFractions.entries[position]))
-            }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
+
+        binding.autoCompleteTextView.onItemClickListener =
+            object : AdapterView.OnItemClickListener {
+                override fun onItemClick(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    viewModel.onEvent(Event.ChangeRepresentedFraction(RepresentableFractions.entries[position]))
+                }
+            }
 
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -203,7 +230,7 @@ class TrackerFragment : Fragment() {
         }.attach()
     }
 
-    private fun setButtonIcon(drawable: Int) {
+    private fun setControlPanelButtonIcon(drawable: Int) {
         binding.button.setCompoundDrawablesRelativeWithIntrinsicBounds(
             null,
             null,

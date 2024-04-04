@@ -16,13 +16,10 @@
     <string name="menu_treasure">Treasure Tracker</string>
     <string name="menu_slideshow">Cooking Timer</string>
 
-    <string name="treasure_total_price_gold">%1$d–%2$d </string>
-    <string name="treasure_total_price_doubloons">%1$d </string>
-    <string name="treasure_emissary_value">EV: %1$d</string>
-
-    <string name="treasure_item_price">%1$d–%2$d</string>
-    <string name="treasure_item_emissary_value">Emissary Value: %1$d</string>
-    <string name="treasure_item_quantity">%1$d</string>
+    <string name="treasure_price_range">%1$d–%2$d</string>
+    <string name="treasure_price_single">%1$d</string>
+    <string name="treasure_emissary_value">Emissary Value: %1$d</string>
+    <string name="treasure_quantity">%1$d</string>
 
     <string name="treasure_less_than_0_warning">"You cannot have less than 0 treasure"</string>
 </resources>
