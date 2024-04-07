@@ -54,7 +54,6 @@ class TrackerViewModel : ViewModel() {
     init {
         viewModelScope.launch {
             _uiState.update { it.copy(isCatalogLoading = true) }
-            delay(3000L)
             _catalog.value = getCatalogUseCase.execute()
             _uiState.update { it.copy(isCatalogLoading = false) }
         }

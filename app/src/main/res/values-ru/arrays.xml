@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="emissary_companies">
+        <item>Златодержцы</item>
+        <item>Торговый Союз</item>
+        <item>Орден Душ</item>
+        <item>Сокровища Афины</item>
+        <item>Кости Мертвецов</item>
+        <item>Гильдия</item>
+        <item>Не выбрано</item>
+    </string-array>
+</resources>

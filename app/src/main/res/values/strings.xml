@@ -19,6 +19,7 @@
     <string name="treasure_price_range">%1$d–%2$d</string>
     <string name="treasure_price_single">%1$d</string>
     <string name="treasure_emissary_value">Emissary Value: %1$d</string>
+    <string name="represented_emissary">Represented Emissary</string>
     <string name="treasure_quantity">%1$d</string>
 
     <string name="treasure_less_than_0_warning">"You cannot have less than 0 treasure"</string>
