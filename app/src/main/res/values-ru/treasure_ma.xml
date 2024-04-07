@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_regular_crates">Обычные Ящики</string>
+    <string name="ma_crate_of_immaculate_diamonds">Ящик с Брилиантами</string>
+    <string name="ma_crate_of_exquisite_spices">Ящик с Изысканными Специями</string>
+    <string name="ma_crate_of_exotic_silks">Ящик с Тонкими Шелками</string>
+    <string name="ma_crate_of_rare_tea">Ящик с Редким Чаем</string>
+    <string name="ma_crate_of_fine_sugar">Ящик с Белым Сахаром</string>
+
+    <string name="title_devils_roar_crates">Ящики Дьявольской Глотки</string>
+    <string name="ma_crate_of_precious_gemstones">Ящик с Драгоценными Камнями</string>
+    <string name="ma_crate_of_extraordinary_minerals">Ящик с Необычными Минералами</string>
+    <string name="ma_crate_of_fine_ore">Ящик с Мелкой Рудой</string>
+    <string name="ma_crate_of_volcanic_stoner">Ящик с Вулканической Породой</string>
+
+    <string name="title_encounter_and_quest_crates">Товары Сталкновений и Квестов</string>
+    <string name="ma_crate_of_ancient_bone_dust">Урна с древним прахом</string>
+    <string name="ma_ashes_of_the_damned">Прах Проклятого</string>
+
+    <string name="title_resource_crates">Ящики с Ресурсами</string>
+    <string name="ma_special_resource_crates">Ящик с Фейерверками&#xA;Ящик с Зажигательными Бомбами</string>
+    <string name="ma_ghostly_resource_crates">Проклятый Ящик для Хранения&#xA;Ящик с Ядрами Проклятых</string>
+    <string name="ma_basic_resource_crates">Ящик с Досками&#xA;Ящик с Ядрами&#xA;Ящик с Фруктами</string>
+    <string name="ma_crate_of_the_dark_brethren">Ящик Тёмного Братства</string>
+    <string name="ma_ammo_crate">Ящик с Боеприпасами</string>
+
+    <string name="ma_scrolls_of_charted_waters">Scrolls of Charted Waters</string>
+    <string name="ma_scrolls_of_shrouded_waters">Scrolls of Shrouded Waters</string>
+    <string name="ma_scrolls_of_undiscovered_waters">Scrolls of Undiscovered Waters</string>
+
+    <string name="title_coffers">Сундуки</string>
+    <string name="ma_coffer_of_forgotten_jewels">Сундук с Потерянными Драгоценностями</string>
+    <string name="ma_coffer_of_timeworn_metals">Сундук с Изношенными Металлами</string>
+    <string name="ma_coffer_of_antiquated_coffee">Сундук Старого Кофе</string>
+    <string name="ma_coffer_of_aged_grog">Сундук с выдержанным грогом</string>
+
+    <string name="title_merchant_manifests">Накладные Торговцев</string>
+    <string name="ma_revered_merchant_manifest">Накладная Высокочтимого Торговца</string>
+    <string name="ma_eminent_merchant_manifest">Накладная Выдающегося Торговца</string>
+    <string name="ma_esteemed_merchant_manifest">Накладная Уважаемого Торговца</string>
+    <string name="ma_prosperous_merchant_manifest">Накладная Процветающего Торговца</string>
+    <string name="ma_captains_key">Ключ Капитана</string>
+
+    <string name="title_explosives">Взрывчатые</string>
+    <string name="ma_gunpowder_barrel">Пороховая Бочка</string>
+    <string name="ma_stronghold_gunpowder_barrel">Пороховая Бочка из Цитадели</string>
+
+    <string name="title_regular_cargo">Regular Cargo</string>
+    <string name="ma_crate_of_plants">Crate of Plants</string>
+    <string name="ma_crate_of_luxurious_cloth">Crate of Luxurious Cloth</string>
+    <string name="ma_crate_of_rum_bottles">Crate of Rum Bottles</string>
+
+    <string name="title_devils_roar_cargo">"Devil's Roar Cargo"</string>
+    <string name="ma_crate_of_devils_plants">"Crate of Devil's Plants"</string>
+    <string name="ma_crate_of_devils_luxurious_cloth">"Crate of Devil's Luxurious Cloth"</string>
+    <string name="ma_crate_of_devils_rum_bottles">"Crate of Devil's Rum Bottles"</string>
+</resources>

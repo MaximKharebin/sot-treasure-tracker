@@ -4,17 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.tracker.TrackerFragment">
+    tools:context=".tracker.presentation.TrackerFragment">
 
+
+    <FrameLayout
+        android:id="@+id/loadingFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/loadingProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabGravity="fill"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabGravity="fill">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -65,7 +83,7 @@
         app:layout_constraintBottom_toTopOf="@+id/controlPanel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:drawableEnd="@drawable/ic_double_arrow_down"/>
+        tools:drawableEnd="@drawable/ic_double_arrow_down" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/controlPanel"
@@ -115,23 +133,24 @@
             android:layout_height="wrap_content"
             android:hint="Represented Emissary"
             app:layout_constraintBottom_toTopOf="@+id/seekBar">
+
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
-                tools:text="Gold Hoarders"/>
+                tools:text="Gold Hoarders" />
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        <Spinner-->
-<!--            android:id="@+id/spinner"-->
-<!--            style="@android:style/Widget.Material.Spinner"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="48dp"-->
-<!--            android:entries="@array/emissary_companies"-->
-<!--            android:spinnerMode="dropdown"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/seekBar"-->
-<!--            tools:layout_editor_absoluteX="16dp" />-->
+        <!--        <Spinner-->
+        <!--            android:id="@+id/spinner"-->
+        <!--            style="@android:style/Widget.Material.Spinner"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="48dp"-->
+        <!--            android:entries="@array/emissary_companies"-->
+        <!--            android:spinnerMode="dropdown"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/seekBar"-->
+        <!--            tools:layout_editor_absoluteX="16dp" />-->
 
         <SeekBar
             android:id="@+id/seekBar"

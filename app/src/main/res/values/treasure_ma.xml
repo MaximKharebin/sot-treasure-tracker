@@ -39,6 +39,7 @@
     <string name="ma_eminent_merchant_manifest">Eminent Merchant Manifest</string>
     <string name="ma_esteemed_merchant_manifest">Esteemed Merchant Manifest</string>
     <string name="ma_prosperous_merchant_manifest">Prosperous Merchant Manifest</string>
+    <string name="ma_captains_key">"Captain's Key"</string>
 
     <string name="title_explosives">Explosives</string>
     <string name="ma_gunpowder_barrel">Gunpowder Barrel</string>

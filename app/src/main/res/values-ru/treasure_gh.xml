@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_regular_chests">Обыкновенные &amp; Потопленные Сундуки</string>
+    <string name="gh_captains_chest">Сундук Капитана</string>
+    <string name="gh_marauders_chest">Сундук Грабителя</string>
+    <string name="gh_seafarers_chest">Сундук Морехода</string>
+    <string name="gh_castaways_chest">Сундук Отшельницы</string>
+    <string name="gh_sailors_chest">Сундук Моряка</string>
+    <string name="gh_sea_masters_chest">Сундук Мастера Морей</string>
+    <string name="gh_admirals_chest">Сундук Адмирала</string>
+    <string name="gh_barons_chest">Сундук Барона</string>
+    <string name="gh_kings_chest">Королевский Сундук</string>
+
+    <string name="title_regular_artefacts">Обыкновенные</string>
+    <string name="gh_bronze_regular_artefacts">Загадочный Сосуд,&#xA;Бронзовый Хранитель Секретов,&#xA;Древний Кубок</string>
+    <string name="gh_silver_regular_artefacts">Декоративный Сундук,&#xA;Искусно Сделанный Кувшин,&#xA;Посеребрённая Чаша</string>
+    <string name="gh_gold_regular_artefacts">Золотой Ковчег,&#xA;Изукрашенный Графин,&#xA;Позолоченный Кубок</string>
+    <string name="gh_jeweled_regular_artefacts">Необычная Реликвия,&#xA;Разукрашенный Ящик,&#xA;Богато Украшенная Диковинка</string>
+
+    <string name="title_encounter_and_quest_chests">Сундуки Сталкновений и Квестов</string>
+    <string name="gh_chest_of_the_damned">Сундук Проклятых</string>
+    <string name="gh_skeleton_captains_chest">Сундук Скелета-Капитана</string>
+    <string name="gh_stronghold_chest">Сундук Из Цитадели</string>
+    <string name="gh_chest_of_ancient_tributes">Сундук Древних Подношений</string>
+    <string name="gh_chest_of_fortune">Сундук Фортуны</string>
+
+    <string name="title_cursed_chests">Проклятые Сундуки</string>
+    <string name="gh_chest_of_boundless_sorrow">Сундук Безграничной Скорби</string>
+    <string name="gh_chest_of_everlasting_sorrow">Сундук Вечной Скорби</string>
+    <string name="gh_chest_of_rage">Сундук Ярости</string>
+    <string name="gh_chest_of_sorrow">Сундук Скорби</string>
+    <string name="gh_chest_of_a_thousand_grogs">Сундук Тысячи Кружек</string>
+
+    <string name="title_raid_treasures">Сокровища Рейдов</string>
+    <string name="gh_hoarders_reliquary">"Hoarder's Reliquary"</string>
+    <string name="gh_prosperous_hoarders_reliquary">"Prosperous Hoarder's Reliquary"</string>
+    <string name="gh_glittering_hoarders_reliquary">"Glittering Hoarder's Reliquary"</string>
+
+    <string name="title_ashen_chests">Сундуки Дьявольской Глотки</string>
+    <string name="gh_ashen_captains_chest">Пепельные Сундук Капитана</string>
+    <string name="gh_ashen_marauders_chest">Пепельные Сундук Грабителя</string>
+    <string name="gh_ashen_seafarers_chest">Пепельные Сундук Морехода</string>
+    <string name="gh_ashen_castaways_chest">Пепельные Сундук Отшельницы</string>
+    <string name="gh_ashen_sailors_chest">Пепельные Сундук Моряка</string>
+    <string name="gh_ashen_sea_masters_chest">Пепельные Сундук Мастера Морей</string>
+    <string name="gh_ashen_admirals_chest">Пепельные Сундук Адмирала</string>
+    <string name="gh_ashen_barons_chest">Пепельные Сундук Барона</string>
+    <string name="gh_ashen_kings_chest">Пламенеющий Королевский Сундук</string>
+
+    <string name="title_devils_roar_artefacts">Артефакты Дьявольской Глотки</string>
+    <string name="gh_roaring_goblet">Ревущий Кубок</string>
+    <string name="gh_brimstone_casket">Серная Шкатулка</string>
+    <string name="gh_devils_remnant">Частица Преисподней</string>
+    <string name="gh_magmas_grail">Огненный Грааль</string>
+
+    <string name="title_coral_chests">Кораловые Сундуки</string>
+    <string name="gh_coral_captains_chest">Кораловый Сундук Капитана</string>
+    <string name="gh_coral_marauders_chest">Кораловый Сундук Грабителя</string>
+    <string name="gh_coral_seafarers_chest">Кораловый Сундук Морехода</string>
+    <string name="gh_coral_castaways_chest">Кораловый Сундук Отшельницы</string>
+
+    <string name="title_coral_artefacts">Кораловые Артефакты</string>
+    <string name="gh_mysterious_coral_vessel">Загадочный Коралловый Сосуд</string>
+    <string name="gh_silvered_coral_cup">Посеребрённая Коралловая Чаша</string>
+    <string name="gh_golden_coral_reliquary">Золотой Коралловый Ковчег</string>
+    <string name="gh_peculiar_coral_relic">Необычная Коралловая Реликвия</string>
+
+    <string name="title_treasure_vault_keys">Ключи от Сокровищниц</string>
+    <string name="gh_stone_treasure_vault_key">Каменный Ключ</string>
+    <string name="gh_silver_treasure_vault_key">Серебряный Ключ</string>
+    <string name="gh_gold_treasure_vault_key">Золотой Ключ</string>
+</resources>

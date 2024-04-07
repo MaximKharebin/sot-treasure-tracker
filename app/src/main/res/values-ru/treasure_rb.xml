@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_reapers_boxes">Сокровища Костей Жнеца</string>
+    <string name="reapers_chest">Сундук Жнецов</string>
+    <string name="reapers_bounty">Смертельный Трофей</string>
+    <string name="humble_gift">Скромный Дар</string>
+    <string name="generous_gift">Обильный Дар</string>
+
+    <string name="title_broken_emissary_flags">Флаги Эмиссара</string>
+    <string name="broken_emissary_flag_grade_1">Флаг Эмиссара (Ступень I)</string>
+    <string name="broken_emissary_flag_grade_2">Флаг Эмиссара (Ступень II)</string>
+    <string name="broken_emissary_flag_grade_3">Флаг Эмиссара (Ступень III)</string>
+    <string name="broken_emissary_flag_grade_4">Флаг Эмиссара (Ступень IV)</string>
+    <string name="broken_emissary_flag_grade_5">Флаг Эмиссара (Ступень V)</string>
+
+    <string name="title_captains_logbook">Журнала Капитана</string>
+    <string name="noteworthy_captains_logbook">Примечательный Журнал Капитана</string>
+    <string name="accomplished_captains_logbook">Незавершенный Журнал Капитана</string>
+    <string name="remarkable_captains_logbook">Завершенный Журнал Капитана</string>
+    <string name="extraordinary_captains_logbook">Экстраординарный Журнал Капитана</string>
+</resources>

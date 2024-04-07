@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_gem_stones">Драгоценные Камни</string>
+    <string name="sapphire_gems">Сапфир русалки, &#xA;Сапфир сирены</string>
+    <string name="emerald_gems">Изумруд русалки, &#xA;Изумруд сирены</string>
+    <string name="ruby_gems">Рубин русалки, &#xA;Рубин сирены</string>
+
+    <string name="title_treasure_chests">Сундуки с сокровищами</string>
+    <string name="treasure_chest">Сундук с сокровищами</string>
+    <string name="coral_treasure_chest">Коралловый сундук с сокровищами</string>
+    <string name="ancient_chest">Древний сундук</string>
+
+    <string name="title_breath_of_the_sea">Дыхания Моря</string>
+    <string name="ruby_breath_of_the_sea">Рубиновое дыхание моря </string>
+    <string name="emerald_breath_of_the_sea">Изумрудное дыхание моря </string>
+    <string name="sapphire_breath_of_the_sea">Сапфировое дыхание моря </string>
+
+    <string name="title_bilge_rats">Сокровища Салаг</string>
+    <string name="ashen_tomes">Пепельные Тома</string>
+    <string name="ashen_chest">Пепельный Сундук</string>
+    <string name="ashen_key">Ключ Пепла</string>
+    <string name="ritual_skull">Ритуальный Череп</string>
+    <string name="rag_and_bone_crates">Сундуки с Ветошью</string>
+
+    <string name="title_standalone_treasure">Отдельные Сокровища</string>
+    <string name="box_of_wondrous_secrets">Шкатулка Чудесных Тайн</string>
+    <string name="skull_of_siren_song">Черепа Песни Серен</string>
+</resources>

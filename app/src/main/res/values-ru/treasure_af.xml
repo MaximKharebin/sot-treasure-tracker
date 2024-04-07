@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_athenas_chests">Сундуки Афины</string>
+    <string name="chest_of_legends">Сундук с Легендами</string>
+    <string name="ashen_chest_of_legends">Пепельный Сундук с Легендами</string>
+
+    <string name="title_athenas_artefacts">Артефакты Афины</string>
+    <string name="gilded_relic_of_ancient_fortune">Позолоченная Реликвия из Древнего Клада</string>
+    <string name="chalice_of_ancient_fortune">Кубок из Древнего Клада</string>
+
+    <string name="title_athenas_skulls">Черепа Афины</string>
+    <string name="villainous_skull_of_ancient_fortune">Гнусный Череп из Древнего Клада</string>
+    <string name="skull_of_ancient_fortune">Череп из Древнего Клада</string>
+
+    <string name="title_athenas_trade_goods">Товары Афины</string>
+    <string name="keg_of_ancient_black_powder">Бочка с Древним Порохом</string>
+    <string name="crate_of_legendary_voyages">Ящик с Легендарными Путешествиями</string>
+
+    <string name="title_athenas_legend_of_the_veil_treasure">Легендарные Артефакты</string>
+    <string name="athenas_relic">Череп милости Афины</string>
+    <string name="skull_of_athenas_blessing">Реликвия Афины</string>
+    <string name="offering_of_legendary_goods">Артефакт Легендарной Пасти</string>
+    <string name="legendary_fortune_keeper">Тайник «Легендарная удача»</string>
+    <string name="artifact_of_legendary_hunger">Коллекция Легендарных Товаров</string>
+    <string name="jar_of_athenas_incense">Сосуд с Благовониями Афины</string>
+
+    <string name="talisman_of_fortunes">Talisman of Fortunes</string>
+    <string name="talisman_of_great_fortunes">Talisman of Great Fortunes</string>
+    <string name="talisman_of_magnificent_fortunes">Talisman of Magnificent Fortunes</string>
+</resources>
