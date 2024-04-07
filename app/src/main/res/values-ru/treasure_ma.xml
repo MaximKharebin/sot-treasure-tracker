@@ -24,9 +24,9 @@
     <string name="ma_crate_of_the_dark_brethren">Ящик Тёмного Братства</string>
     <string name="ma_ammo_crate">Ящик с Боеприпасами</string>
 
-    <string name="ma_scrolls_of_charted_waters">Scrolls of Charted Waters</string>
-    <string name="ma_scrolls_of_shrouded_waters">Scrolls of Shrouded Waters</string>
-    <string name="ma_scrolls_of_undiscovered_waters">Scrolls of Undiscovered Waters</string>
+    <string name="ma_scrolls_of_charted_waters">Свитки Отмеченных Вод</string>
+    <string name="ma_scrolls_of_shrouded_waters">Свитки Окутанных Вод</string>
+    <string name="ma_scrolls_of_undiscovered_waters">Свитки Неизведанных Вод</string>
 
     <string name="title_coffers">Сундуки</string>
     <string name="ma_coffer_of_forgotten_jewels">Сундук с Потерянными Драгоценностями</string>
@@ -45,13 +45,23 @@
     <string name="ma_gunpowder_barrel">Пороховая Бочка</string>
     <string name="ma_stronghold_gunpowder_barrel">Пороховая Бочка из Цитадели</string>
 
-    <string name="title_regular_cargo">Regular Cargo</string>
-    <string name="ma_crate_of_plants">Crate of Plants</string>
-    <string name="ma_crate_of_luxurious_cloth">Crate of Luxurious Cloth</string>
-    <string name="ma_crate_of_rum_bottles">Crate of Rum Bottles</string>
+    <string name="title_cargo">Грузы</string>
+    <string name="ma_kings_cargo">Ящик с Экзотическими Растениями&#xA;Ящик с Элегентной Одеждой&#xA;Ящик с Лучшим Ромом</string>
+    <string name="ma_regular_cargo">Ящик с Растениями&#xA;Ящик с Роскошными Тканями&#xA;Ящик с Бутылками</string>
+    <string name="ma_devils_roar_cargo">Ящик с Дьявольскими Растениями&#xA;Ящик с Дьявольскими Роскошными Тканями&#xA;Ящик с Дьявольскими Бутылками</string>
 
-    <string name="title_devils_roar_cargo">"Devil's Roar Cargo"</string>
-    <string name="ma_crate_of_devils_plants">"Crate of Devil's Plants"</string>
-    <string name="ma_crate_of_devils_luxurious_cloth">"Crate of Devil's Luxurious Cloth"</string>
-    <string name="ma_crate_of_devils_rum_bottles">"Crate of Devil's Rum Bottles"</string>
+    <string name="title_animals">Животные</string>
+    <string name="ma_tier1_animals">Белая Курица&#xA;Розовая Свинья&#xA;Красно-белая Змея</string>
+    <string name="ma_tier2_animals">Пятнистая Курица&#xA;Пятнистая Свинья&#xA;Сине-чёрная Змея</string>
+    <string name="ma_tier3_animals">Чёрная Курица&#xA;Чёрная Свинья&#xA;Чёрная Змея</string>
+    <string name="ma_tier4_animals">Золотая Курица&#xA;Золотая Свинья&#xA;Золотая Змея</string>
+
+    <string name="title_commodities">Торговые Грузы</string>
+    <string name="ma_raw_sugar">Сахар-Сырец</string>
+    <string name="ma_ungraded_tea">Несортированный Чай</string>
+    <string name="ma_unsorted_silks">Несортированные Шелка</string>
+    <string name="ma_unrefined_spices">Неочищенные Специи</string>
+    <string name="ma_broken_stone">Разбитый Камень</string>
+    <string name="ma_unfiltered_minerals">Неразобранные Минералы</string>
+    <string name="ma_unclassified_gemstones">Несортированные Самоцветы</string>
 </resources>

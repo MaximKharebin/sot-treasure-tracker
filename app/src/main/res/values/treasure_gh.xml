@@ -12,6 +12,9 @@
     <string name="gh_kings_chest">"King's Chest"</string>
 
     <string name="title_regular_artefacts">Regular Artefacts</string>
+    <string name="gh_crown_of_hope">Crown of Hope</string>
+    <string name="gh_cradle_od_virture">Cradle of Virtue</string>
+    <string name="gh_vestige_of_power">Vestige of Power</string>
     <string name="gh_bronze_regular_artefacts">Mysterious Vessel,&#xA;Bronze Secret-Keeper,&#xA;Ancient Goblet</string>
     <string name="gh_silver_regular_artefacts">Decorative Coffer,&#xA;Elaborate Flagon,&#xA;Silvered Cup</string>
     <string name="gh_gold_regular_artefacts">Golden Reliquary,&#xA;Ornate Carafe,&#xA;Gilded Chalice</string>

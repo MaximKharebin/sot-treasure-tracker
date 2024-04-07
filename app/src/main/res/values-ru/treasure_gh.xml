@@ -6,12 +6,15 @@
     <string name="gh_seafarers_chest">Сундук Морехода</string>
     <string name="gh_castaways_chest">Сундук Отшельницы</string>
     <string name="gh_sailors_chest">Сундук Моряка</string>
-    <string name="gh_sea_masters_chest">Сундук Мастера Морей</string>
+    <string name="gh_sea_masters_chest">Сундук Морского Владыки</string>
     <string name="gh_admirals_chest">Сундук Адмирала</string>
     <string name="gh_barons_chest">Сундук Барона</string>
     <string name="gh_kings_chest">Королевский Сундук</string>
 
     <string name="title_regular_artefacts">Обыкновенные</string>
+    <string name="gh_crown_of_hope">Венец Надежды</string>
+    <string name="gh_cradle_od_virture">Колыбель Добродетели</string>
+    <string name="gh_vestige_of_power">Отголосок Могущества</string>
     <string name="gh_bronze_regular_artefacts">Загадочный Сосуд,&#xA;Бронзовый Хранитель Секретов,&#xA;Древний Кубок</string>
     <string name="gh_silver_regular_artefacts">Декоративный Сундук,&#xA;Искусно Сделанный Кувшин,&#xA;Посеребрённая Чаша</string>
     <string name="gh_gold_regular_artefacts">Золотой Ковчег,&#xA;Изукрашенный Графин,&#xA;Позолоченный Кубок</string>
@@ -32,19 +35,19 @@
     <string name="gh_chest_of_a_thousand_grogs">Сундук Тысячи Кружек</string>
 
     <string name="title_raid_treasures">Сокровища Рейдов</string>
-    <string name="gh_hoarders_reliquary">"Hoarder's Reliquary"</string>
-    <string name="gh_prosperous_hoarders_reliquary">"Prosperous Hoarder's Reliquary"</string>
-    <string name="gh_glittering_hoarders_reliquary">"Glittering Hoarder's Reliquary"</string>
+    <string name="gh_hoarders_reliquary">Ковчег Златодержца</string>
+    <string name="gh_prosperous_hoarders_reliquary">Роскошный Ковчег Златодержца</string>
+    <string name="gh_glittering_hoarders_reliquary">Сверкающий Ковчег Златодержца</string>
 
     <string name="title_ashen_chests">Сундуки Дьявольской Глотки</string>
-    <string name="gh_ashen_captains_chest">Пепельные Сундук Капитана</string>
-    <string name="gh_ashen_marauders_chest">Пепельные Сундук Грабителя</string>
-    <string name="gh_ashen_seafarers_chest">Пепельные Сундук Морехода</string>
-    <string name="gh_ashen_castaways_chest">Пепельные Сундук Отшельницы</string>
-    <string name="gh_ashen_sailors_chest">Пепельные Сундук Моряка</string>
-    <string name="gh_ashen_sea_masters_chest">Пепельные Сундук Мастера Морей</string>
-    <string name="gh_ashen_admirals_chest">Пепельные Сундук Адмирала</string>
-    <string name="gh_ashen_barons_chest">Пепельные Сундук Барона</string>
+    <string name="gh_ashen_captains_chest">Пепельный Сундук Капитана</string>
+    <string name="gh_ashen_marauders_chest">Пепельный Сундук Грабителя</string>
+    <string name="gh_ashen_seafarers_chest">Пепельный Сундук Морехода</string>
+    <string name="gh_ashen_castaways_chest">Пепельный Сундук Отшельницы</string>
+    <string name="gh_ashen_sailors_chest">Пепельный Сундук Моряка</string>
+    <string name="gh_ashen_sea_masters_chest">Пламенеющий Сундук Морского Владыки</string>
+    <string name="gh_ashen_admirals_chest">Пепельный Сундук Адмирала</string>
+    <string name="gh_ashen_barons_chest">Пепельный Сундук Барона</string>
     <string name="gh_ashen_kings_chest">Пламенеющий Королевский Сундук</string>
 
     <string name="title_devils_roar_artefacts">Артефакты Дьявольской Глотки</string>

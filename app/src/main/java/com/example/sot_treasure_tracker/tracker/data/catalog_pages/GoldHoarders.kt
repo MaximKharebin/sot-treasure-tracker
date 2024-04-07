@@ -73,6 +73,24 @@ object GoldHoarders : TreasurePage {
             titleId = R.string.title_regular_artefacts,
             items = listOf(
                 TreasureItemDto(
+                    nameId = R.string.gh_crown_of_hope,
+                    price = Price.GoldRange(3100..3200),
+                    emissaryValue = 9450,
+                    belongsTo = SellFractions.GOLD_HOARDERS
+                ),
+                TreasureItemDto(
+                    nameId = R.string.gh_cradle_od_virture,
+                    price = Price.GoldRange(2215..2235),
+                    emissaryValue = 6675,
+                    belongsTo = SellFractions.GOLD_HOARDERS
+                ),
+                TreasureItemDto(
+                    nameId = R.string.gh_vestige_of_power,
+                    price = Price.GoldRange(1655..1675),
+                    emissaryValue = 4995,
+                    belongsTo = SellFractions.GOLD_HOARDERS
+                ),
+                TreasureItemDto(
                     nameId = R.string.gh_jeweled_regular_artefacts,
                     price = Price.GoldRange(560..1100),
                     emissaryValue = 2400,

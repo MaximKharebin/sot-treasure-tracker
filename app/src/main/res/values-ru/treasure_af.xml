@@ -17,14 +17,14 @@
     <string name="crate_of_legendary_voyages">Ящик с Легендарными Путешествиями</string>
 
     <string name="title_athenas_legend_of_the_veil_treasure">Легендарные Артефакты</string>
-    <string name="athenas_relic">Череп милости Афины</string>
+    <string name="athenas_relic">Череп Милости Афины</string>
     <string name="skull_of_athenas_blessing">Реликвия Афины</string>
     <string name="offering_of_legendary_goods">Артефакт Легендарной Пасти</string>
     <string name="legendary_fortune_keeper">Тайник «Легендарная удача»</string>
     <string name="artifact_of_legendary_hunger">Коллекция Легендарных Товаров</string>
     <string name="jar_of_athenas_incense">Сосуд с Благовониями Афины</string>
 
-    <string name="talisman_of_fortunes">Talisman of Fortunes</string>
-    <string name="talisman_of_great_fortunes">Talisman of Great Fortunes</string>
-    <string name="talisman_of_magnificent_fortunes">Talisman of Magnificent Fortunes</string>
+    <string name="talisman_of_fortunes">Талисман Богаств</string>
+    <string name="talisman_of_great_fortunes">Талисман Великих Богаств</string>
+    <string name="talisman_of_magnificent_fortunes">Талисман Изумительных Богаств</string>
 </resources>

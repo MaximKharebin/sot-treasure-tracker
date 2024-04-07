@@ -239,6 +239,108 @@ object MerchantAlliance : TreasurePage {
                     belongsTo = SellFractions.MERCHANT_ALLIANCE
                 )
             )
+        ),
+
+        TreasureCategoryDto(
+            titleId = R.string.title_commodities,
+            items = listOf(
+                TreasureItemDto(
+                    nameId = R.string.ma_unclassified_gemstones,
+                    price = Price.GoldRange(120..900),
+                    emissaryValue = 0,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_unfiltered_minerals,
+                    price = Price.GoldRange(110..850),
+                    emissaryValue = 0,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_broken_stone,
+                    price = Price.GoldRange(105..800),
+                    emissaryValue = 0,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_unrefined_spices,
+                    price = Price.GoldRange(100..750),
+                    emissaryValue = 0,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_unsorted_silks,
+                    price = Price.GoldRange(90..700),
+                    emissaryValue = 0,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_ungraded_tea,
+                    price = Price.GoldRange(85..650),
+                    emissaryValue = 0,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_raw_sugar,
+                    price = Price.GoldRange(80..600),
+                    emissaryValue = 0,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+            )
+        ),
+
+        TreasureCategoryDto(
+            titleId = R.string.title_cargo,
+            items = listOf(
+                TreasureItemDto(
+                    nameId = R.string.ma_kings_cargo,
+                    price = Price.GoldRange(0..1655),
+                    emissaryValue = 4950,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_regular_cargo,
+                    price = Price.GoldRange(100..700),
+                    emissaryValue = 0,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_devils_roar_cargo,
+                    price = Price.GoldRange(200..1400),
+                    emissaryValue = 0,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                )
+            )
+        ),
+
+        TreasureCategoryDto(
+            titleId = R.string.title_animals,
+            items = listOf(
+                TreasureItemDto(
+                    nameId = R.string.ma_tier4_animals,
+                    price = Price.GoldRange(1550..2800),
+                    emissaryValue = 6280,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_tier3_animals,
+                    price = Price.GoldRange(750..1400),
+                    emissaryValue = 3240,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_tier2_animals,
+                    price = Price.GoldRange(350..700),
+                    emissaryValue = 1620,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                ),
+                TreasureItemDto(
+                    nameId = R.string.ma_tier1_animals,
+                    price = Price.GoldRange(100..250),
+                    emissaryValue = 810,
+                    belongsTo = SellFractions.MERCHANT_ALLIANCE
+                )
+            )
         )
     )
 }

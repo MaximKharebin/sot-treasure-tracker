@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_regular_skulls">Обычные Трофейные Черепа</string>
-    <string name="oos_wrathful_kings_bounty_skull">"Wrathful King's Bounty Skull"</string>
-    <string name="oos_vicious_bounty_skull">Vicious Bounty Skull</string>
-    <string name="oos_corrupted_bounty_skull">Corrupted Bounty Skull</string>
-    <string name="oos_vile_bounty_skull">Vile Bounty Skull</string>
-    <string name="oos_dark_bounty_skull">Dark Bounty Skull</string>
+    <string name="oos_wrathful_kings_bounty_skull">Трофейный Череп Яростного Короля</string>
+    <string name="oos_vicious_bounty_skull">Яростный Трофейный Череп</string>
+    <string name="oos_corrupted_bounty_skull">Осквернённый Трофейный Череп</string>
+    <string name="oos_vile_bounty_skull">Мерзкий Трофейный Череп</string>
+    <string name="oos_dark_bounty_skull">Тёмный Трофейный Череп</string>
     <string name="oos_villainous_bounty_skull">Гнусный Трофейный Череп</string>
     <string name="oos_hateful_bounty_skull">Злобный Трофейный Череп</string>
     <string name="oos_disgraced_bounty_skull">Опальный Трофейный Череп</string>
@@ -20,11 +20,11 @@
     <string name="oos_captain_skull_of_the_damned">Старший Череп Проклятых</string>
 
     <string name="title_ashen_skulls">Горелые Трофейные Черепа</string>
-    <string name="oos_ashen_wrathful_kings_bounty_skull">"Ashen Wrathful King's Bounty Skull"</string>
-    <string name="oos_ashen_vicious_bounty_skull">Ashen Vicious Bounty Skull</string>
-    <string name="oos_ashen_corrupted_bounty_skull">Ashen Corrupted Bounty Skull</string>
-    <string name="oos_ashen_vile_bounty_skull">Ashen Vile Bounty Skull</string>
-    <string name="oos_ashen_dark_bounty_skull">Ashen Dark Bounty Skull</string>
+    <string name="oos_ashen_wrathful_kings_bounty_skull">Пламенеющий Трофейный Череп Яростного Короля</string>
+    <string name="oos_ashen_vicious_bounty_skull">Пламенеющий Яростный Трофейный Череп</string>
+    <string name="oos_ashen_corrupted_bounty_skull">Пламенеющий Осквернённый Трофейный Череп</string>
+    <string name="oos_ashen_vile_bounty_skull">Пламенеющий Мерзкий Трофейный Череп</string>
+    <string name="oos_ashen_dark_bounty_skull">Пламенеющий Тёмный Трофейный Череп</string>
     <string name="oos_ashen_villainous_bounty_skull">Горелый Гнусный Трофейный Череп</string>
     <string name="oos_ashen_hateful_bounty_skull">Горелый Злобный Трофейный Череп</string>
     <string name="oos_ashen_disgraced_bounty_skull">Горелый Опальный Трофейный Череп</string>
@@ -37,13 +37,13 @@
     <string name="oos_coral_foul_bounty_skull">Гнилой Коралловый Череп</string>
 
     <string name="title_dark_relics">Тёмные реликвии</string>
-    <string name="oos_evil_eye">Evil Eye</string>
+    <string name="oos_evil_eye">Дурной Глаз</string>
     <string name="oos_mutinous_effigy">Mutinous Effigy</string>
-    <string name="oos_enchantment_vessel">Enchantment Vessel</string>
+    <string name="oos_enchantment_vessel">Колдовской Сосуд</string>
     <string name="oos_hexing_skull">Hexing Skull</string>
     <string name="oos_bewitching_doll">Bewitching Doll</string>
 
-    <string name="oos_eye_of_souls">Eye of Souls</string>
-    <string name="oos_veiled_eye_of_souls">Veiled Eye of Souls</string>
-    <string name="oos_all_seeing_eye_of_souls">All-Seeing Eye of Souls</string>
+    <string name="oos_eye_of_souls">Око Дущ</string>
+    <string name="oos_veiled_eye_of_souls">Сокрытое Око Душ</string>
+    <string name="oos_all_seeing_eye_of_souls">Всевидящее Око Дущ</string>
 </resources>
