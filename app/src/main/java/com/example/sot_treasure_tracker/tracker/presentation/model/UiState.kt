@@ -1,7 +1,7 @@
-package com.example.sot_treasure_tracker.tracker.presentation.model
+package com.example.sot_treasure_tracker.calculator.presentation.model
 
-import com.example.sot_treasure_tracker.tracker.domain.models.EmissaryGrades
-import com.example.sot_treasure_tracker.tracker.domain.models.RepresentableFractions
+import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
+import com.example.sot_treasure_tracker.calculator.domain.models.RepresentableFractions
 
 data class UiState(
     val costValues: CostValues,

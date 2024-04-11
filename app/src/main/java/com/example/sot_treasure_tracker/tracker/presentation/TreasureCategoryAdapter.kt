@@ -1,12 +1,12 @@
-package com.example.sot_treasure_tracker.tracker.presentation
+package com.example.sot_treasure_tracker.calculator.presentation
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sot_treasure_tracker.databinding.ItemTreasureCategoryBinding
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureCategory
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.databinding.ItemCategoryBinding
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureCategory
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 
 class TreasureCategoryAdapter(
     private val storage: List<List<TreasureCategory>>,
@@ -16,7 +16,7 @@ class TreasureCategoryAdapter(
 ) : RecyclerView.Adapter<TreasureCategoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemTreasureCategoryBinding.inflate(
+        val binding = ItemCategoryBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -38,7 +38,7 @@ class TreasureCategoryAdapter(
     override fun getItemCount(): Int = storage[pageIndex].size
 
     inner class ViewHolder(
-        binding: ItemTreasureCategoryBinding
+        binding: ItemCategoryBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         val context: Context = binding.root.context

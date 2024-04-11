@@ -1,8 +1,8 @@
-package com.example.sot_treasure_tracker.tracker.data.models
+package com.example.sot_treasure_tracker.calculator.data.models
 
-import com.example.sot_treasure_tracker.tracker.domain.models.Price
-import com.example.sot_treasure_tracker.tracker.domain.models.SellFractions
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.calculator.domain.models.Price
+import com.example.sot_treasure_tracker.calculator.domain.models.SellFractions
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 
 data class TreasureItemDto(
     override val nameId: Int,

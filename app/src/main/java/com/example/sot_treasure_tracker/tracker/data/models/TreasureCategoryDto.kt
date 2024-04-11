@@ -1,6 +1,6 @@
-package com.example.sot_treasure_tracker.tracker.data.models
+package com.example.sot_treasure_tracker.calculator.data.models
 
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureCategory
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureCategory
 
 data class TreasureCategoryDto(
     override val titleId: Int,

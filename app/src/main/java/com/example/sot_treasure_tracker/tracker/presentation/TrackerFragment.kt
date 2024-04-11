@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.tracker.presentation
+package com.example.sot_treasure_tracker.calculator.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,14 +19,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.sot_treasure_tracker.R
+import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
+import com.example.sot_treasure_tracker.calculator.domain.models.RepresentableFractions
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureCategory
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.calculator.presentation.model.CostValues
+import com.example.sot_treasure_tracker.calculator.presentation.model.Event
 import com.example.sot_treasure_tracker.databinding.FragmentTrackerBinding
-import com.example.sot_treasure_tracker.tracker.domain.models.EmissaryGrades
-import com.example.sot_treasure_tracker.tracker.domain.models.RepresentableFractions
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureCategory
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureItem
-import com.example.sot_treasure_tracker.tracker.presentation.model.CostValues
-import com.example.sot_treasure_tracker.tracker.presentation.model.Event
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
@@ -36,7 +37,6 @@ class TrackerFragment : Fragment() {
 
     private var _binding: FragmentTrackerBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: TrackerViewModel by viewModels()
 
 
@@ -103,7 +103,7 @@ class TrackerFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.addPresetMenuItem -> {
-
+                        findNavController().navigate(R.id.action_trackerFragment_to_presetsFragment)
                         true
                     }
 
@@ -111,6 +111,19 @@ class TrackerFragment : Fragment() {
                 }
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun <T> collectLatestFlow(flow: Flow<T>, collect: suspend (T) -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                flow.collectLatest(collect)
+            }
+        }
     }
 
     private fun setLoadingScreen(isLoading: Boolean) {
@@ -223,20 +236,6 @@ class TrackerFragment : Fragment() {
             R.string.treasure_emissary_value,
             costValues.emissaryValue
         )
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-
-    private fun <T> collectLatestFlow(flow: Flow<T>, collect: suspend (T) -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                flow.collectLatest(collect)
-            }
-        }
     }
 
     private fun incrementTreasure(treasureItem: TreasureItem, doIncrement: Boolean) {

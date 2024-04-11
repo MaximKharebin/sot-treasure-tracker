@@ -7,7 +7,21 @@
 
     <fragment
         android:id="@+id/trackerFragment"
-        android:name="com.example.sot_treasure_tracker.tracker.presentation.TrackerFragment"
+        android:name="com.example.sot_treasure_tracker.calculator.presentation.TrackerFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_tracker" />
+        tools:layout="@layout/fragment_tracker" >
+        <action
+            android:id="@+id/action_trackerFragment_to_presetsFragment"
+            app:destination="@id/presetsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/presetsFragment"
+        android:name="com.example.sot_treasure_tracker.presets.presentation.PresetsFragment"
+        android:label="Presets"
+        tools:layout="@layout/fragment_presets" >
+        <action
+            android:id="@+id/action_presetsFragment_to_trackerFragment"
+            app:destination="@id/trackerFragment"
+            app:popUpTo="@id/trackerFragment" />
+    </fragment>
 </navigation>

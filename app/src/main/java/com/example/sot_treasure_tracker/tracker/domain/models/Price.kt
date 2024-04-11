@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.tracker.domain.models
+package com.example.sot_treasure_tracker.calculator.domain.models
 
 sealed interface Price {
     data class GoldRange(val gold: IntRange) :

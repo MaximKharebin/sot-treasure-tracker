@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.tracker.domain.models
+package com.example.sot_treasure_tracker.calculator.domain.models
 
 interface TreasureCatalog {
     val catalog: List<List<TreasureCategory>>

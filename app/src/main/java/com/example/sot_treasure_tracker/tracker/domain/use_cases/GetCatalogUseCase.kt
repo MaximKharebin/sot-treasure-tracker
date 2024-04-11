@@ -1,6 +1,6 @@
-package com.example.sot_treasure_tracker.tracker.domain.use_cases
+package com.example.sot_treasure_tracker.calculator.domain.use_cases
 
-import com.example.sot_treasure_tracker.tracker.data.Repository
+import com.example.sot_treasure_tracker.calculator.data.Repository
 
 class GetCatalogUseCase {
 

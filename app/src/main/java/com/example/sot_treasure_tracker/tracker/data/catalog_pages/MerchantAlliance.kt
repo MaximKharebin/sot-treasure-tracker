@@ -1,11 +1,11 @@
-package com.example.sot_treasure_tracker.tracker.data.catalog_pages
+package com.example.sot_treasure_tracker.calculator.data.catalog_pages
 
 import com.example.sot_treasure_tracker.R
-import com.example.sot_treasure_tracker.tracker.data.models.TreasureCategoryDto
-import com.example.sot_treasure_tracker.tracker.data.models.TreasureItemDto
-import com.example.sot_treasure_tracker.tracker.domain.models.Price
-import com.example.sot_treasure_tracker.tracker.domain.models.SellFractions
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasurePage
+import com.example.sot_treasure_tracker.calculator.data.models.TreasureCategoryDto
+import com.example.sot_treasure_tracker.calculator.data.models.TreasureItemDto
+import com.example.sot_treasure_tracker.calculator.domain.models.Price
+import com.example.sot_treasure_tracker.calculator.domain.models.SellFractions
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasurePage
 
 object MerchantAlliance : TreasurePage {
     override val page: List<TreasureCategoryDto> = listOf(

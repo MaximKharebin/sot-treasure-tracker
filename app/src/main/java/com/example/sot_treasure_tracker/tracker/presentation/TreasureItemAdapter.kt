@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.tracker.presentation
+package com.example.sot_treasure_tracker.calculator.presentation
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.databinding.ItemTreasureBinding
-import com.example.sot_treasure_tracker.tracker.data.models.TreasureItemDto
-import com.example.sot_treasure_tracker.tracker.domain.models.Price
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.calculator.data.models.TreasureItemDto
+import com.example.sot_treasure_tracker.calculator.domain.models.Price
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 
 class TreasureItemAdapter(
     private var pageIndex: Int,

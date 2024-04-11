@@ -1,11 +1,11 @@
-package com.example.sot_treasure_tracker.tracker.presentation
+package com.example.sot_treasure_tracker.calculator.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sot_treasure_tracker.databinding.ItemViewPagerBinding
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureCategory
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureCategory
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 
 class ViewPagerAdapter(
     private val storage: List<List<TreasureCategory>>,

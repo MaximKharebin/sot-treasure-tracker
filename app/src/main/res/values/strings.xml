@@ -24,4 +24,5 @@
 
     <string name="treasure_less_than_0_warning">"You cannot have less than 0 treasure"</string>
     <string name="add_a_preset">Add a Preset</string>
+    <string name="apply">Apply</string>
 </resources>

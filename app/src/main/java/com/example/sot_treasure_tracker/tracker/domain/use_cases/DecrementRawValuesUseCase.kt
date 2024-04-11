@@ -1,9 +1,9 @@
-package com.example.sot_treasure_tracker.tracker.domain.use_cases
+package com.example.sot_treasure_tracker.calculator.domain.use_cases
 
-import com.example.sot_treasure_tracker.tracker.domain.models.Price
-import com.example.sot_treasure_tracker.tracker.domain.models.TreasureItem
-import com.example.sot_treasure_tracker.tracker.domain.models.TrackerRawValues
-import com.example.sot_treasure_tracker.tracker.domain.models.SellFractions
+import com.example.sot_treasure_tracker.calculator.domain.models.Price
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.calculator.domain.models.TrackerRawValues
+import com.example.sot_treasure_tracker.calculator.domain.models.SellFractions
 
 class DecrementRawValuesUseCase {
 
