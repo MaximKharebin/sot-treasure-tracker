@@ -2,12 +2,17 @@ package com.example.sot_treasure_tracker.tracker.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,7 +20,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.sot_treasure_tracker.R
-import com.example.sot_treasure_tracker.databinding.FragmentMainBinding
+import com.example.sot_treasure_tracker.databinding.FragmentTrackerBinding
 import com.example.sot_treasure_tracker.tracker.domain.models.EmissaryGrades
 import com.example.sot_treasure_tracker.tracker.domain.models.RepresentableFractions
 import com.example.sot_treasure_tracker.tracker.domain.models.TreasureCategory
@@ -29,7 +34,7 @@ import kotlinx.coroutines.launch
 
 class TrackerFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentTrackerBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: TrackerViewModel by viewModels()
@@ -39,12 +44,13 @@ class TrackerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentTrackerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val menuHost: MenuHost = requireActivity()
 
         collectLatestFlow(viewModel.catalog) { catalog ->
             if (catalog != null) {
@@ -82,11 +88,29 @@ class TrackerFragment : Fragment() {
 
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {}
 
-            })
+            }
+        )
 
         binding.button.setOnClickListener {
             viewModel.onEvent(Event.ClickControlPanelButton(isOpen = !viewModel.uiState.value.isControlPanelOpen))
         }
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.tracker_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.addPresetMenuItem -> {
+
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun setLoadingScreen(isLoading: Boolean) {
