@@ -13,11 +13,10 @@ import com.example.sot_treasure_tracker.tracker.domain.use_cases.CalculateReaper
 import com.example.sot_treasure_tracker.tracker.domain.use_cases.CalculateRegularFractionUseCase
 import com.example.sot_treasure_tracker.tracker.domain.use_cases.DecrementRawValuesUseCase
 import com.example.sot_treasure_tracker.tracker.domain.use_cases.GetCatalogUseCase
-import com.example.sot_treasure_tracker.tracker.domain.use_cases.IncrementRawValuesUseCase
+import com.example.sot_treasure_tracker.tracker.domain.use_cases.CalculateBaseValuesUseCase
 import com.example.sot_treasure_tracker.tracker.presentation.model.CostValues
 import com.example.sot_treasure_tracker.tracker.presentation.model.Event
 import com.example.sot_treasure_tracker.tracker.presentation.model.UiState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -26,7 +25,7 @@ import kotlinx.coroutines.launch
 class TrackerViewModel : ViewModel() {
 
     private val getCatalogUseCase = GetCatalogUseCase()
-    private val incrementRawValuesUseCase = IncrementRawValuesUseCase()
+    private val calculateBaseValuesUseCase = CalculateBaseValuesUseCase()
     private val decrementRawValuesUseCase = DecrementRawValuesUseCase()
     private val calculateRegularFractionUseCase = CalculateRegularFractionUseCase()
     private val calculateAthenaFortuneUseCase = CalculateAthenaFortuneUseCase()
@@ -48,7 +47,7 @@ class TrackerViewModel : ViewModel() {
     )
     val uiState = _uiState.asStateFlow()
 
-    private var RAW_VALUES = TrackerRawValues()
+    private var BASE_VALUES = TrackerRawValues()
     private var MULTIPLIED_VALUES = TrackerMultipliedValues()
 
     init {
@@ -63,13 +62,13 @@ class TrackerViewModel : ViewModel() {
     fun onEvent(event: Event) {
         when (event) {
             is Event.DecrementTreasure -> {
-                RAW_VALUES = decrementRawValuesUseCase.execute(RAW_VALUES, event.treasureItem)
+                BASE_VALUES = decrementRawValuesUseCase.execute(BASE_VALUES, event.treasureItem)
                 event.treasureItem.quantity -= 1
                 multiplyCostValues()
             }
 
             is Event.IncrementTreasure -> {
-                RAW_VALUES = incrementRawValuesUseCase.execute(RAW_VALUES, event.treasureItem)
+                BASE_VALUES = calculateBaseValuesUseCase.execute(BASE_VALUES, event.treasureItem)
                 event.treasureItem.quantity += 1
                 multiplyCostValues()
             }
@@ -105,30 +104,30 @@ class TrackerViewModel : ViewModel() {
             RepresentableFractions.ORDER_OF_SOULS -> calculateRegularFractionUseCase.execute(
                 uiState.value.emissaryGrade,
                 uiState.value.representedEmissary,
-                RAW_VALUES
+                BASE_VALUES
             )
 
             RepresentableFractions.ATHENAS_FORTUNE -> calculateAthenaFortuneUseCase.execute(
                 uiState.value.emissaryGrade,
                 uiState.value.representedEmissary,
-                RAW_VALUES
+                BASE_VALUES
             )
 
             RepresentableFractions.REAPERS_BONES -> calculateReaperBonesUseCase.execute(
                 uiState.value.emissaryGrade,
-                RAW_VALUES
+                BASE_VALUES
             )
 
             RepresentableFractions.GUILD -> calculateGuildFractionUseCase.execute(
                 uiState.value.emissaryGrade,
-                RAW_VALUES
+                BASE_VALUES
             )
 
             RepresentableFractions.UNSELECTED -> TrackerMultipliedValues(
-                minGold = RAW_VALUES.minGold,
-                maxGold = RAW_VALUES.maxGold,
-                doubloons = RAW_VALUES.doubloons,
-                emissaryValue = RAW_VALUES.emissaryValue,
+                minGold = BASE_VALUES.minGold,
+                maxGold = BASE_VALUES.maxGold,
+                doubloons = BASE_VALUES.doubloons,
+                emissaryValue = BASE_VALUES.emissaryValue,
             )
         }
 

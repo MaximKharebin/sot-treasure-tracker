@@ -5,7 +5,7 @@ import com.example.sot_treasure_tracker.tracker.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.tracker.domain.models.TrackerRawValues
 import com.example.sot_treasure_tracker.tracker.domain.models.SellFractions
 
-class IncrementRawValuesUseCase {
+class CalculateBaseValuesUseCase {
 
     fun execute(trackerRawValues: TrackerRawValues, treasureItem: TreasureItem): TrackerRawValues {
 
