@@ -6,16 +6,16 @@ import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
 import com.example.sot_treasure_tracker.calculator.domain.models.RepresentableFractions
 import com.example.sot_treasure_tracker.calculator.domain.models.MultipliedValues
 import com.example.sot_treasure_tracker.calculator.domain.models.BaseValues
-import com.example.sot_treasure_tracker.components.domain.models.TreasureCatalog
+import com.example.sot_treasure_tracker.util.domain.models.TreasureCatalog
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateAthenaFortuneUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateGuildFractionUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateReaperBonesUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateRegularFractionUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.DecrementRawValuesUseCase
-import com.example.sot_treasure_tracker.components.domain.use_cases.GetCatalogUseCase
+import com.example.sot_treasure_tracker.util.domain.use_cases.GetCatalogUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateBaseValuesUseCase
 import com.example.sot_treasure_tracker.calculator.presentation.model.CostValues
-import com.example.sot_treasure_tracker.calculator.presentation.model.Event
+import com.example.sot_treasure_tracker.calculator.presentation.model.onAction
 import com.example.sot_treasure_tracker.calculator.presentation.model.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -59,38 +59,60 @@ class TrackerViewModel : ViewModel() {
     }
 
 
-    fun onEvent(event: Event) {
-        when (event) {
-            is Event.DecrementTreasure -> {
-                baseValues = decrementRawValuesUseCase.execute(baseValues, event.treasureItem)
-                event.treasureItem.quantity -= 1
+    fun onEvent(onAction: onAction) {
+        when (onAction) {
+            is onAction.DecrementTreasure -> {
+                baseValues = decrementRawValuesUseCase.execute(baseValues, onAction.treasureItem)
+                onAction.treasureItem.quantity -= 1
                 multiplyCostValues()
             }
 
-            is Event.IncrementTreasure -> {
-                baseValues = calculateBaseValuesUseCase.execute(baseValues, event.treasureItem)
-                event.treasureItem.quantity += 1
+            is onAction.IncrementTreasure -> {
+                baseValues = calculateBaseValuesUseCase.execute(baseValues, onAction.treasureItem)
+                onAction.treasureItem.quantity += 1
                 multiplyCostValues()
             }
 
-            is Event.ChangeRepresentedFraction -> {
+            is onAction.ChangeRepresentedFraction -> {
                 _uiState.update {
-                    it.copy(representedEmissary = event.representableFractions)
+                    it.copy(representedEmissary = onAction.representableFractions)
                 }
 
                 multiplyCostValues()
             }
 
-            is Event.ChangeEmissaryGrade -> {
+            is onAction.ChangeEmissaryGrade -> {
                 _uiState.update {
-                    it.copy(emissaryGrade = event.grade)
+                    it.copy(emissaryGrade = onAction.grade)
                 }
                 multiplyCostValues()
             }
 
-            is Event.ClickControlPanelButton -> {
+            is onAction.ClickControlPanelButton -> {
                 _uiState.update {
-                    it.copy(isControlPanelOpen = event.isOpen)
+                    it.copy(isControlPanelOpen = onAction.isOpen)
+                }
+            }
+
+            is onAction.ApplyPreset -> {
+                onAction.treasureIds.forEach { treasureId ->
+
+                    val itemIndex = onAction.treasureIds.indexOf(treasureId)
+                    catalog.value?.catalog?.forEach { categories ->
+                        categories.forEach { category ->
+                            category.items.forEach { treasureItem ->
+                                if (treasureId == treasureItem.nameId) {
+                                    for (i in 1..onAction.treasureQuantities[itemIndex]) {
+                                        treasureItem.quantity += 1
+                                        baseValues = calculateBaseValuesUseCase.execute(baseValues, treasureItem)
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    multiplyCostValues()
                 }
             }
         }

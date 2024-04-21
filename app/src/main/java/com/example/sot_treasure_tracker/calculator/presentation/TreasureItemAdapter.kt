@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.databinding.ItemTreasureBinding
-import com.example.sot_treasure_tracker.components.data.models.TreasureItemDto
-import com.example.sot_treasure_tracker.components.domain.models.Price
-import com.example.sot_treasure_tracker.components.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.util.data.models.TreasureItemDto
+import com.example.sot_treasure_tracker.util.domain.models.Price
+import com.example.sot_treasure_tracker.util.domain.models.TreasureItem
 
 class TreasureItemAdapter(
     private var pageIndex: Int,
@@ -17,34 +17,51 @@ class TreasureItemAdapter(
     private var increment: (TreasureItem, Boolean) -> Unit
 ) : RecyclerView.Adapter<TreasureItemAdapter.ViewHolder>() {
 
-    private fun updateCategory(
-        changeBy: Int,
-        category: List<TreasureItem>,
-        treasure: TreasureItemDto
-    ) {
-        val treasureIndex = category.indexOf(treasure)
-        val newCategory = ArrayList(category)
-        val updatedQuantity = treasure.copy(quantity = treasure.quantity + changeBy)
-        newCategory[treasureIndex] = updatedQuantity
+    inner class ViewHolder(
+        binding: ItemTreasureBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        val diffCallback = ItemCardDiffCallback(category, newCategory)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        diffResult.dispatchUpdatesTo(this@TreasureItemAdapter)
+        val context: Context = binding.root.context
+
+        val treasureName = binding.nameTextView
+        val treasurePrice = binding.priceTextView
+        val treasureValue = binding.valueTextView
+        val treasureQuantity = binding.quantityTextView
+
+        val incrementButton = binding.incrementButton
+        val decrementButton = binding.decrementButton
+    }
+
+    inner class ItemCardDiffCallback(
+        private val oldList: List<TreasureItem>,
+        private val newList: List<TreasureItem>,
+    ) : DiffUtil.Callback() {
+
+        override fun getOldListSize(): Int = oldList.size
+
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = true
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldQuantity = oldList[oldItemPosition].quantity
+            val newQuantity = newList[newItemPosition].quantity
+            return (oldQuantity == newQuantity)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemTreasureBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemTreasureBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
+
+    override fun getItemCount(): Int = category.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val treasure = category[position]
 
-        holder.apply {
+        with(holder) {
             when (treasure.price) {
                 is Price.GoldRange -> {
                     val price = (treasure.price as Price.GoldRange).gold
@@ -90,44 +107,24 @@ class TreasureItemAdapter(
         }
     }
 
-    override fun getItemCount(): Int = category.size
+    private fun updateCategory(
+        changeBy: Int,
+        category: List<TreasureItem>,
+        treasure: TreasureItemDto
+    ) {
+        val treasureIndex = category.indexOf(treasure)
+        val newCategory = ArrayList(category)
+        val updatedQuantity = treasure.copy(quantity = treasure.quantity + changeBy)
+        newCategory[treasureIndex] = updatedQuantity
+
+        val diffCallback = ItemCardDiffCallback(category, newCategory)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        diffResult.dispatchUpdatesTo(this@TreasureItemAdapter)
+    }
 
     private fun setCurrencyImg(holder: ViewHolder, drawable: Int) {
         holder.treasurePrice.setCompoundDrawablesRelativeWithIntrinsicBounds(
             drawable, 0, 0, 0
         )
-    }
-
-    inner class ViewHolder(
-        binding: ItemTreasureBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        val context: Context = binding.root.context
-
-        val treasureName = binding.nameTextView
-        val treasurePrice = binding.priceTextView
-        val treasureValue = binding.valueTextView
-        val treasureQuantity = binding.quantityTextView
-
-        val incrementButton = binding.incrementButton
-        val decrementButton = binding.decrementButton
-    }
-
-    inner class ItemCardDiffCallback(
-        private val oldList: List<TreasureItem>,
-        private val newList: List<TreasureItem>,
-    ) : DiffUtil.Callback() {
-
-        override fun getOldListSize(): Int = oldList.size
-
-        override fun getNewListSize(): Int = newList.size
-
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean = true
-
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            val oldQuantity = oldList[oldItemPosition].quantity
-            val newQuantity = newList[newItemPosition].quantity
-            return (oldQuantity == newQuantity)
-        }
     }
 }

@@ -23,10 +23,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
 import com.example.sot_treasure_tracker.calculator.domain.models.RepresentableFractions
-import com.example.sot_treasure_tracker.components.domain.models.TreasureCategory
-import com.example.sot_treasure_tracker.components.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.util.domain.models.TreasureCategory
+import com.example.sot_treasure_tracker.util.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.calculator.presentation.model.CostValues
-import com.example.sot_treasure_tracker.calculator.presentation.model.Event
+import com.example.sot_treasure_tracker.calculator.presentation.model.onAction
 import com.example.sot_treasure_tracker.databinding.FragmentTrackerBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.Flow
@@ -39,6 +39,17 @@ class TrackerFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: TrackerViewModel by viewModels()
 
+    private var treasureIds: List<Int>? = null
+    private var treasureQuantities: List<Int>? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            treasureIds = it.getIntArray("treasureIds")?.toList()
+            treasureQuantities = it.getIntArray("treasureQuantities")?.toList()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +65,11 @@ class TrackerFragment : Fragment() {
 
         collectLatestFlow(viewModel.catalog) { catalog ->
             if (catalog != null) {
+
+                if (treasureIds != null && treasureQuantities != null) {
+                    viewModel.onEvent(onAction.ApplyPreset(treasureIds!!, treasureQuantities!!))
+                }
+
                 setupViewPager(catalog.catalog)
                 setupTabs()
             }
@@ -70,7 +86,7 @@ class TrackerFragment : Fragment() {
         binding.autoCompleteTextView.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, position, _ ->
                 viewModel.onEvent(
-                    Event.ChangeRepresentedFraction(RepresentableFractions.entries[position])
+                    onAction.ChangeRepresentedFraction(RepresentableFractions.entries[position])
                 )
             }
 
@@ -81,7 +97,7 @@ class TrackerFragment : Fragment() {
                     progress: Int,
                     fromUser: Boolean
                 ) {
-                    viewModel.onEvent(Event.ChangeEmissaryGrade(EmissaryGrades.entries[progress]))
+                    viewModel.onEvent(onAction.ChangeEmissaryGrade(EmissaryGrades.entries[progress]))
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -92,7 +108,7 @@ class TrackerFragment : Fragment() {
         )
 
         binding.button.setOnClickListener {
-            viewModel.onEvent(Event.ClickControlPanelButton(isOpen = !viewModel.uiState.value.isControlPanelOpen))
+            viewModel.onEvent(onAction.ClickControlPanelButton(isOpen = !viewModel.uiState.value.isControlPanelOpen))
         }
 
         menuHost.addMenuProvider(object : MenuProvider {
@@ -240,13 +256,13 @@ class TrackerFragment : Fragment() {
 
     private fun incrementTreasure(treasureItem: TreasureItem, doIncrement: Boolean) {
         if (doIncrement)
-            viewModel.onEvent(Event.IncrementTreasure(treasureItem, 0))
+            viewModel.onEvent(onAction.IncrementTreasure(treasureItem, 0))
         else
-            viewModel.onEvent(Event.DecrementTreasure(treasureItem, 0))
+            viewModel.onEvent(onAction.DecrementTreasure(treasureItem, 0))
     }
 
     private fun setupViewPager(storage: List<List<TreasureCategory>>) {
-        val adapter = ViewPagerAdapter(storage) { treasure, doIncrement ->
+        val adapter = PagesAdapter(storage) { treasure, doIncrement ->
             incrementTreasure(treasure, doIncrement)
         }
         binding.viewPager.adapter = adapter
@@ -276,5 +292,9 @@ class TrackerFragment : Fragment() {
             ),
             null
         )
+    }
+
+    companion object {
+        const val LOG_TAG = "TrackerFragmentLog"
     }
 }

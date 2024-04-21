@@ -5,45 +5,36 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sot_treasure_tracker.databinding.ItemCategoryBinding
-import com.example.sot_treasure_tracker.components.domain.models.TreasureCategory
-import com.example.sot_treasure_tracker.components.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.util.domain.models.TreasureCategory
+import com.example.sot_treasure_tracker.util.domain.models.TreasureItem
 
 class TreasureCategoryAdapter(
-    private val storage: List<List<TreasureCategory>>,
     private var pageIndex: Int,
     private var pageContent: List<TreasureCategory>,
     private var increment: (TreasureItem, Boolean) -> Unit
 ) : RecyclerView.Adapter<TreasureCategoryAdapter.ViewHolder>() {
 
+    inner class ViewHolder(binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        val context: Context = binding.root.context
+        val titleTextView = binding.titleTextView
+        val treasureRecyclerView = binding.contentRecyclerView
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemCategoryBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemCategoryBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 
+    override fun getItemCount(): Int = pageContent.size
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = pageContent[position]
+        val adapter = TreasureItemAdapter(pageIndex, category.items, increment)
 
-        holder.categoryName.text = holder.context.getString(category.titleId)
-
-        val adapter = TreasureItemAdapter(pageIndex, category.items) { treasureItem, doIncrement ->
-            increment(treasureItem, doIncrement)
+        with(holder) {
+            titleTextView.text = holder.context.getString(category.titleId)
+            treasureRecyclerView.adapter = adapter
         }
-        holder.categoryRecyclerView.adapter = adapter
-    }
-
-    override fun getItemCount(): Int = storage[pageIndex].size
-
-    inner class ViewHolder(
-        binding: ItemCategoryBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        val context: Context = binding.root.context
-
-        val categoryRecyclerView = binding.categoryRecyclerView
-        val categoryName = binding.titleTextView
     }
 }

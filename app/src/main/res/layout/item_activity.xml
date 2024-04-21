@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Material3.CardView.Elevated"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/counterCustomView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Preset Title" />
+
+        <TextView
+            android:id="@+id/goldTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="false"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+            app:layout_constraintStart_toStartOf="@+id/titleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+            tools:drawableStartCompat="@drawable/img_currency_gold"
+            tools:text="000000–000000" />
+
+        <TextView
+            android:id="@+id/doubloonTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="false"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/goldTextView"
+            app:layout_constraintStart_toStartOf="@+id/goldTextView"
+            app:layout_constraintTop_toBottomOf="@+id/goldTextView"
+            tools:drawableStartCompat="@drawable/img_currency_doubloons"
+            tools:text="000000–000000" />
+
+        <TextView
+            android:id="@+id/collapseTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Show more"
+            app:drawableStartCompat="@drawable/ic_double_arrow_up"
+            app:layout_constraintBottom_toTopOf="@id/barrier"
+            app:layout_constraintEnd_toEndOf="@+id/doubloonTextView"
+            app:layout_constraintStart_toStartOf="@+id/doubloonTextView"
+            app:layout_constraintTop_toBottomOf="@+id/doubloonTextView"
+            app:layout_constraintVertical_bias="1" />
+
+        <com.example.sot_treasure_tracker.util.presentation.CounterCustomView
+            android:id="@+id/counterCustomView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/barrier"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="counterCustomView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rewards_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

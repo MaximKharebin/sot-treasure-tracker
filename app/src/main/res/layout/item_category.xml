@@ -18,7 +18,7 @@
         tools:text="Category Name" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoryRecyclerView"
+        android:id="@+id/content_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

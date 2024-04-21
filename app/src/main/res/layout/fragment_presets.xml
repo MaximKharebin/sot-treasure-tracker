@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".presets.presentation.PresetsFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/category_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/applyButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +21,7 @@
         android:id="@+id/applyButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin= "16dp"
         android:text="@string/apply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
