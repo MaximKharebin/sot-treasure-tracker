@@ -17,6 +17,8 @@ legacy-support-v4 = "1.0.0"
 lifecycle-livedata-ktx = "2.8.0"
 lifecycle-viewmodel-ktx = "2.8.0"
 fragment-ktx = "1.7.1"
+devtoolsKsp = "1.9.24-1.0.20"
+hiltAndroid = "2.48.1"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
@@ -40,7 +42,11 @@ androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support
 androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle-livedata-ktx" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment-ktx" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+devtoolsKsp = { id = "com.google.devtools.ksp", version.ref = "devtoolsKsp" }
+daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
