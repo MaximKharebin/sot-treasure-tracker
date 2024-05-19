@@ -1,7 +1,7 @@
 package com.example.sot_treasure_tracker.calculator.domain.use_cases
 
-import com.example.sot_treasure_tracker.util.domain.models.Price
-import com.example.sot_treasure_tracker.util.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.components.domain.models.Price
+import com.example.sot_treasure_tracker.components.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.calculator.domain.models.BaseValues
 import com.example.sot_treasure_tracker.calculator.domain.models.SellFractions
 
