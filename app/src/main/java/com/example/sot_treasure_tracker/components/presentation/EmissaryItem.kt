@@ -62,13 +62,6 @@ fun EmissaryItem(
                 )
             }
             .size(48.dp)
-//            .border(
-//                BorderStroke(
-//                    width = 2.dp,
-//                    color = MaterialTheme.colorScheme.primary
-//                ),
-//                shape = RoundedCornerShape(topStart = 50.dp, bottomStart = 50.dp)
-//            )
             .background(
                 MaterialTheme.colorScheme.inverseSurface,
                 shape = RoundedCornerShape(topStart = 50.dp, bottomStart = 50.dp)
@@ -88,13 +81,6 @@ fun EmissaryItem(
                         contentDescription = null,
                         modifier = Modifier
                             .size(36.dp)
-                            .border(
-                                BorderStroke(
-                                    width = 2.dp,
-                                    color = MaterialTheme.colorScheme.primary
-                                ),
-                                shape = RoundedCornerShape(50.dp)
-                            )
                             .background(
                                 MaterialTheme.colorScheme.inverseSurface,
                                 shape = RoundedCornerShape(50.dp)

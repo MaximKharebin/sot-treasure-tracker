@@ -9,49 +9,22 @@ import javax.inject.Inject
 
 class CalculateMultipliedValuesUseCase @Inject constructor() {
 
+    private val minGoldPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
+    private val maxGoldPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
+    private val doubloonsPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
+    private val emissaryValuePerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
+
     fun execute(
         selectedEmissary: Emissaries,
         emissaryGrade: EmissaryGrades,
         baseValues: BaseValues
     ): MultipliedValues {
 
-        val multiplier = when (emissaryGrade) {
-            EmissaryGrades.FIRST_GRADE -> 1.0f
-            EmissaryGrades.SECOND_GRADE -> 1.33f
-            EmissaryGrades.THIRD_GRADE -> 1.66f
-            EmissaryGrades.FORTH_GRADE -> 2.0f
-            EmissaryGrades.FIFTH_GRADE -> 2.5f
-        }
-
-        val minGoldPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
-        val maxGoldPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
-        val doubloonsPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
-        val emissaryValuePerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
-
-        for (fraction in SellBuckets.entries) {
-            minGoldPerFraction[fraction.ordinal] = baseValues.minGold[fraction.ordinal]
-            maxGoldPerFraction[fraction.ordinal] = baseValues.maxGold[fraction.ordinal]
-            doubloonsPerFraction[fraction.ordinal] = baseValues.doubloons[fraction.ordinal]
-            emissaryValuePerFraction[fraction.ordinal] =
-                baseValues.emissaryValue[fraction.ordinal]
-        }
-
-        fun calculateRegularFraction() {
-            minGoldPerFraction[selectedEmissary.ordinal] =
-                baseValues.minGold[selectedEmissary.ordinal] * multiplier
-            maxGoldPerFraction[selectedEmissary.ordinal] =
-                baseValues.maxGold[selectedEmissary.ordinal] * multiplier
-            doubloonsPerFraction[selectedEmissary.ordinal] =
-                baseValues.doubloons[selectedEmissary.ordinal] * multiplier
-            emissaryValuePerFraction[selectedEmissary.ordinal] =
-                baseValues.emissaryValue[selectedEmissary.ordinal] * multiplier
-
-            MultipliedValues(
-                minGold = minGoldPerFraction,
-                maxGold = maxGoldPerFraction,
-                doubloons = doubloonsPerFraction,
-                emissaryValue = emissaryValuePerFraction
-            )
+        SellBuckets.entries.forEach { emissary ->
+            minGoldPerFraction[emissary.ordinal] = baseValues.minGold[emissary.ordinal]
+            maxGoldPerFraction[emissary.ordinal] = baseValues.maxGold[emissary.ordinal]
+            doubloonsPerFraction[emissary.ordinal] = baseValues.doubloons[emissary.ordinal]
+            emissaryValuePerFraction[emissary.ordinal] = baseValues.emissaryValue[emissary.ordinal]
         }
 
         return when (selectedEmissary) {
@@ -59,14 +32,16 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
             Emissaries.MERCHANT_ALLIANCE,
             Emissaries.ORDER_OF_SOULS -> {
 
-                minGoldPerFraction[selectedEmissary.ordinal] =
-                    baseValues.minGold[selectedEmissary.ordinal] * multiplier
-                maxGoldPerFraction[selectedEmissary.ordinal] =
-                    baseValues.maxGold[selectedEmissary.ordinal] * multiplier
-                doubloonsPerFraction[selectedEmissary.ordinal] =
-                    baseValues.doubloons[selectedEmissary.ordinal] * multiplier
-                emissaryValuePerFraction[selectedEmissary.ordinal] =
-                    baseValues.emissaryValue[selectedEmissary.ordinal] * multiplier
+                val multiplier = when (emissaryGrade) {
+                    EmissaryGrades.FIRST_GRADE -> FIRST_GRADE_MULTIPLIER
+                    EmissaryGrades.SECOND_GRADE -> SECOND_GRADE_MULTIPLIER
+                    EmissaryGrades.THIRD_GRADE -> THIRD_GRADE_MULTIPLIER
+                    EmissaryGrades.FORTH_GRADE -> FORTH_GRADE_MULTIPLIER
+                    EmissaryGrades.FIFTH_GRADE -> FIFTH_GRADE_MULTIPLIER
+                }
+
+                multiplyValuesPerEmissary(selectedEmissary, multiplier)
+                multiplyValuesPerEmissary(SellBuckets.SHARED, multiplier)
 
                 MultipliedValues(
                     minGold = minGoldPerFraction,
@@ -78,16 +53,17 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
 
             Emissaries.ATHENAS_FORTUNE -> {
 
-                minGoldPerFraction[selectedEmissary.ordinal] =
-                    baseValues.minGold[selectedEmissary.ordinal] * multiplier
-                maxGoldPerFraction[selectedEmissary.ordinal] =
-                    baseValues.maxGold[selectedEmissary.ordinal] * multiplier
-                doubloonsPerFraction[selectedEmissary.ordinal] =
-                    baseValues.doubloons[selectedEmissary.ordinal] * multiplier
-                emissaryValuePerFraction[selectedEmissary.ordinal] =
-                    baseValues.emissaryValue[selectedEmissary.ordinal] * multiplier
+                val multiplier = when (emissaryGrade) {
+                    EmissaryGrades.FIRST_GRADE -> FIRST_GRADE_MULTIPLIER
+                    EmissaryGrades.SECOND_GRADE -> SECOND_GRADE_MULTIPLIER
+                    EmissaryGrades.THIRD_GRADE -> THIRD_GRADE_MULTIPLIER
+                    EmissaryGrades.FORTH_GRADE -> FORTH_GRADE_MULTIPLIER
+                    EmissaryGrades.FIFTH_GRADE -> FIFTH_GRADE_MULTIPLIER
+                }
 
-                return MultipliedValues(
+                multiplyValuesPerEmissary(selectedEmissary, multiplier)
+
+                MultipliedValues(
                     minGold = minGoldPerFraction,
                     maxGold = maxGoldPerFraction,
                     doubloons = doubloonsPerFraction,
@@ -97,20 +73,20 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
 
             Emissaries.REAPERS_BONES -> {
 
-                SellBuckets.entries.forEach { fractions ->
-                    if (fractions != SellBuckets.UNIQUE) {
-                        minGoldPerFraction[fractions.ordinal] =
-                            baseValues.minGold[fractions.ordinal] * multiplier
-                        maxGoldPerFraction[fractions.ordinal] =
-                            baseValues.maxGold[fractions.ordinal] * multiplier
-                        doubloonsPerFraction[fractions.ordinal] =
-                            baseValues.doubloons[fractions.ordinal] * multiplier
-                        emissaryValuePerFraction[fractions.ordinal] =
-                            baseValues.emissaryValue[fractions.ordinal] * multiplier
-                    }
+                val multiplier = when (emissaryGrade) {
+                    EmissaryGrades.FIRST_GRADE -> FIRST_GRADE_MULTIPLIER
+                    EmissaryGrades.SECOND_GRADE -> SECOND_GRADE_MULTIPLIER
+                    EmissaryGrades.THIRD_GRADE -> THIRD_GRADE_MULTIPLIER
+                    EmissaryGrades.FORTH_GRADE -> FORTH_GRADE_MULTIPLIER
+                    EmissaryGrades.FIFTH_GRADE -> FIFTH_GRADE_MULTIPLIER
                 }
 
-                return MultipliedValues(
+                for (emissary in SellBuckets.entries) {
+                    if (emissary == SellBuckets.UNIQUE) continue
+                    multiplyValuesPerEmissary(emissary, multiplier)
+                }
+
+                MultipliedValues(
                     minGold = minGoldPerFraction,
                     maxGold = maxGoldPerFraction,
                     doubloons = doubloonsPerFraction,
@@ -120,20 +96,20 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
 
             Emissaries.GUILD -> {
 
-                SellBuckets.entries.forEach { fractions ->
-                    if (fractions != SellBuckets.REAPERS_BONES && fractions != SellBuckets.UNIQUE) {
-                        minGoldPerFraction[fractions.ordinal] =
-                            baseValues.minGold[fractions.ordinal] * multiplier
-                        maxGoldPerFraction[fractions.ordinal] =
-                            baseValues.maxGold[fractions.ordinal] * multiplier
-                        doubloonsPerFraction[fractions.ordinal] =
-                            baseValues.doubloons[fractions.ordinal] * multiplier
-                        emissaryValuePerFraction[fractions.ordinal] =
-                            baseValues.emissaryValue[fractions.ordinal] * multiplier
-                    }
+                val multiplier = when (emissaryGrade) {
+                    EmissaryGrades.FIRST_GRADE -> FIRST_GRADE_GUILD_MULTIPLIER
+                    EmissaryGrades.SECOND_GRADE -> SECOND_GRADE_GUILD_MULTIPLIER
+                    EmissaryGrades.THIRD_GRADE -> THIRD_GRADE_GUILD_MULTIPLIER
+                    EmissaryGrades.FORTH_GRADE -> FORTH_GRADE_GUILD_MULTIPLIER
+                    EmissaryGrades.FIFTH_GRADE -> FIFTH_GRADE_GUILD_MULTIPLIER
                 }
 
-                return MultipliedValues(
+                for (emissary in SellBuckets.entries) {
+                    if (emissary == SellBuckets.REAPERS_BONES || emissary == SellBuckets.UNIQUE) continue
+                    multiplyValuesPerEmissary(emissary, multiplier)
+                }
+
+                MultipliedValues(
                     minGold = minGoldPerFraction,
                     maxGold = maxGoldPerFraction,
                     doubloons = doubloonsPerFraction,
@@ -150,4 +126,30 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
         }
     }
 
+    private fun multiplyValuesPerEmissary(emissary: SellBuckets, multiplier: Float) {
+        minGoldPerFraction[emissary.ordinal] *= multiplier
+        maxGoldPerFraction[emissary.ordinal] *= multiplier
+        doubloonsPerFraction[emissary.ordinal] *= multiplier
+        emissaryValuePerFraction[emissary.ordinal] *= multiplier
+    }
+
+    private fun multiplyValuesPerEmissary(emissary: Emissaries, multiplier: Float) {
+        minGoldPerFraction[emissary.ordinal] *= multiplier
+        maxGoldPerFraction[emissary.ordinal] *= multiplier
+        doubloonsPerFraction[emissary.ordinal] *= multiplier
+        emissaryValuePerFraction[emissary.ordinal] *= multiplier
+    }
+    companion object {
+        const val FIRST_GRADE_MULTIPLIER = 1.0f
+        const val SECOND_GRADE_MULTIPLIER = 1.33f
+        const val THIRD_GRADE_MULTIPLIER = 1.66f
+        const val FORTH_GRADE_MULTIPLIER = 2.0f
+        const val FIFTH_GRADE_MULTIPLIER = 2.5f
+
+        const val FIRST_GRADE_GUILD_MULTIPLIER = 1.0f
+        const val SECOND_GRADE_GUILD_MULTIPLIER = 1.15f
+        const val THIRD_GRADE_GUILD_MULTIPLIER = 1.30f
+        const val FORTH_GRADE_GUILD_MULTIPLIER = 1.45f
+        const val FIFTH_GRADE_GUILD_MULTIPLIER = 1.75f
+    }
 }

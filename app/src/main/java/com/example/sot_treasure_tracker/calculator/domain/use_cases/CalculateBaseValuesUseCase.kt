@@ -35,7 +35,7 @@ class CalculateBaseValuesUseCase @Inject constructor() {
                     }
                 }
                 emissaryValuePerFraction[fraction.ordinal] =
-                    baseValues.emissaryValue[fraction.ordinal] + treasureItem.emissaryValue.toFloat() * quantityDifference
+                    baseValues.emissaryValue[fraction.ordinal] + treasureItem.emissaryValue * quantityDifference
             } else {
                 minGoldPerFraction[fraction.ordinal] = baseValues.minGold[fraction.ordinal]
                 maxGoldPerFraction[fraction.ordinal] = baseValues.maxGold[fraction.ordinal]

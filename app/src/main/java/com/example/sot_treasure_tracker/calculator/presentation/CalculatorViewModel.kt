@@ -5,6 +5,7 @@ import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
 import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
 import com.example.sot_treasure_tracker.calculator.domain.models.MultipliedValues
 import com.example.sot_treasure_tracker.calculator.domain.models.BaseValues
+import com.example.sot_treasure_tracker.calculator.domain.models.SellBuckets
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.GetTreasureCatalogUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateBaseValuesUseCase
@@ -95,7 +96,28 @@ class CalculatorViewModel @Inject constructor(
         _minGoldAmount.value = values.minGold.sum().toInt()
         _maxGoldAmount.value = values.maxGold.sum().toInt()
         _doubloonsAmount.value = values.doubloons.sum().toInt()
-        _emissaryValueAmount.value = values.emissaryValue.sum().toInt()
+
+        val emissaryValue = when (selectedEmissary.value) {
+            Emissaries.GOLD_HOARDERS,
+            Emissaries.ORDER_OF_SOULS,
+            Emissaries.MERCHANT_ALLIANCE -> {
+                val selectedEmissaryValue = values.emissaryValue[selectedEmissary.value.ordinal]
+                val sharedEmissaryValue = values.emissaryValue[SellBuckets.SHARED.ordinal]
+                selectedEmissaryValue + sharedEmissaryValue
+            }
+            Emissaries.ATHENAS_FORTUNE -> {
+                values.emissaryValue[selectedEmissary.value.ordinal]
+            }
+            Emissaries.REAPERS_BONES -> {
+                values.emissaryValue.sum()
+            }
+            Emissaries.GUILD -> {
+                values.emissaryValue.sum() - values.emissaryValue[SellBuckets.REAPERS_BONES.ordinal]
+            }
+            Emissaries.UNSELECTED -> { 0f }
+        }
+
+        _emissaryValueAmount.value = emissaryValue.toInt()
     }
 
     /*private fun applyPreset(treasureIds: List<Int>, treasureQuantities: List<Int>) {
