@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.components.presentation.TreasureItemCounter
 import com.example.sot_treasure_tracker.components.presentation.TreasurePrice
@@ -38,7 +39,10 @@ fun TreasureItemTreasure(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Emissary value: ${treasureItem.emissaryValue}",
+                    text = stringResource(
+                        id = R.string.emissary_value,
+                        formatArgs = arrayOf(treasureItem.emissaryValue)
+                    ),
                     fontSize = MaterialTheme.fontSize.body,
                     fontWeight = FontWeight.Normal,
                     modifier = Modifier.padding(vertical = MaterialTheme.spacing.extraSmall)
