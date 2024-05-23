@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SoT Treasure Tracker</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="dark_mode_def_value" translatable="false">1</string>
-    <string name="dark_mode">Dark Mode</string>
-    <string name="language_title">Select language</string>
-    <string name="language">Language</string>
-
-    <string name="menu_home">World Map</string>
-    <string name="menu_treasure">Treasure Tracker</string>
-    <string name="menu_slideshow">Cooking Timer</string>
-
-    <string name="treasure_price_range">%1$d–%2$d</string>
-    <string name="treasure_price_single">%1$d</string>
-    <string name="treasure_emissary_value">Эмиссарское значение: %1$d</string>
+    <string name="price_range">%1$d–%2$d</string>
+    <string name="emissary_value">Эмиссарское значение: %1$d</string>
     <string name="represented_emissary">Представляемый Эмиссар</string>
-    <string name="treasure_quantity">%1$d</string>
 
-    <string name="treasure_less_than_0_warning">"You cannot have less than 0 treasure"</string>
-    <string name="apply">Apply</string>
+    <string name="to_presets">К заготовкам</string>
+    <string name="apply">Применить</string>
+
+    <string name="gold_hoarders">Златодержцы</string>
+    <string name="order_of_souls">Орден Душ</string>
+    <string name="merchant_alliance">Торговый Союз</string>
+    <string name="athena_fortune">Сокровища Афины</string>
+    <string name="reaper_bones">Кости Жнецов</string>
+    <string name="other">Прочее</string>
 </resources>

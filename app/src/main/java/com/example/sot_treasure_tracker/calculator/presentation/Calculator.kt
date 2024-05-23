@@ -2,10 +2,17 @@ package com.example.sot_treasure_tracker.calculator.presentation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -15,7 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.sot_treasure_tracker.calculator.data.catalog_instance.TreasureCatalogInstance
@@ -23,6 +29,8 @@ import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureCategory
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.components.presentation.ListOfCategories
+import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 
 
 @Composable
@@ -46,7 +54,8 @@ fun CalculatorRoot(
         },
         setEmissaryGrade = {
             viewModel.setEmissaryGrade(grade = EmissaryGrades.entries[it])
-        }
+        },
+        navigateToPresets = { navController.navigate("presets") }
     )
 }
 
@@ -62,7 +71,8 @@ fun Calculator(
     emissaryGrade: EmissaryGrades,
     setTreasureItemQuantity: (TreasureItem, Int) -> Unit,
     setSelectedEmissary: (Int) -> Unit,
-    setEmissaryGrade: (Int) -> Unit
+    setEmissaryGrade: (Int) -> Unit,
+    navigateToPresets: () -> Unit
 ) {
 
     var selectedTabIndex by remember { mutableIntStateOf(0) }
@@ -77,23 +87,23 @@ fun Calculator(
     }
 
 
-    Column(
-        modifier = Modifier.padding(horizontal = 16.dp)
-    ) {
-        CalculatorTabLayout(
-            selectedTabIndex = selectedTabIndex,
-            onTabClick = { selectedTabIndex = it }
-        )
+    Column {
+        ScrollableTabRow(selectedTabIndex = selectedTabIndex) {
+            CalculatorTabLayout(
+                selectedTabIndex = selectedTabIndex,
+                onTabClick = { selectedTabIndex = it }
+            )
+        }
 
         HorizontalPager(
             state = pagerState,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = MaterialTheme.spacing.medium)
                 .weight(1f)
         ) { currentPageIndex ->
-            val companyTreasure = treasureCatalog[currentPageIndex]
-            TreasureCategoryList(
-                treasureCategories = companyTreasure,
+            ListOfCategories(
+                treasureCategories = treasureCatalog[currentPageIndex],
                 setTreasureItemQuantity = { treasureItem, newQuantity ->
                     setTreasureItemQuantity(treasureItem, newQuantity)
                 },
@@ -101,7 +111,10 @@ fun Calculator(
         }
 
         Column(
-            modifier = Modifier.padding(vertical = 8.dp)
+            modifier = Modifier
+                .padding(
+                    horizontal = MaterialTheme.spacing.medium,
+                    vertical = MaterialTheme.spacing.small)
         ) {
             CostValues(
                 minGoldAmount = minGoldAmount,
@@ -113,7 +126,8 @@ fun Calculator(
                 selectedEmissary = selectedEmissary,
                 emissaryGrade = emissaryGrade,
                 setSelectedEmissary = setSelectedEmissary,
-                setEmissaryGrade = setEmissaryGrade
+                setEmissaryGrade = setEmissaryGrade,
+                navigateToPresets = navigateToPresets
             )
         }
     }
@@ -132,6 +146,7 @@ fun CalculatorPreview() {
         emissaryGrade = EmissaryGrades.SECOND_GRADE,
         setTreasureItemQuantity = { _, _ -> },
         setSelectedEmissary = { },
-        setEmissaryGrade = { }
+        setEmissaryGrade = { },
+        navigateToPresets = {  }
     )
 }
