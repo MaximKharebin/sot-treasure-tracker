@@ -1,7 +1,10 @@
 package com.example.sot_treasure_tracker.calculator.presentation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
@@ -16,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.calculator.presentation.models.TabItem
 import com.example.sot_treasure_tracker.components.presentation.theme.fontSize
+import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 
 
 @Composable
@@ -79,13 +83,25 @@ fun CalculatorTabLayout(
                     Image(
                         painter = painterResource(id = tabItem.selectedIcon),
                         contentDescription = stringResource(id = tabItem.title),
-                        modifier = Modifier.size(32.dp)
+                        modifier = Modifier
+                            .size(48.dp)
+                            .background(
+                                MaterialTheme.colorScheme.inverseSurface,
+                                shape = RoundedCornerShape(50.dp)
+                            )
+                            .padding(all = MaterialTheme.spacing.small)
                     )
                 else
                     Image(
                         painter = painterResource(id = tabItem.selectedIcon),
                         contentDescription = stringResource(id = tabItem.title),
-                        modifier = Modifier.size(28.dp)
+                        modifier = Modifier
+                            .size(32.dp)
+                            .background(
+                                MaterialTheme.colorScheme.inverseSurface,
+                                shape = RoundedCornerShape(50.dp)
+                            )
+                            .padding(all = MaterialTheme.spacing.small)
                     )
             }
         )

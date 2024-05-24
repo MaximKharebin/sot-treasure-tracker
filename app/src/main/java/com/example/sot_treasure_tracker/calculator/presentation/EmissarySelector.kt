@@ -1,8 +1,6 @@
 package com.example.sot_treasure_tracker.calculator.presentation
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -24,7 +22,6 @@ import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
 import com.example.sot_treasure_tracker.calculator.presentation.models.DropDownItem
-import com.example.sot_treasure_tracker.components.presentation.EmissaryItem
 import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 
 @Composable
