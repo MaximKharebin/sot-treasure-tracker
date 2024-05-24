@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.compose.SotTreasureTrackerTheme
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
@@ -130,11 +131,13 @@ fun EmissarySelector(
 @Preview(showBackground = true)
 @Composable
 fun EmissarySelectorPreview() {
-    EmissarySelector(
-        selectedEmissary = Emissaries.GOLD_HOARDERS,
-        emissaryGrade = EmissaryGrades.SECOND_GRADE,
-        setSelectedEmissary = { },
-        setEmissaryGrade = { },
-        navigateToPresets = { }
-    )
+    SotTreasureTrackerTheme {
+        EmissarySelector(
+            selectedEmissary = Emissaries.GOLD_HOARDERS,
+            emissaryGrade = EmissaryGrades.SECOND_GRADE,
+            setSelectedEmissary = { },
+            setEmissaryGrade = { },
+            navigateToPresets = { }
+        )
+    }
 }

@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.compose.SotTreasureTrackerTheme
 import com.example.sot_treasure_tracker.calculator.data.TreasureCatalogInstance
 import com.example.sot_treasure_tracker.calculator.domain.models.Price
 import com.example.sot_treasure_tracker.components.domain.models.CatalogCategory
@@ -35,13 +36,22 @@ import com.example.sot_treasure_tracker.components.domain.models.CategoryItem
 import com.example.sot_treasure_tracker.components.presentation.theme.fontSize
 import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 import com.example.sot_treasure_tracker.presets.data.PresetsCatalogInstance
+import com.example.sot_treasure_tracker.presets.domain.models.PresetItem
+import com.example.sot_treasure_tracker.presets.domain.models.PresetReward
+import com.example.sot_treasure_tracker.presets.presentation.models.CostValues
 
 @Composable
 fun CatalogCategories(
+    modifier: Modifier = Modifier,
     categories: List<CatalogCategory>,
-    setItemQuantity: (CategoryItem, Int) -> Unit
+    setItemQuantity: (CategoryItem, Int) -> Unit,
+    calculateValues: (List<PresetReward>) -> CostValues = {
+        CostValues(0, 0, 0)
+    }
 ) {
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
+    LazyColumn(
+        modifier = modifier.fillMaxSize()
+    ) {
         items(categories) { category ->
 
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
@@ -56,10 +66,29 @@ fun CatalogCategories(
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
 
             category.items.forEach { item ->
-                CategoryItem(
-                    item = item,
-                    setItemQuantity = setItemQuantity
-                )
+                when (item) {
+                    is TreasureItem -> {
+                        CategoryItem(
+                            item = item,
+                            minGoldAmount = (item.price as? Price.GoldRange)?.gold?.first ?: 0,
+                            maxGoldAmount = (item.price as? Price.GoldRange)?.gold?.last ?: 0,
+                            doubloonsAmount = (item.price as? Price.Doubloons)?.doubloons ?: 0,
+                            emissaryValueAmount = item.emissaryValue,
+                            setItemQuantity = setItemQuantity
+                        )
+                    }
+
+                    is PresetItem -> {
+                        CategoryItem(
+                            item = item,
+                            minGoldAmount = calculateValues.invoke(item.items).minGoldAmount,
+                            maxGoldAmount = calculateValues.invoke(item.items).maxGoldAmount,
+                            doubloonsAmount = calculateValues.invoke(item.items).doubloonsAmount,
+                            emissaryValueAmount = 0,
+                            setItemQuantity = setItemQuantity
+                        )
+                    }
+                }
 
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
             }
@@ -71,6 +100,10 @@ fun CatalogCategories(
 @Composable
 private fun CategoryItem(
     item: CategoryItem,
+    minGoldAmount: Int,
+    maxGoldAmount: Int,
+    doubloonsAmount: Int,
+    emissaryValueAmount:Int,
     setItemQuantity: (CategoryItem, Int) -> Unit
 ) {
     Card(
@@ -88,20 +121,20 @@ private fun CategoryItem(
 
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
 
-                val itemAsTreasureItem = (item as? TreasureItem)
-
                 CostValues(
-                    minGoldAmount = (itemAsTreasureItem?.price as? Price.GoldRange)?.gold?.first ?: 0,
-                    maxGoldAmount = (itemAsTreasureItem?.price as? Price.GoldRange)?.gold?.last ?: 0,
-                    doubloonsAmount = (itemAsTreasureItem?.price as? Price.Doubloons)?.doubloons ?: 0,
-                    emissaryValueAmount = itemAsTreasureItem?.emissaryValue ?: 0
+                    minGoldAmount = minGoldAmount,
+                    maxGoldAmount = maxGoldAmount,
+                    doubloonsAmount = doubloonsAmount,
+                    emissaryValueAmount = emissaryValueAmount
                 )
+
+
             }
 
             Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
 
             TreasureItemCounter(
-                treasureItem = item,
+                categoryItem = item,
                 setTreasureItemQuantity = setItemQuantity
             )
         }
@@ -110,7 +143,7 @@ private fun CategoryItem(
 
 @Composable
 private fun TreasureItemCounter(
-    treasureItem: CategoryItem,
+    categoryItem: CategoryItem,
     setTreasureItemQuantity: (CategoryItem, Int) -> Unit
 ) {
     Column(
@@ -124,19 +157,19 @@ private fun TreasureItemCounter(
     ) {
 
         IconButton(
-            onClick = { setTreasureItemQuantity(treasureItem, treasureItem.quantity + 1) }
+            onClick = { setTreasureItemQuantity(categoryItem, categoryItem.quantity + 1) }
         ) {
             Icon(imageVector = Icons.Filled.Add, contentDescription = null)
         }
 
         Text(
-            text = treasureItem.quantity.toString(),
+            text = categoryItem.quantity.toString(),
             fontSize = MaterialTheme.fontSize.heading,
             fontWeight = FontWeight.Bold,)
 
         IconButton(
-            onClick = { setTreasureItemQuantity(treasureItem, treasureItem.quantity - 1) },
-            enabled = treasureItem.quantity > 0
+            onClick = { setTreasureItemQuantity(categoryItem, categoryItem.quantity - 1) },
+            enabled = categoryItem.quantity > 0
         ) {
             Icon(imageVector = Icons.Filled.Remove, contentDescription = null)
         }
@@ -149,9 +182,10 @@ private fun CatalogCategoriesPreview() {
 
     val treasureCatalog = TreasureCatalogInstance.catalog[0]
     val presetCatalog = PresetsCatalogInstance.catalog
-
-    CatalogCategories(
-        categories = presetCatalog,
-        setItemQuantity = { _, _ -> }
-    )
+    SotTreasureTrackerTheme {
+        CatalogCategories(
+            categories = presetCatalog,
+            setItemQuantity = { _, _ -> }
+        )
+    }
 }

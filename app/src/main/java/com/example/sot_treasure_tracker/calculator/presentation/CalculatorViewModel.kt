@@ -10,7 +10,6 @@ import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.GetTreasureCatalogUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateBaseValuesUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateMultipliedValuesUseCase
-import com.example.sot_treasure_tracker.components.domain.models.CategoryItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,7 +23,7 @@ class CalculatorViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _catalog = MutableStateFlow(getTreasureCatalogUseCase.execute())
-    val treasureCatalog = _catalog.asStateFlow()
+    val catalog = _catalog.asStateFlow()
 
     private val _minGoldAmount = MutableStateFlow(0)
     val minGoldAmount = _minGoldAmount.asStateFlow()
@@ -72,7 +71,7 @@ class CalculatorViewModel @Inject constructor(
         assignValues(multipliedValues)
     }
 
-    fun setTreasureItemQuantity(treasureItem: TreasureItem, newQuantity: Int) {
+    fun setItemQuantity(treasureItem: TreasureItem, newQuantity: Int) {
         val quantityDifference = newQuantity - treasureItem.quantity
         treasureItem.quantity = newQuantity
 

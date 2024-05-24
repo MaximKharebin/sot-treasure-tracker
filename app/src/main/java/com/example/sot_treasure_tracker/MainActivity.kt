@@ -37,17 +37,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun SotTreasureCalculatorApp() {
+private fun SotTreasureCalculatorApp() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "calculator") {
         composable("calculator") { CalculatorRoot(navController = navController) }
         composable("presets") { PresetsRoot(navController = navController) }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SotTreasureCalculatorAppPreview() {
-    val navController = rememberNavController()
-    CalculatorRoot(navController = navController)
 }

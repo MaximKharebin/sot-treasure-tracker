@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.compose.SotTreasureTrackerTheme
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.components.presentation.theme.fontSize
 import com.example.sot_treasure_tracker.components.presentation.theme.spacing
@@ -27,7 +28,7 @@ fun CostValues(
     minGoldAmount: Int,
     maxGoldAmount: Int,
     doubloonsAmount: Int,
-    emissaryValueAmount: Int,
+    emissaryValueAmount: Int
 ) {
     Column {
         Row {
@@ -83,10 +84,12 @@ private fun PriceWithCurrency(
 @Preview(showBackground = true)
 @Composable
 private fun CostValuesPreview() {
-    CostValues(
-        minGoldAmount = 10000,
-        maxGoldAmount = 25000,
-        doubloonsAmount = 300,
-        emissaryValueAmount = 250700
-    )
+    SotTreasureTrackerTheme {
+        CostValues(
+            minGoldAmount = 10000,
+            maxGoldAmount = 25000,
+            doubloonsAmount = 300,
+            emissaryValueAmount = 250700
+        )
+    }
 }

@@ -4,8 +4,6 @@ import com.example.sot_treasure_tracker.presets.data.presets.world_events.Catego
 
 object PresetsCatalogInstance {
     val catalog = listOf(
-        CategoryWorldEvents.items,
-        CategoryWorldEvents.items,
         CategoryWorldEvents.items
     )
 }

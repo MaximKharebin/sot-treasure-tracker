@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.compose.SotTreasureTrackerTheme
 import com.example.sot_treasure_tracker.calculator.data.TreasureCatalogInstance
 import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
@@ -38,16 +39,16 @@ fun CalculatorRoot(
     viewModel: CalculatorViewModel = hiltViewModel()
 ) {
     Calculator(
-        treasureCatalog = viewModel.treasureCatalog.collectAsState().value,
+        treasureCatalog = viewModel.catalog.collectAsState().value,
         minGoldAmount = viewModel.minGoldAmount.collectAsState().value,
         maxGoldAmount = viewModel.maxGoldAmount.collectAsState().value,
         doubloonsAmount = viewModel.doubloonsAmount.collectAsState().value,
         emissaryValueAmount = viewModel.emissaryValueAmount.collectAsState().value,
         selectedEmissary = viewModel.selectedEmissary.collectAsState().value,
         emissaryGrade = viewModel.emissaryGrade.collectAsState().value,
-        setTreasureItemQuantity = { categoryItem, newQuantity ->
+        setItemQuantity = { categoryItem, newQuantity ->
             (categoryItem as? TreasureItem)?.let {
-                viewModel.setTreasureItemQuantity(it, newQuantity)
+                viewModel.setItemQuantity(it, newQuantity)
             }
         },
         setSelectedEmissary = {
@@ -70,7 +71,7 @@ private fun Calculator(
     emissaryValueAmount: Int,
     selectedEmissary: Emissaries,
     emissaryGrade: EmissaryGrades,
-    setTreasureItemQuantity: (CategoryItem, Int) -> Unit,
+    setItemQuantity: (CategoryItem, Int) -> Unit,
     setSelectedEmissary: (Int) -> Unit,
     setEmissaryGrade: (Int) -> Unit,
     navigateToPresets: () -> Unit
@@ -108,7 +109,7 @@ private fun Calculator(
         ) { currentPageIndex ->
             CatalogCategories(
                 categories = treasureCatalog[currentPageIndex],
-                setItemQuantity = setTreasureItemQuantity,
+                setItemQuantity = setItemQuantity,
             )
         }
 
@@ -142,17 +143,19 @@ private fun Calculator(
 @Preview(showBackground = true)
 @Composable
 private fun CalculatorPreview() {
-    Calculator(
-        treasureCatalog = TreasureCatalogInstance.catalog,
-        minGoldAmount = 10000,
-        maxGoldAmount = 500000,
-        doubloonsAmount = 2000,
-        emissaryValueAmount = 275000,
-        selectedEmissary = Emissaries.GOLD_HOARDERS,
-        emissaryGrade = EmissaryGrades.SECOND_GRADE,
-        setTreasureItemQuantity = { _, _ -> },
-        setSelectedEmissary = { },
-        setEmissaryGrade = { },
-        navigateToPresets = {  }
-    )
+    SotTreasureTrackerTheme {
+        Calculator(
+            treasureCatalog = TreasureCatalogInstance.catalog,
+            minGoldAmount = 10000,
+            maxGoldAmount = 500000,
+            doubloonsAmount = 2000,
+            emissaryValueAmount = 275000,
+            selectedEmissary = Emissaries.GOLD_HOARDERS,
+            emissaryGrade = EmissaryGrades.SECOND_GRADE,
+            setItemQuantity = { _, _ -> },
+            setSelectedEmissary = { },
+            setEmissaryGrade = { },
+            navigateToPresets = { }
+        )
+    }
 }

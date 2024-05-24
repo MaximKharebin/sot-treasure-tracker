@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.compose.SotTreasureTrackerTheme
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.calculator.presentation.models.TabItem
 import com.example.sot_treasure_tracker.components.presentation.theme.fontSize
@@ -111,8 +112,10 @@ fun TabLayout(
 @Preview(showBackground = true)
 @Composable
 fun TabLayoutPreview() {
-    TabLayout(
-        selectedTabIndex = 0,
-        onTabClick = { }
-    )
+    SotTreasureTrackerTheme {
+        TabLayout(
+            selectedTabIndex = 0,
+            onTabClick = { }
+        )
+    }
 }

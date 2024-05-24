@@ -6,7 +6,7 @@ import com.example.sot_treasure_tracker.presets.data.models.PresetRewardDto
 
 object SeaFortGoldHoarder {
     val item = PresetItemDto(
-        titleId = R.string.preset_sea_fort,
+        titleId = R.string.preset_sea_fort_gh,
         items = listOf(
             PresetRewardDto(
                 treasureId = R.string.gh_captains_chest,
