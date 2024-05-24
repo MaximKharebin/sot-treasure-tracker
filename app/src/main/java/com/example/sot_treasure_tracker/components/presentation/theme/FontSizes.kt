@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 
 data class FontSize(
-    val default: TextUnit = 12.sp,
+    val default: TextUnit = 14.sp,
     val label: TextUnit = 12.sp,
     val body: TextUnit = 14.sp,
     val heading: TextUnit = 20.sp,

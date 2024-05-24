@@ -1,9 +1,8 @@
-package com.example.sot_treasure_tracker.components.presentation
+package com.example.sot_treasure_tracker
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -15,7 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.SotTreasureTrackerTheme
 import com.example.sot_treasure_tracker.calculator.presentation.CalculatorRoot
-import com.example.sot_treasure_tracker.presets.presentation.Presets
+import com.example.sot_treasure_tracker.presets.presentation.PresetsRoot
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +41,7 @@ fun SotTreasureCalculatorApp() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "calculator") {
         composable("calculator") { CalculatorRoot(navController = navController) }
-        composable("presets") { Presets() }
+        composable("presets") { PresetsRoot(navController = navController) }
     }
 }
 

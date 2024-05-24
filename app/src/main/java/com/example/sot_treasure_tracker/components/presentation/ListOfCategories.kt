@@ -11,9 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.sot_treasure_tracker.calculator.data.catalog_instance.TreasureCatalogInstance
+import com.example.sot_treasure_tracker.calculator.data.TreasureCatalogInstance
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureCategory
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.calculator.presentation.TreasureItemTreasure

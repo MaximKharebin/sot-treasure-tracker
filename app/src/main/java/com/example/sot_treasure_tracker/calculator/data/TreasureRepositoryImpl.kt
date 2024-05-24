@@ -1,11 +1,11 @@
 package com.example.sot_treasure_tracker.calculator.data
 
-import com.example.sot_treasure_tracker.calculator.domain.Repository
+import com.example.sot_treasure_tracker.calculator.domain.TreasureRepository
 import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor(
+class TreasureRepositoryImpl @Inject constructor(
     private val treasureCatalog: TreasureCatalog
-) : Repository {
+) : TreasureRepository {
     override fun getTreasureCatalog() = treasureCatalog.catalog
 
 }

@@ -21,44 +21,44 @@ import com.example.sot_treasure_tracker.calculator.presentation.models.TabItem
 import com.example.sot_treasure_tracker.components.presentation.theme.fontSize
 import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 
+private val tabItems = listOf(
+    TabItem(
+        title = R.string.gold_hoarders,
+        unselectedIcon = R.drawable.img_gh_logo,
+        selectedIcon = R.drawable.img_gh_logo
+    ),
+    TabItem(
+        title = R.string.order_of_souls,
+        unselectedIcon = R.drawable.img_oos_logo,
+        selectedIcon = R.drawable.img_oos_logo
+    ),
+    TabItem(
+        title = R.string.merchant_alliance,
+        unselectedIcon = R.drawable.img_ma_logo,
+        selectedIcon = R.drawable.img_ma_logo
+    ),
+    TabItem(
+        title = R.string.athena_fortune,
+        unselectedIcon = R.drawable.img_af_logo,
+        selectedIcon = R.drawable.img_af_logo
+    ),
+    TabItem(
+        title = R.string.reaper_bones,
+        unselectedIcon = R.drawable.img_rb_logo,
+        selectedIcon = R.drawable.img_rb_logo
+    ),
+    TabItem(
+        title = R.string.other,
+        unselectedIcon = R.drawable.img_br_logo,
+        selectedIcon = R.drawable.img_br_logo
+    )
+)
 
 @Composable
 fun CalculatorTabLayout(
     selectedTabIndex: Int,
     onTabClick: (Int) -> Unit
 ) {
-    val tabItems = listOf(
-        TabItem(
-            title = R.string.gold_hoarders,
-            unselectedIcon = R.drawable.img_gh_logo,
-            selectedIcon = R.drawable.img_gh_logo
-        ),
-        TabItem(
-            title = R.string.order_of_souls,
-            unselectedIcon = R.drawable.img_oos_logo,
-            selectedIcon = R.drawable.img_oos_logo
-        ),
-        TabItem(
-            title = R.string.merchant_alliance,
-            unselectedIcon = R.drawable.img_ma_logo,
-            selectedIcon = R.drawable.img_ma_logo
-        ),
-        TabItem(
-            title = R.string.athena_fortune,
-            unselectedIcon = R.drawable.img_af_logo,
-            selectedIcon = R.drawable.img_af_logo
-        ),
-        TabItem(
-            title = R.string.reaper_bones,
-            unselectedIcon = R.drawable.img_rb_logo,
-            selectedIcon = R.drawable.img_rb_logo
-        ),
-        TabItem(
-            title = R.string.other,
-            unselectedIcon = R.drawable.img_br_logo,
-            selectedIcon = R.drawable.img_br_logo
-        )
-    )
 
     tabItems.forEachIndexed { index, tabItem ->
         Tab(
