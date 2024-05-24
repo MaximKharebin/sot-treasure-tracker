@@ -2,7 +2,10 @@ package com.example.sot_treasure_tracker.presets.presentation
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
+import com.example.sot_treasure_tracker.calculator.domain.models.MultipliedValues
 import com.example.sot_treasure_tracker.calculator.domain.models.Price
+import com.example.sot_treasure_tracker.calculator.domain.models.SellBuckets
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.GetTreasureCatalogUseCase
 import com.example.sot_treasure_tracker.presets.domain.models.PresetItem
 import com.example.sot_treasure_tracker.presets.domain.models.PresetReward
@@ -23,6 +26,15 @@ class PresetsViewModel @Inject constructor(
     private val _presetCatalog = MutableStateFlow(getPresetsCatalogUseCase.execute())
     val presetCatalog = _presetCatalog.asStateFlow()
 
+    private val _minGoldAmount = MutableStateFlow(0)
+    val minGoldAmount = _minGoldAmount.asStateFlow()
+
+    private val _maxGoldAmount = MutableStateFlow(0)
+    val maxGoldAmount = _maxGoldAmount.asStateFlow()
+
+    private val _doubloonsAmount = MutableStateFlow(0)
+    val doubloonsAmount = _doubloonsAmount.asStateFlow()
+
     private val _color = MutableStateFlow(0xFFFFFFFF)
     val color = _color.asStateFlow()
 
@@ -34,16 +46,23 @@ class PresetsViewModel @Inject constructor(
         presetItem.quantity = newQuantity
         _color.value = Random.nextLong(0xFFFFFFFF)
 
-        if (quantityDifference > 0)
+        if (quantityDifference > 0) {
             presetItem.items.forEach { treasure.add(it) }
+
+            assignValues(getPresetRewardCost(presetItem.items, quantityDifference))
+        }
         else {
             presetItem.items.forEach { treasure.remove(it) }
+            assignValues(getPresetRewardCost(presetItem.items, quantityDifference))
         }
     }
 
     fun getStoredTreasure() = treasure.toList()
 
-    fun getPresetRewardCost(treasureList: List<PresetReward>): CostValues {
+    fun getPresetRewardCost(
+        treasureList: List<PresetReward>,
+        quantityDifference: Int = 1,
+    ): CostValues {
 
         val itemIds = treasureList.map { it.treasureId }
         val itemQuantities = treasureList.map { it.quantity }
@@ -60,10 +79,10 @@ class PresetsViewModel @Inject constructor(
                         if (treasureId == treasureItem.titleId) {
                             for (i in 1..itemQuantities[itemIndex]) {
                                 when (treasureItem.price) {
-                                    is Price.Doubloons -> doubloonsAmount += treasureItem.price.doubloons
+                                    is Price.Doubloons -> doubloonsAmount += treasureItem.price.doubloons * quantityDifference
                                     is Price.GoldRange -> {
-                                        minGoldAmount += treasureItem.price.gold.first
-                                        maxGoldAmount += treasureItem.price.gold.last
+                                        minGoldAmount += treasureItem.price.gold.first * quantityDifference
+                                        maxGoldAmount += treasureItem.price.gold.last * quantityDifference
                                     }
                                 }
 
@@ -73,10 +92,17 @@ class PresetsViewModel @Inject constructor(
                 }
             }
         }
+
         return CostValues(
             minGoldAmount = minGoldAmount,
             maxGoldAmount = maxGoldAmount,
             doubloonsAmount = doubloonsAmount
         )
+    }
+
+    private fun assignValues(values: CostValues) {
+        _minGoldAmount.value += values.minGoldAmount
+        _maxGoldAmount.value += values.maxGoldAmount
+        _doubloonsAmount.value += values.doubloonsAmount
     }
 }

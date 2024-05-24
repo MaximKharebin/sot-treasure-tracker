@@ -1,7 +1,9 @@
 package com.example.sot_treasure_tracker.presets.presentation
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -17,6 +19,7 @@ import com.example.compose.SotTreasureTrackerTheme
 import com.example.sot_treasure_tracker.components.domain.models.CatalogCategory
 import com.example.sot_treasure_tracker.components.domain.models.CategoryItem
 import com.example.sot_treasure_tracker.components.presentation.CatalogCategories
+import com.example.sot_treasure_tracker.components.presentation.CostValues
 import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 import com.example.sot_treasure_tracker.presets.data.PresetsCatalogInstance
 import com.example.sot_treasure_tracker.presets.domain.models.PresetItem
@@ -31,8 +34,10 @@ fun PresetsRoot(
     val color by viewModel.color.collectAsState()
 
     Presets(
-        color = viewModel.color.collectAsState().value,
         presetsCatalog = viewModel.presetCatalog.collectAsState().value,
+        minGoldAmount = viewModel.minGoldAmount.collectAsState().value,
+        maxGoldAmount = viewModel.maxGoldAmount.collectAsState().value,
+        doubloonsAmount = viewModel.doubloonsAmount.collectAsState().value,
         setItemQuantity = { categoryItem, newQuantity ->
             (categoryItem as? PresetItem)?.let {
                 viewModel.setItemQuantity(it, newQuantity)
@@ -47,9 +52,11 @@ fun PresetsRoot(
 @Composable
 private fun Presets(
     presetsCatalog: List<CatalogCategory>,
+    minGoldAmount: Int,
+    maxGoldAmount: Int,
+    doubloonsAmount: Int,
     calculateValues: (List<PresetReward>) -> CostValues,
-    setItemQuantity: (CategoryItem, Int) -> Unit,
-    color: Long
+    setItemQuantity: (CategoryItem, Int) -> Unit
 ) {
     Column {
 
@@ -62,16 +69,28 @@ private fun Presets(
             calculateValues = calculateValues
         )
 
-        Button(
-            onClick = {  },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(
-                    horizontal = MaterialTheme.spacing.medium,
-                    vertical = MaterialTheme.spacing.small
-                )
+        Column(
+            modifier = Modifier.padding(
+                horizontal = MaterialTheme.spacing.medium,
+                vertical = MaterialTheme.spacing.small
+            )
         ) {
-            Text(text = "color.toString()")
+            CostValues(
+                minGoldAmount = minGoldAmount,
+                maxGoldAmount = maxGoldAmount,
+                doubloonsAmount = doubloonsAmount,
+                emissaryValueAmount = 0
+            )
+            
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+
+            Button(
+                onClick = {  },
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Text(text = "color.toString()")
+            }
         }
     }
 }
@@ -83,7 +102,9 @@ private fun PresetsPreview() {
         Presets(
             presetsCatalog = PresetsCatalogInstance.catalog,
             setItemQuantity = { _, _ -> },
-            color = 0xFF666666,
+            minGoldAmount = 10000,
+            maxGoldAmount = 500000,
+            doubloonsAmount = 2000,
             calculateValues = {
                 CostValues( 100, 500, 25)
             }
