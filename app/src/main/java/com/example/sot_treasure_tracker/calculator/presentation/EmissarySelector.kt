@@ -37,37 +37,37 @@ fun EmissarySelector(
         DropDownItem(
             id = 0,
             title = "Gold Hoarders",
-            icon = R.drawable.img_gh_logo
+            icon = R.drawable.logo_gh
         ),
         DropDownItem(
             id = 1,
             title = "Order of Souls",
-            icon = R.drawable.img_oos_logo
+            icon = R.drawable.logo_oos
         ),
         DropDownItem(
             id = 2,
             title = "Merchant Alliance",
-            icon = R.drawable.img_ma_logo
+            icon = R.drawable.logo_ma
         ),
         DropDownItem(
             id = 3,
             title = "Athena's Fortune",
-            icon = R.drawable.img_af_logo
+            icon = R.drawable.logo_af
         ),
         DropDownItem(
             id = 4,
             title = "Reaper's Bones",
-            icon = R.drawable.img_rb_logo
+            icon = R.drawable.logo_rb
         ),
         DropDownItem(
             id = 5,
             title = "Guild",
-            icon = R.drawable.img_br_logo
+            icon = R.drawable.logo_br
         ),
         DropDownItem(
             id = 6,
             title = "Unselect",
-            icon = R.drawable.img_br_logo
+            icon = R.drawable.logo_br
         ),
     )
 

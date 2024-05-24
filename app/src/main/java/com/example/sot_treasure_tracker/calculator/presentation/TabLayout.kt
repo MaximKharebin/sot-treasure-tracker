@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,38 +23,38 @@ import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 private val tabItems = listOf(
     TabItem(
         title = R.string.gold_hoarders,
-        unselectedIcon = R.drawable.img_gh_logo,
-        selectedIcon = R.drawable.img_gh_logo
+        unselectedIcon = R.drawable.logo_gh,
+        selectedIcon = R.drawable.logo_gh
     ),
     TabItem(
         title = R.string.order_of_souls,
-        unselectedIcon = R.drawable.img_oos_logo,
-        selectedIcon = R.drawable.img_oos_logo
+        unselectedIcon = R.drawable.logo_oos,
+        selectedIcon = R.drawable.logo_oos
     ),
     TabItem(
         title = R.string.merchant_alliance,
-        unselectedIcon = R.drawable.img_ma_logo,
-        selectedIcon = R.drawable.img_ma_logo
+        unselectedIcon = R.drawable.logo_ma,
+        selectedIcon = R.drawable.logo_ma
     ),
     TabItem(
         title = R.string.athena_fortune,
-        unselectedIcon = R.drawable.img_af_logo,
-        selectedIcon = R.drawable.img_af_logo
+        unselectedIcon = R.drawable.logo_af,
+        selectedIcon = R.drawable.logo_af
     ),
     TabItem(
         title = R.string.reaper_bones,
-        unselectedIcon = R.drawable.img_rb_logo,
-        selectedIcon = R.drawable.img_rb_logo
+        unselectedIcon = R.drawable.logo_rb,
+        selectedIcon = R.drawable.logo_rb
     ),
     TabItem(
         title = R.string.other,
-        unselectedIcon = R.drawable.img_br_logo,
-        selectedIcon = R.drawable.img_br_logo
+        unselectedIcon = R.drawable.logo_br,
+        selectedIcon = R.drawable.logo_br
     )
 )
 
 @Composable
-fun CalculatorTabLayout(
+fun TabLayout(
     selectedTabIndex: Int,
     onTabClick: (Int) -> Unit
 ) {
@@ -112,7 +111,7 @@ fun CalculatorTabLayout(
 @Preview(showBackground = true)
 @Composable
 fun TabLayoutPreview() {
-    CalculatorTabLayout(
+    TabLayout(
         selectedTabIndex = 0,
         onTabClick = { }
     )

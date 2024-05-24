@@ -10,6 +10,7 @@ import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.GetTreasureCatalogUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateBaseValuesUseCase
 import com.example.sot_treasure_tracker.calculator.domain.use_cases.CalculateMultipliedValuesUseCase
+import com.example.sot_treasure_tracker.components.domain.models.CategoryItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

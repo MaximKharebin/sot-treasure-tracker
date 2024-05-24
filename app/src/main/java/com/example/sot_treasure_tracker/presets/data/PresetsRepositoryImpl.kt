@@ -7,5 +7,5 @@ class PresetsRepositoryImpl @Inject constructor(
     private val presetsCatalog: PresetsCatalog
 ): PresetsRepository {
 
-    fun getPresetsCatalog() = presetsCatalog.catalog
+    override fun getPresetsCatalog() = presetsCatalog.catalog
 }

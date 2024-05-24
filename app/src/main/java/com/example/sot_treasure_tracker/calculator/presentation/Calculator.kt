@@ -2,7 +2,9 @@ package com.example.sot_treasure_tracker.calculator.presentation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -22,9 +24,11 @@ import androidx.navigation.NavController
 import com.example.sot_treasure_tracker.calculator.data.TreasureCatalogInstance
 import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
-import com.example.sot_treasure_tracker.calculator.domain.models.TreasureCategory
+import com.example.sot_treasure_tracker.components.domain.models.CatalogCategory
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
-import com.example.sot_treasure_tracker.components.presentation.ListOfCategories
+import com.example.sot_treasure_tracker.components.domain.models.CategoryItem
+import com.example.sot_treasure_tracker.components.presentation.CostValues
+import com.example.sot_treasure_tracker.components.presentation.CatalogCategories
 import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 
 
@@ -41,8 +45,10 @@ fun CalculatorRoot(
         emissaryValueAmount = viewModel.emissaryValueAmount.collectAsState().value,
         selectedEmissary = viewModel.selectedEmissary.collectAsState().value,
         emissaryGrade = viewModel.emissaryGrade.collectAsState().value,
-        setTreasureItemQuantity = { treasureItem, newQuantity ->
-            viewModel.setTreasureItemQuantity(treasureItem, newQuantity)
+        setTreasureItemQuantity = { categoryItem, newQuantity ->
+            (categoryItem as? TreasureItem)?.let {
+                viewModel.setTreasureItemQuantity(it, newQuantity)
+            }
         },
         setSelectedEmissary = {
             viewModel.setSelectedEmissary(emissary = Emissaries.entries[it])
@@ -56,15 +62,15 @@ fun CalculatorRoot(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Calculator(
-    treasureCatalog: List<List<TreasureCategory>>,
+private fun Calculator(
+    treasureCatalog: List<List<CatalogCategory>>,
     minGoldAmount: Int,
     maxGoldAmount: Int,
     doubloonsAmount: Int,
     emissaryValueAmount: Int,
     selectedEmissary: Emissaries,
     emissaryGrade: EmissaryGrades,
-    setTreasureItemQuantity: (TreasureItem, Int) -> Unit,
+    setTreasureItemQuantity: (CategoryItem, Int) -> Unit,
     setSelectedEmissary: (Int) -> Unit,
     setEmissaryGrade: (Int) -> Unit,
     navigateToPresets: () -> Unit
@@ -82,41 +88,46 @@ fun Calculator(
     }
 
 
-    Column {
+    Column(
+        modifier = Modifier.padding(vertical = MaterialTheme.spacing.small)
+    ) {
         ScrollableTabRow(selectedTabIndex = selectedTabIndex) {
-            CalculatorTabLayout(
+            TabLayout(
                 selectedTabIndex = selectedTabIndex,
                 onTabClick = { selectedTabIndex = it }
             )
         }
 
+        Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+
         HorizontalPager(
             state = pagerState,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = MaterialTheme.spacing.medium)
                 .weight(1f)
         ) { currentPageIndex ->
-            ListOfCategories(
-                treasureCategories = treasureCatalog[currentPageIndex],
-                setTreasureItemQuantity = { treasureItem, newQuantity ->
-                    setTreasureItemQuantity(treasureItem, newQuantity)
-                },
+            CatalogCategories(
+                categories = treasureCatalog[currentPageIndex],
+                setItemQuantity = setTreasureItemQuantity,
             )
         }
 
         Column(
-            modifier = Modifier
-                .padding(
-                    horizontal = MaterialTheme.spacing.medium,
-                    vertical = MaterialTheme.spacing.small)
+            modifier = Modifier.padding(
+                horizontal = MaterialTheme.spacing.medium
+            )
         ) {
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+            
             CostValues(
                 minGoldAmount = minGoldAmount,
                 maxGoldAmount = maxGoldAmount,
                 doubloonsAmount = doubloonsAmount,
                 emissaryValueAmount = emissaryValueAmount
             )
+
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+
             EmissarySelector(
                 selectedEmissary = selectedEmissary,
                 emissaryGrade = emissaryGrade,
@@ -130,7 +141,7 @@ fun Calculator(
 
 @Preview(showBackground = true)
 @Composable
-fun CalculatorPreview() {
+private fun CalculatorPreview() {
     Calculator(
         treasureCatalog = TreasureCatalogInstance.catalog,
         minGoldAmount = 10000,

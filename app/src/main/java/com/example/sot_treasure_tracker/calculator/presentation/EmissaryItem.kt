@@ -47,6 +47,12 @@ fun EmissaryItem(
         contentDescription = null,
         contentScale = ContentScale.Fit,
         modifier = Modifier
+            .size(48.dp)
+            .background(
+                MaterialTheme.colorScheme.inverseSurface,
+                shape = RoundedCornerShape(topStart = 50.dp, bottomStart = 50.dp)
+            )
+            .padding(all = MaterialTheme.spacing.small)
             .onSizeChanged { itemHeight = with(density) { it.height.toDp() } }
             .pointerInput(true) {
                 detectTapGestures(
@@ -56,12 +62,6 @@ fun EmissaryItem(
                     }
                 )
             }
-            .size(48.dp)
-            .background(
-                MaterialTheme.colorScheme.inverseSurface,
-                shape = RoundedCornerShape(topStart = 50.dp, bottomStart = 50.dp)
-            )
-            .padding(all = MaterialTheme.spacing.small)
     )
 
     DropdownMenu(
