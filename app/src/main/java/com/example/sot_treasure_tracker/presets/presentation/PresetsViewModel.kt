@@ -1,21 +1,19 @@
 package com.example.sot_treasure_tracker.presets.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
-import com.example.sot_treasure_tracker.calculator.domain.models.MultipliedValues
+import androidx.lifecycle.viewModelScope
 import com.example.sot_treasure_tracker.calculator.domain.models.Price
-import com.example.sot_treasure_tracker.calculator.domain.models.SellBuckets
-import com.example.sot_treasure_tracker.calculator.domain.use_cases.GetTreasureCatalogUseCase
+import com.example.sot_treasure_tracker.components.domain.use_cases.GetTreasureCatalogUseCase
 import com.example.sot_treasure_tracker.presets.domain.models.PresetItem
 import com.example.sot_treasure_tracker.presets.domain.models.PresetReward
 import com.example.sot_treasure_tracker.presets.domain.use_cases.GetPresetsCatalogUseCase
 import com.example.sot_treasure_tracker.presets.presentation.models.CostValues
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.random.Random
 
 @HiltViewModel
 class PresetsViewModel @Inject constructor(
@@ -44,6 +42,16 @@ class PresetsViewModel @Inject constructor(
 
     private val treasureCatalog = getTreasureCatalogUseCase.execute()
     private val treasure: MutableList<PresetReward> = mutableListOf()
+
+    init {
+        viewModelScope.launch(Dispatchers.Default) {
+            _presetCatalog.value.forEach { catalogCategories ->
+                catalogCategories.items.forEach { category ->
+                    category.quantity = 0
+                }
+            }
+        }
+    }
 
     fun setItemQuantity(presetItem: PresetItem, newQuantity: Int) {
         val quantityDifference = newQuantity - presetItem.quantity

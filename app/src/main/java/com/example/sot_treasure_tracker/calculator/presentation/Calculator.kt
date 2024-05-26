@@ -1,5 +1,7 @@
 package com.example.sot_treasure_tracker.calculator.presentation
 
+import android.os.Bundle
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.os.bundleOf
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
@@ -26,7 +29,7 @@ import androidx.navigation.toRoute
 import com.example.compose.SotTreasureTrackerTheme
 import com.example.sot_treasure_tracker.ScreenCalculator
 import com.example.sot_treasure_tracker.ScreenPresets
-import com.example.sot_treasure_tracker.calculator.data.TreasureCatalogInstance
+import com.example.sot_treasure_tracker.components.data.TreasureCatalogInstance
 import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
@@ -44,13 +47,16 @@ fun CalculatorRoot(
     viewModel: CalculatorViewModel = hiltViewModel()
 ) {
 
-    val args = remember {
-        navBackStackEntry.toRoute<ScreenCalculator>()
-    }
-    LaunchedEffect(args) {
-        viewModel.applyPreset(args.treasureIds, args.treasureQuantities)
-    }
+    val bundle = remember { navBackStackEntry.savedStateHandle.get<Bundle>("bundle") }
+    val ids = remember(bundle) { bundle?.getIntArray("ids")?.toList() ?: listOf() }
+    val quantities = remember(bundle) { bundle?.getIntArray("quantities")?.toList() ?: listOf() }
 
+    LaunchedEffect(bundle) {
+        viewModel.applyPreset(ids, quantities)
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.remove<Bundle>("bundle")
+    }
 
     Calculator(
         treasureCatalog = viewModel.catalog.collectAsState().value,
@@ -60,6 +66,7 @@ fun CalculatorRoot(
         emissaryValueAmount = viewModel.emissaryValueAmount.collectAsState().value,
         selectedEmissary = viewModel.selectedEmissary.collectAsState().value,
         emissaryGrade = viewModel.emissaryGrade.collectAsState().value,
+        selectedTabIndex = viewModel.selectedTabIndex.collectAsState().value,
         setItemQuantity = { categoryItem, newQuantity ->
             (categoryItem as? TreasureItem)?.let {
                 viewModel.setItemQuantity(it, newQuantity)
@@ -68,10 +75,14 @@ fun CalculatorRoot(
         setSelectedEmissary = {
             viewModel.setSelectedEmissary(emissary = Emissaries.entries[it])
         },
+        setSelectedTabIndex = {
+            viewModel.setSelectedTabIndex(index = it)
+        },
         setEmissaryGrade = {
             viewModel.setEmissaryGrade(grade = EmissaryGrades.entries[it])
         },
-        navigateToPresets = { navController.navigate(ScreenPresets) }
+        navigateToPresets = { navController.navigate(ScreenPresets) },
+        clearCalculator = { viewModel.clearCalculator() }
     )
 }
 
@@ -85,13 +96,14 @@ private fun Calculator(
     emissaryValueAmount: Int,
     selectedEmissary: Emissaries,
     emissaryGrade: EmissaryGrades,
+    selectedTabIndex: Int,
+    setSelectedTabIndex: (Int) -> Unit,
     setItemQuantity: (CategoryItem, Int) -> Unit,
     setSelectedEmissary: (Int) -> Unit,
     setEmissaryGrade: (Int) -> Unit,
-    navigateToPresets: () -> Unit
+    navigateToPresets: () -> Unit,
+    clearCalculator: () -> Unit
 ) {
-
-    var selectedTabIndex by remember { mutableIntStateOf(0) }
     val pagerState = rememberPagerState { treasureCatalog.size }
 
     LaunchedEffect(selectedTabIndex) {
@@ -99,7 +111,7 @@ private fun Calculator(
     }
     LaunchedEffect(pagerState.currentPage, pagerState.isScrollInProgress) {
         if (!pagerState.isScrollInProgress)
-            selectedTabIndex = pagerState.currentPage
+            setSelectedTabIndex.invoke(pagerState.currentPage)
     }
 
 
@@ -109,7 +121,7 @@ private fun Calculator(
         ScrollableTabRow(selectedTabIndex = selectedTabIndex) {
             TabLayout(
                 selectedTabIndex = selectedTabIndex,
-                onTabClick = { selectedTabIndex = it }
+                onTabClick = { setSelectedTabIndex.invoke(it) }
             )
         }
 
@@ -148,7 +160,8 @@ private fun Calculator(
                 emissaryGrade = emissaryGrade,
                 setSelectedEmissary = setSelectedEmissary,
                 setEmissaryGrade = setEmissaryGrade,
-                navigateToPresets = navigateToPresets
+                navigateToPresets = navigateToPresets,
+                clearCalculator = clearCalculator,
             )
         }
     }
@@ -164,12 +177,15 @@ private fun CalculatorPreview() {
             maxGoldAmount = 500000,
             doubloonsAmount = 2000,
             emissaryValueAmount = 275000,
+            selectedTabIndex = 0,
             selectedEmissary = Emissaries.GOLD_HOARDERS,
             emissaryGrade = EmissaryGrades.SECOND_GRADE,
             setItemQuantity = { _, _ -> },
             setSelectedEmissary = { },
             setEmissaryGrade = { },
-            navigateToPresets = { }
+            navigateToPresets = { },
+            clearCalculator = { },
+            setSelectedTabIndex = { }
         )
     }
 }

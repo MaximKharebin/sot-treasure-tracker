@@ -1,9 +1,9 @@
 package com.example.sot_treasure_tracker
 
-import com.example.sot_treasure_tracker.calculator.data.TreasureRepositoryImpl
-import com.example.sot_treasure_tracker.calculator.data.TreasureCatalog
-import com.example.sot_treasure_tracker.calculator.data.TreasureCatalogInstance
-import com.example.sot_treasure_tracker.calculator.domain.TreasureRepository
+import com.example.sot_treasure_tracker.components.data.TreasureRepositoryImpl
+import com.example.sot_treasure_tracker.components.data.TreasureCatalog
+import com.example.sot_treasure_tracker.components.data.TreasureCatalogInstance
+import com.example.sot_treasure_tracker.components.domain.TreasureRepository
 import com.example.sot_treasure_tracker.presets.data.PresetsCatalog
 import com.example.sot_treasure_tracker.presets.data.PresetsCatalogInstance
 import com.example.sot_treasure_tracker.presets.data.PresetsRepositoryImpl

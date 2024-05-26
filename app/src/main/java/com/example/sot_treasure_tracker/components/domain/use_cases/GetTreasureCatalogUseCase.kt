@@ -1,6 +1,6 @@
-package com.example.sot_treasure_tracker.calculator.domain.use_cases
+package com.example.sot_treasure_tracker.components.domain.use_cases
 
-import com.example.sot_treasure_tracker.calculator.domain.TreasureRepository
+import com.example.sot_treasure_tracker.components.domain.TreasureRepository
 import javax.inject.Inject
 
 class GetTreasureCatalogUseCase @Inject constructor(

@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.calculator.data.models
+package com.example.sot_treasure_tracker.components.data.models
 
 import com.example.sot_treasure_tracker.calculator.domain.models.Price
 import com.example.sot_treasure_tracker.calculator.domain.models.SellBuckets

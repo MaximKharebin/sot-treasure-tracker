@@ -1,8 +1,8 @@
-package com.example.sot_treasure_tracker.calculator.data.catalog_instance
+package com.example.sot_treasure_tracker.components.data.catalog_instance
 
 import com.example.sot_treasure_tracker.R
-import com.example.sot_treasure_tracker.calculator.data.models.TreasureCategoryDto
-import com.example.sot_treasure_tracker.calculator.data.models.TreasureItemDto
+import com.example.sot_treasure_tracker.components.data.models.TreasureCategoryDto
+import com.example.sot_treasure_tracker.components.data.models.TreasureItemDto
 import com.example.sot_treasure_tracker.calculator.domain.models.Price
 import com.example.sot_treasure_tracker.calculator.domain.models.SellBuckets
 

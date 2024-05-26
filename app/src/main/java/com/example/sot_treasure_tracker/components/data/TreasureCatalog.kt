@@ -1,4 +1,4 @@
-package com.example.sot_treasure_tracker.calculator.data
+package com.example.sot_treasure_tracker.components.data
 
 interface TreasureCatalog {
     val catalog: TreasureCatalogInstance

@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.os.bundleOf
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.compose.SotTreasureTrackerTheme
@@ -47,12 +48,16 @@ fun PresetsRoot(
             viewModel.getPresetRewardCost(it)
         },
         navigateToCalculator = { ids, quantities ->
-            navController.navigate(
-                ScreenCalculator(
-                    treasureIds = ids,
-                    treasureQuantities = quantities
-                )
+
+            val bundle = bundleOf(
+                "ids" to ids.toIntArray(),
+                "quantities" to quantities.toIntArray()
             )
+
+            navController.previousBackStackEntry
+                ?.savedStateHandle
+                ?.set("bundle", bundle)
+            navController.popBackStack()
         }
     )
 }

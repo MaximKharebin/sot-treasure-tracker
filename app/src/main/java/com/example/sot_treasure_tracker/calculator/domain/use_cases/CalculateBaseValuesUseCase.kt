@@ -24,9 +24,11 @@ class CalculateBaseValuesUseCase @Inject constructor() {
                 when (treasureItem.price) {
                     is Price.GoldRange -> {
                         minGoldPerFraction[fraction.ordinal] =
-                            baseValues.minGold[fraction.ordinal] + (treasureItem.price as Price.GoldRange).gold.first * quantityDifference
+                            baseValues.minGold[fraction.ordinal] +
+                                    (treasureItem.price as Price.GoldRange).gold.first * quantityDifference
                         maxGoldPerFraction[fraction.ordinal] =
-                            baseValues.maxGold[fraction.ordinal] + (treasureItem.price as Price.GoldRange).gold.last * quantityDifference
+                            baseValues.maxGold[fraction.ordinal] +
+                                    (treasureItem.price as Price.GoldRange).gold.last * quantityDifference
                     }
 
                     is Price.Doubloons -> {
@@ -40,7 +42,8 @@ class CalculateBaseValuesUseCase @Inject constructor() {
                 minGoldPerFraction[fraction.ordinal] = baseValues.minGold[fraction.ordinal]
                 maxGoldPerFraction[fraction.ordinal] = baseValues.maxGold[fraction.ordinal]
                 doubloonsPerFraction[fraction.ordinal] = baseValues.doubloons[fraction.ordinal]
-                emissaryValuePerFraction[fraction.ordinal] = baseValues.emissaryValue[fraction.ordinal]
+                emissaryValuePerFraction[fraction.ordinal] =
+                    baseValues.emissaryValue[fraction.ordinal]
             }
         }
 

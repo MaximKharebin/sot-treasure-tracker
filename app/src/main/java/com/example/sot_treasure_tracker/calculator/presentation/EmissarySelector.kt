@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.RemoveCircleOutline
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
@@ -31,6 +32,7 @@ fun EmissarySelector(
     emissaryGrade: EmissaryGrades,
     setSelectedEmissary: (Int) -> Unit,
     setEmissaryGrade: (Int) -> Unit,
+    clearCalculator: () -> Unit,
     navigateToPresets: () -> Unit
 ) {
 
@@ -112,6 +114,20 @@ fun EmissarySelector(
                 .weight(1f)
         )
         FilledIconButton(
+            onClick = { clearCalculator.invoke() },
+            modifier = Modifier
+                .padding(start = MaterialTheme.spacing.medium)
+                .background(
+                    MaterialTheme.colorScheme.error,
+                    shape = RoundedCornerShape(50.dp)
+                )
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.RemoveCircleOutline,
+                contentDescription = null
+            )
+        }
+        FilledIconButton(
             onClick = { navigateToPresets.invoke() },
             modifier = Modifier
                 .padding(start = MaterialTheme.spacing.medium)
@@ -137,6 +153,7 @@ fun EmissarySelectorPreview() {
             emissaryGrade = EmissaryGrades.SECOND_GRADE,
             setSelectedEmissary = { },
             setEmissaryGrade = { },
+            clearCalculator = { },
             navigateToPresets = { }
         )
     }

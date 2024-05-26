@@ -31,7 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.SotTreasureTrackerTheme
-import com.example.sot_treasure_tracker.calculator.data.TreasureCatalogInstance
+import com.example.sot_treasure_tracker.components.data.TreasureCatalogInstance
 import com.example.sot_treasure_tracker.calculator.domain.models.Price
 import com.example.sot_treasure_tracker.components.domain.models.CatalogCategory
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
