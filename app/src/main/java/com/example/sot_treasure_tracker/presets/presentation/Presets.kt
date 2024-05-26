@@ -10,12 +10,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.compose.SotTreasureTrackerTheme
+import com.example.sot_treasure_tracker.ScreenCalculator
 import com.example.sot_treasure_tracker.components.domain.models.CatalogCategory
 import com.example.sot_treasure_tracker.components.domain.models.CategoryItem
 import com.example.sot_treasure_tracker.components.presentation.CatalogCategories
@@ -31,10 +31,10 @@ fun PresetsRoot(
     navController: NavController,
     viewModel: PresetsViewModel = hiltViewModel()
 ) {
-    val color by viewModel.color.collectAsState()
-
     Presets(
         presetsCatalog = viewModel.presetCatalog.collectAsState().value,
+        storedTreasureIds = viewModel.storedTreasureIds.collectAsState().value,
+        storedTreasureQuantities = viewModel.storedTreasureQuantities.collectAsState().value,
         minGoldAmount = viewModel.minGoldAmount.collectAsState().value,
         maxGoldAmount = viewModel.maxGoldAmount.collectAsState().value,
         doubloonsAmount = viewModel.doubloonsAmount.collectAsState().value,
@@ -45,6 +45,14 @@ fun PresetsRoot(
         },
         calculateValues = {
             viewModel.getPresetRewardCost(it)
+        },
+        navigateToCalculator = { ids, quantities ->
+            navController.navigate(
+                ScreenCalculator(
+                    treasureIds = ids,
+                    treasureQuantities = quantities
+                )
+            )
         }
     )
 }
@@ -52,11 +60,14 @@ fun PresetsRoot(
 @Composable
 private fun Presets(
     presetsCatalog: List<CatalogCategory>,
+    storedTreasureIds: List<Int>,
+    storedTreasureQuantities: List<Int>,
     minGoldAmount: Int,
     maxGoldAmount: Int,
     doubloonsAmount: Int,
     calculateValues: (List<PresetReward>) -> CostValues,
-    setItemQuantity: (CategoryItem, Int) -> Unit
+    setItemQuantity: (CategoryItem, Int) -> Unit,
+    navigateToCalculator: (List<Int>, List<Int>) -> Unit
 ) {
     Column {
 
@@ -81,15 +92,15 @@ private fun Presets(
                 doubloonsAmount = doubloonsAmount,
                 emissaryValueAmount = 0
             )
-            
+
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
 
             Button(
-                onClick = {  },
+                onClick = { navigateToCalculator(storedTreasureIds, storedTreasureQuantities) },
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                Text(text = "color.toString()")
+                Text(text = "Apply preset")
             }
         }
     }
@@ -101,13 +112,16 @@ private fun PresetsPreview() {
     SotTreasureTrackerTheme {
         Presets(
             presetsCatalog = PresetsCatalogInstance.catalog,
+            storedTreasureIds = listOf(),
+            storedTreasureQuantities = listOf(),
             setItemQuantity = { _, _ -> },
             minGoldAmount = 10000,
             maxGoldAmount = 500000,
             doubloonsAmount = 2000,
             calculateValues = {
-                CostValues( 100, 500, 25)
-            }
+                CostValues(100, 500, 25)
+            },
+            navigateToCalculator = { _, _ -> }
         )
     }
 }

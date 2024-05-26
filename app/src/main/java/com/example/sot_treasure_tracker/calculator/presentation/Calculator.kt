@@ -20,24 +20,38 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
+import androidx.navigation.toRoute
 import com.example.compose.SotTreasureTrackerTheme
+import com.example.sot_treasure_tracker.ScreenCalculator
+import com.example.sot_treasure_tracker.ScreenPresets
 import com.example.sot_treasure_tracker.calculator.data.TreasureCatalogInstance
 import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
-import com.example.sot_treasure_tracker.components.domain.models.CatalogCategory
 import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.components.domain.models.CatalogCategory
 import com.example.sot_treasure_tracker.components.domain.models.CategoryItem
-import com.example.sot_treasure_tracker.components.presentation.CostValues
 import com.example.sot_treasure_tracker.components.presentation.CatalogCategories
+import com.example.sot_treasure_tracker.components.presentation.CostValues
 import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 
 
 @Composable
 fun CalculatorRoot(
     navController: NavController,
+    navBackStackEntry: NavBackStackEntry,
     viewModel: CalculatorViewModel = hiltViewModel()
 ) {
+
+    val args = remember {
+        navBackStackEntry.toRoute<ScreenCalculator>()
+    }
+    LaunchedEffect(args) {
+        viewModel.applyPreset(args.treasureIds, args.treasureQuantities)
+    }
+
+
     Calculator(
         treasureCatalog = viewModel.catalog.collectAsState().value,
         minGoldAmount = viewModel.minGoldAmount.collectAsState().value,
@@ -57,7 +71,7 @@ fun CalculatorRoot(
         setEmissaryGrade = {
             viewModel.setEmissaryGrade(grade = EmissaryGrades.entries[it])
         },
-        navigateToPresets = { navController.navigate("presets") }
+        navigateToPresets = { navController.navigate(ScreenPresets) }
     )
 }
 
@@ -119,7 +133,7 @@ private fun Calculator(
             )
         ) {
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
-            
+
             CostValues(
                 minGoldAmount = minGoldAmount,
                 maxGoldAmount = maxGoldAmount,

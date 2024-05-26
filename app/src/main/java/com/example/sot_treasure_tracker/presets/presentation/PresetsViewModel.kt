@@ -35,8 +35,12 @@ class PresetsViewModel @Inject constructor(
     private val _doubloonsAmount = MutableStateFlow(0)
     val doubloonsAmount = _doubloonsAmount.asStateFlow()
 
-    private val _color = MutableStateFlow(0xFFFFFFFF)
-    val color = _color.asStateFlow()
+    private val _storedTreasureIds = MutableStateFlow<List<Int>>(listOf())
+    val storedTreasureIds = _storedTreasureIds.asStateFlow()
+
+    private val _storedTreasureQuantities = MutableStateFlow<List<Int>>(listOf())
+    val storedTreasureQuantities = _storedTreasureQuantities.asStateFlow()
+
 
     private val treasureCatalog = getTreasureCatalogUseCase.execute()
     private val treasure: MutableList<PresetReward> = mutableListOf()
@@ -44,20 +48,20 @@ class PresetsViewModel @Inject constructor(
     fun setItemQuantity(presetItem: PresetItem, newQuantity: Int) {
         val quantityDifference = newQuantity - presetItem.quantity
         presetItem.quantity = newQuantity
-        _color.value = Random.nextLong(0xFFFFFFFF)
 
-        if (quantityDifference > 0) {
+        if (quantityDifference > 0)
             presetItem.items.forEach { treasure.add(it) }
-
-            assignValues(getPresetRewardCost(presetItem.items, quantityDifference))
-        }
-        else {
+        else
             presetItem.items.forEach { treasure.remove(it) }
-            assignValues(getPresetRewardCost(presetItem.items, quantityDifference))
-        }
+
+        assignValues(getPresetRewardCost(presetItem.items, quantityDifference))
+        mapStoredTreasureList()
     }
 
-    fun getStoredTreasure() = treasure.toList()
+    private fun mapStoredTreasureList() {
+        _storedTreasureIds.value = treasure.map { it.treasureId }
+        _storedTreasureQuantities.value = treasure.map { it.quantity }
+    }
 
     fun getPresetRewardCost(
         treasureList: List<PresetReward>,

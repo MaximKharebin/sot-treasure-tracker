@@ -1,5 +1,6 @@
 package com.example.sot_treasure_tracker.calculator.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
 import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
@@ -105,44 +106,39 @@ class CalculatorViewModel @Inject constructor(
                 val sharedEmissaryValue = values.emissaryValue[SellBuckets.SHARED.ordinal]
                 selectedEmissaryValue + sharedEmissaryValue
             }
+
             Emissaries.ATHENAS_FORTUNE -> {
                 values.emissaryValue[selectedEmissary.value.ordinal]
             }
+
             Emissaries.REAPERS_BONES -> {
                 values.emissaryValue.sum()
             }
+
             Emissaries.GUILD -> {
                 values.emissaryValue.sum() - values.emissaryValue[SellBuckets.REAPERS_BONES.ordinal]
             }
-            Emissaries.UNSELECTED -> { 0f }
+
+            Emissaries.UNSELECTED -> {
+                0f
+            }
         }
 
         _emissaryValueAmount.value = emissaryValue.toInt()
     }
 
-    /*private fun applyPreset(treasureIds: List<Int>, treasureQuantities: List<Int>) {
-        treasureIds.forEach { treasureId ->
-
-            val itemIndex = treasureIds.indexOf(treasureId)
-            treasureCatalog.value.forEach { categories ->
-                categories.forEach { category ->
-                    category.items.forEach { treasureItem ->
-                        if (treasureId == treasureItem.nameId) {
-                            for (i in 1..treasureQuantities[itemIndex]) {
-                                treasureItem.quantity += 1
-                                baseValues = calculateBaseValuesUseCase.execute(
-                                    baseValues,
-                                    treasureItem
-                                )
-
-                            }
-                        }
+    fun applyPreset(treasureIds: List<Int>, treasureQuantities: List<Int>) {
+        treasureIds.forEachIndexed { itemIndex, requiredId ->
+            catalog.value.forEach { catalogCategories ->
+                catalogCategories.forEach { category ->
+                    category.items.forEach { item ->
+                        if (requiredId == item.titleId)
+                            setItemQuantity(item, item.quantity + treasureQuantities[itemIndex])
+                        else
+                            setItemQuantity(item, item.quantity)
                     }
                 }
             }
-
-            multipliedValues = calculateMultipliedValues()
-            assignValues(multipliedValues)
         }
-    }*/
+    }
 }
