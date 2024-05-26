@@ -2,7 +2,7 @@
     <string name="app_name">SoT Treasure Tracker</string>
 
     <string name="price_range">%1$d–%2$d</string>
-    <string name="emissary_value">Emissary Value: %1$d</string>
+    <string name="emissary_value">Emissary Value:</string>
     <string name="represented_emissary">Represented Emissary</string>
 
     <string name="apply">Apply</string>
@@ -13,4 +13,5 @@
     <string name="athena_fortune">"Athena's Fortune"</string>
     <string name="reaper_bones">"Reaper's Bones"</string>
     <string name="other">Other</string>
+    <string name="cost_is_unknown">The treasure\'s price is unknown</string>
 </resources>

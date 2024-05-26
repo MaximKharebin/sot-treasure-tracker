@@ -3,6 +3,7 @@ package com.example.sot_treasure_tracker.presets.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sot_treasure_tracker.calculator.domain.models.Price
+import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.components.domain.use_cases.GetTreasureCatalogUseCase
 import com.example.sot_treasure_tracker.presets.domain.models.PresetItem
 import com.example.sot_treasure_tracker.presets.domain.models.PresetReward
@@ -83,21 +84,15 @@ class PresetsViewModel @Inject constructor(
         var maxGoldAmount = 0
         var doubloonsAmount = 0
 
-        itemIds.forEach { treasureId ->
-            val itemIndex = itemIds.indexOf(treasureId)
-            treasureCatalog.forEach { catalog ->
-                catalog.forEach { category ->
-                    category.items.forEach { treasureItem ->
-                        if (treasureId == treasureItem.titleId) {
-                            for (i in 1..itemQuantities[itemIndex]) {
-                                when (treasureItem.price) {
-                                    is Price.Doubloons -> doubloonsAmount += treasureItem.price.doubloons * quantityDifference
-                                    is Price.GoldRange -> {
-                                        minGoldAmount += treasureItem.price.gold.first * quantityDifference
-                                        maxGoldAmount += treasureItem.price.gold.last * quantityDifference
-                                    }
-                                }
-
+        itemIds.forEachIndexed {itemIndex, treasureId ->
+            loopForEachItemInTreasureCatalog { treasureItem ->
+                if (treasureId == treasureItem.titleId) {
+                    for (i in 1..itemQuantities[itemIndex]) {
+                        when (treasureItem.price) {
+                            is Price.Doubloons -> doubloonsAmount += (treasureItem.price as Price.Doubloons).doubloons * quantityDifference
+                            is Price.GoldRange -> {
+                                minGoldAmount += (treasureItem.price as Price.GoldRange).gold.first * quantityDifference
+                                maxGoldAmount += (treasureItem.price as Price.GoldRange).gold.last * quantityDifference
                             }
                         }
                     }
@@ -110,6 +105,26 @@ class PresetsViewModel @Inject constructor(
             maxGoldAmount = maxGoldAmount,
             doubloonsAmount = doubloonsAmount
         )
+    }
+
+    private fun loopForEachItemInTreasureCatalog(action: (TreasureItem) -> Unit) {
+        treasureCatalog.forEach { catalogCategories ->
+            catalogCategories.forEach { category ->
+                category.items.forEach { item ->
+                    action.invoke(item)
+                }
+            }
+        }
+    }
+
+    private fun loopForEachItemInPresetsCatalog(action: (PresetReward) -> Unit) {
+        presetCatalog.value.forEach { catalogCategories ->
+            catalogCategories.items.forEach { category ->
+                category.items.forEach { item ->
+                    action.invoke(item)
+                }
+            }
+        }
     }
 
     private fun assignValues(values: CostValues) {

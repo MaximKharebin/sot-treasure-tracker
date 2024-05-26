@@ -1,8 +1,5 @@
 package com.example.sot_treasure_tracker.calculator.presentation
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -10,48 +7,18 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.SotTreasureTrackerTheme
 import com.example.sot_treasure_tracker.R
-import com.example.sot_treasure_tracker.calculator.presentation.models.TabItem
 import com.example.sot_treasure_tracker.components.presentation.theme.fontSize
-import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 
-private val tabItems = listOf(
-    TabItem(
-        title = R.string.gold_hoarders,
-        unselectedIcon = R.drawable.logo_gh,
-        selectedIcon = R.drawable.logo_gh
-    ),
-    TabItem(
-        title = R.string.order_of_souls,
-        unselectedIcon = R.drawable.logo_oos,
-        selectedIcon = R.drawable.logo_oos
-    ),
-    TabItem(
-        title = R.string.merchant_alliance,
-        unselectedIcon = R.drawable.logo_ma,
-        selectedIcon = R.drawable.logo_ma
-    ),
-    TabItem(
-        title = R.string.athena_fortune,
-        unselectedIcon = R.drawable.logo_af,
-        selectedIcon = R.drawable.logo_af
-    ),
-    TabItem(
-        title = R.string.reaper_bones,
-        unselectedIcon = R.drawable.logo_rb,
-        selectedIcon = R.drawable.logo_rb
-    ),
-    TabItem(
-        title = R.string.other,
-        unselectedIcon = R.drawable.logo_br,
-        selectedIcon = R.drawable.logo_br
-    )
+private data class TabItem(
+    val title: Int,
+    val iconId: Int
 )
 
 @Composable
@@ -59,7 +26,6 @@ fun TabLayout(
     selectedTabIndex: Int,
     onTabClick: (Int) -> Unit
 ) {
-
     tabItems.forEachIndexed { index, tabItem ->
         Tab(
             selected = index == selectedTabIndex,
@@ -79,30 +45,14 @@ fun TabLayout(
                     )
             },
             icon = {
-                if (index == selectedTabIndex)
-                    Image(
-                        painter = painterResource(id = tabItem.selectedIcon),
-                        contentDescription = stringResource(id = tabItem.title),
-                        modifier = Modifier
-                            .size(48.dp)
-                            .background(
-                                MaterialTheme.colorScheme.inverseSurface,
-                                shape = RoundedCornerShape(50.dp)
-                            )
-                            .padding(all = MaterialTheme.spacing.small)
-                    )
-                else
-                    Image(
-                        painter = painterResource(id = tabItem.selectedIcon),
-                        contentDescription = stringResource(id = tabItem.title),
-                        modifier = Modifier
-                            .size(32.dp)
-                            .background(
-                                MaterialTheme.colorScheme.inverseSurface,
-                                shape = RoundedCornerShape(50.dp)
-                            )
-                            .padding(all = MaterialTheme.spacing.small)
-                    )
+                val iconSize = if (index == selectedTabIndex) 48.dp else 32.dp
+                EmissaryIcon(
+                    drawableId = tabItem.iconId,
+                    contentDescription = stringResource(id = tabItem.title),
+                    modifier = Modifier
+                        .size(iconSize)
+                        .clip(shape = RoundedCornerShape(50.dp))
+                )
             }
         )
     }
@@ -119,3 +69,30 @@ fun TabLayoutPreview() {
         )
     }
 }
+
+private val tabItems = listOf(
+    TabItem(
+        title = R.string.gold_hoarders,
+        iconId = R.drawable.logo_gh
+    ),
+    TabItem(
+        title = R.string.order_of_souls,
+        iconId = R.drawable.logo_oos
+    ),
+    TabItem(
+        title = R.string.merchant_alliance,
+        iconId = R.drawable.logo_ma
+    ),
+    TabItem(
+        title = R.string.athena_fortune,
+        iconId = R.drawable.logo_af
+    ),
+    TabItem(
+        title = R.string.reaper_bones,
+        iconId = R.drawable.logo_rb
+    ),
+    TabItem(
+        title = R.string.other,
+        iconId = R.drawable.logo_br
+    )
+)

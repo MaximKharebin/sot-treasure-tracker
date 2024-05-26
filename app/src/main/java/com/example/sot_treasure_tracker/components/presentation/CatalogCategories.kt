@@ -52,12 +52,10 @@ fun CatalogCategories(
         CostValues(0, 0, 0)
     }
 ) {
-    LazyColumn(
-        modifier = modifier.fillMaxSize()
-    ) {
+    LazyColumn(modifier = modifier) {
         items(categories) { category ->
 
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
 
             Text(
                 text = stringResource(id = category.titleId),
@@ -66,9 +64,9 @@ fun CatalogCategories(
                 modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium)
             )
 
-            Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
-
             category.items.forEach { item ->
+                Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
+
                 when (item) {
                     is TreasureItem -> {
                         CategoryItem(
@@ -92,8 +90,6 @@ fun CatalogCategories(
                         )
                     }
                 }
-
-                Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
             }
         }
     }

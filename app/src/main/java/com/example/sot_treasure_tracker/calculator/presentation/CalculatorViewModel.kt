@@ -1,6 +1,5 @@
 package com.example.sot_treasure_tracker.calculator.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
@@ -50,58 +49,81 @@ class CalculatorViewModel @Inject constructor(
     private val _selectedTabIndex = MutableStateFlow(0)
     val selectedTabIndex = _selectedTabIndex.asStateFlow()
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading = _isLoading.asStateFlow()
+
 
     private var baseValues = BaseValues()
     private var multipliedValues = MultipliedValues()
 
 
-    fun setSelectedTabIndex(index: Int) {
+    fun setSelectedTab(index: Int) {
         _selectedTabIndex.value = index
     }
 
     fun setSelectedEmissary(emissary: Emissaries) {
         _selectedEmissary.value = emissary
-
-        multipliedValues = calculateMultipliedValuesUseCase
-            .execute(
-                selectedEmissary = selectedEmissary.value,
-                emissaryGrade = emissaryGrade.value,
-                baseValues = baseValues
-            )
+        assignMultipliedValue()
         assignValues(multipliedValues)
     }
 
     fun setEmissaryGrade(grade: EmissaryGrades) {
         _emissaryGrade.value = grade
-
-        multipliedValues = calculateMultipliedValuesUseCase
-            .execute(
-                selectedEmissary = selectedEmissary.value,
-                emissaryGrade = emissaryGrade.value,
-                baseValues = baseValues
-            )
+        assignMultipliedValue()
         assignValues(multipliedValues)
     }
 
     fun setItemQuantity(treasureItem: TreasureItem, newQuantity: Int) {
         val quantityDifference = newQuantity - treasureItem.quantity
         treasureItem.quantity += quantityDifference
+        assignBaseValue(treasureItem, quantityDifference)
+        assignMultipliedValue()
+        assignValues(multipliedValues)
+    }
 
+    fun clearCatalog() {
+        viewModelScope.launch(Dispatchers.Default) {
+            _isLoading.value = true
+            loopForEachItemInTreasureCatalog { item ->
+                setItemQuantity(treasureItem = item, newQuantity = 0)
+            }
+            _isLoading.value = false
+        }
+    }
+
+
+    fun applyPreset(treasureIds: List<Int>, treasureQuantities: List<Int>) {
+        viewModelScope.launch(Dispatchers.Default) {
+            _isLoading.value = true
+            treasureIds.forEachIndexed { itemIndex, requiredId ->
+                loopForEachItemInTreasureCatalog { item ->
+                    val newQuantity = if (requiredId == item.titleId)
+                        item.quantity + treasureQuantities[itemIndex]
+                    else
+                        item.quantity
+                    setItemQuantity(treasureItem = item, newQuantity = newQuantity)
+                }
+            }
+            _isLoading.value = false
+        }
+    }
+
+    private fun assignBaseValue(treasureItem: TreasureItem, quantityDifference: Int) {
         baseValues = calculateBaseValuesUseCase
             .execute(
                 baseValues = baseValues,
                 treasureItem = treasureItem,
                 quantityDifference = quantityDifference
             )
+    }
 
+    private fun assignMultipliedValue() {
         multipliedValues = calculateMultipliedValuesUseCase
             .execute(
                 selectedEmissary = selectedEmissary.value,
                 emissaryGrade = emissaryGrade.value,
                 baseValues = baseValues
             )
-
-        assignValues(multipliedValues)
     }
 
     private fun assignValues(values: MultipliedValues) {
@@ -138,32 +160,11 @@ class CalculatorViewModel @Inject constructor(
         _emissaryValueAmount.value = emissaryValue.toInt()
     }
 
-    fun clearCalculator() {
-        viewModelScope.launch(Dispatchers.Default) {
-            catalog.value.forEach { catalogCategories ->
-                catalogCategories.forEach { category ->
-                    category.items.forEach { item ->
-                        setItemQuantity(treasureItem = item, newQuantity = 0)
-                    }
-                }
-            }
-        }
-    }
-
-
-    fun applyPreset(treasureIds: List<Int>, treasureQuantities: List<Int>) {
-        viewModelScope.launch(Dispatchers.Default) {
-            treasureIds.forEachIndexed { itemIndex, requiredId ->
-                catalog.value.forEach { catalogCategories ->
-                    catalogCategories.forEach { category ->
-                        category.items.forEach { item ->
-                            val newQuantity = if (requiredId == item.titleId)
-                                item.quantity + treasureQuantities[itemIndex]
-                            else
-                                item.quantity
-                            setItemQuantity(treasureItem = item, newQuantity = newQuantity)
-                        }
-                    }
+    private fun loopForEachItemInTreasureCatalog(action: (TreasureItem) -> Unit) {
+        catalog.value.forEach { catalogCategories ->
+            catalogCategories.forEach { category ->
+                category.items.forEach { item ->
+                    action.invoke(item)
                 }
             }
         }

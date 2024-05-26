@@ -28,43 +28,63 @@ fun CostValues(
     minGoldAmount: Int,
     maxGoldAmount: Int,
     doubloonsAmount: Int,
-    emissaryValueAmount: Int
+    emissaryValueAmount: Int,
+    doShowAll: Boolean = false,
+    modifier: Modifier = Modifier
 ) {
-    Column {
+    Column(
+        modifier = modifier
+    ) {
         Row {
-            PriceWithCurrency(
-                currencyDrawable = R.drawable.img_currency_gold,
-                cost = "$minGoldAmount–$maxGoldAmount"
-            )
+            if ((minGoldAmount > 0 || maxGoldAmount > 0) || doShowAll) {
+                PriceWithCurrency(
+                    currencyDrawable = R.drawable.img_currency_gold,
+                    cost = "$minGoldAmount–$maxGoldAmount",
+                    modifier = Modifier.padding(end = MaterialTheme.spacing.small)
+                )
+            }
 
-            Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
-
-            PriceWithCurrency(
-                currencyDrawable = R.drawable.img_currency_doubloons,
-                cost = "$doubloonsAmount"
-            )
+            if (doubloonsAmount > 0 || doShowAll)
+                PriceWithCurrency(
+                    currencyDrawable = R.drawable.img_currency_doubloons,
+                    cost = "$doubloonsAmount"
+                )
         }
 
-        Spacer(modifier = Modifier.height(MaterialTheme.spacing.extraSmall))
+        if (emissaryValueAmount > 0 || doShowAll) {
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.extraSmall))
 
-        Text(
-            text = stringResource(
-                id = R.string.emissary_value,
-                formatArgs = arrayOf(emissaryValueAmount)
-            ),
-            fontWeight = FontWeight.Normal,
-            fontSize = MaterialTheme.fontSize.body
-        )
+            Row {
+                Text(
+                    text = stringResource(
+                        id = R.string.emissary_value,
+                        formatArgs = arrayOf(emissaryValueAmount)
+                    ),
+                    fontWeight = FontWeight.Normal,
+                    fontSize = MaterialTheme.fontSize.body
+                )
+
+                Spacer(modifier = Modifier.width(MaterialTheme.spacing.extraSmall))
+
+                Text(
+                    text = emissaryValueAmount.toString(),
+                    fontWeight = FontWeight.Normal,
+                    fontSize = MaterialTheme.fontSize.body
+                )
+            }
+        }
     }
 }
 
 @Composable
 private fun PriceWithCurrency(
     currencyDrawable: Int,
-    cost: String
+    cost: String,
+    modifier: Modifier = Modifier
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
     ) {
         Image(
             painter = painterResource(id = currencyDrawable),
