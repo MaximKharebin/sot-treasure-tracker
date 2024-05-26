@@ -2,6 +2,7 @@ package com.example.sot_treasure_tracker.calculator.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -9,6 +10,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -55,10 +57,9 @@ fun EmissarySelector(
             steps = 3,
             valueRange = 0f..4f,
             modifier = Modifier
-                .background(
-                    color = MaterialTheme.colorScheme.surfaceDim,
-                    shape = RoundedCornerShape(topEnd = 50.dp, bottomEnd = 50.dp)
-                )
+                .height(48.dp)
+                .clip(shape = RoundedCornerShape(topEnd = 50.dp, bottomEnd = 50.dp))
+                .background(color = MaterialTheme.colorScheme.surfaceDim,)
                 .padding(horizontal = MaterialTheme.spacing.medium)
         )
     }

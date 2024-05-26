@@ -106,7 +106,6 @@ private fun CategoryItem(
     setItemQuantity: (CategoryItem, Int) -> Unit
 ) {
     Card(
-        onClick = { Log.d("CardLog", "item quantity ${item.quantity}") },
         modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium)
     ) {
         Row(modifier = Modifier.padding(all = MaterialTheme.spacing.small)) {

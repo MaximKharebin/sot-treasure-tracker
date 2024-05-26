@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PresetsViewModel @Inject constructor(
     getPresetsCatalogUseCase: GetPresetsCatalogUseCase,
-    private val getTreasureCatalogUseCase: GetTreasureCatalogUseCase
+    getTreasureCatalogUseCase: GetTreasureCatalogUseCase
 ) : ViewModel() {
 
     private val _presetCatalog = MutableStateFlow(getPresetsCatalogUseCase.execute())
@@ -74,7 +74,7 @@ class PresetsViewModel @Inject constructor(
 
     fun getPresetRewardCost(
         treasureList: List<PresetReward>,
-        quantityDifference: Int = 1,
+        presetQuantityDifference: Int = 1,
     ): CostValues {
 
         val itemIds = treasureList.map { it.treasureId }
@@ -84,16 +84,15 @@ class PresetsViewModel @Inject constructor(
         var maxGoldAmount = 0
         var doubloonsAmount = 0
 
-        itemIds.forEachIndexed {itemIndex, treasureId ->
+        itemIds.forEachIndexed { itemIndex, treasureId ->
             loopForEachItemInTreasureCatalog { treasureItem ->
                 if (treasureId == treasureItem.titleId) {
-                    for (i in 1..itemQuantities[itemIndex]) {
-                        when (treasureItem.price) {
-                            is Price.Doubloons -> doubloonsAmount += (treasureItem.price as Price.Doubloons).doubloons * quantityDifference
-                            is Price.GoldRange -> {
-                                minGoldAmount += (treasureItem.price as Price.GoldRange).gold.first * quantityDifference
-                                maxGoldAmount += (treasureItem.price as Price.GoldRange).gold.last * quantityDifference
-                            }
+                    val itemQuantity = itemQuantities[itemIndex]
+                    when (val itemPrice = treasureItem.price) {
+                        is Price.Doubloons -> doubloonsAmount += itemPrice.doubloons * itemQuantity * presetQuantityDifference
+                        is Price.GoldRange -> {
+                            minGoldAmount += itemPrice.gold.first * itemQuantity * presetQuantityDifference
+                            maxGoldAmount += itemPrice.gold.last * itemQuantity * presetQuantityDifference
                         }
                     }
                 }
@@ -110,16 +109,6 @@ class PresetsViewModel @Inject constructor(
     private fun loopForEachItemInTreasureCatalog(action: (TreasureItem) -> Unit) {
         treasureCatalog.forEach { catalogCategories ->
             catalogCategories.forEach { category ->
-                category.items.forEach { item ->
-                    action.invoke(item)
-                }
-            }
-        }
-    }
-
-    private fun loopForEachItemInPresetsCatalog(action: (PresetReward) -> Unit) {
-        presetCatalog.value.forEach { catalogCategories ->
-            catalogCategories.items.forEach { category ->
                 category.items.forEach { item ->
                     action.invoke(item)
                 }

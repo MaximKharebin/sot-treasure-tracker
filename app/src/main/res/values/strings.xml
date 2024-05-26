@@ -5,13 +5,15 @@
     <string name="emissary_value">Emissary Value:</string>
     <string name="represented_emissary">Represented Emissary</string>
 
-    <string name="apply">Apply</string>
+    <string name="apply_preset">Apply Preset</string>
 
     <string name="gold_hoarders">Gold Hoarders</string>
     <string name="order_of_souls">Order of Souls</string>
     <string name="merchant_alliance">Merchant Alliance</string>
     <string name="athena_fortune">"Athena's Fortune"</string>
     <string name="reaper_bones">"Reaper's Bones"</string>
+    <string name="guild">Guild</string>
+    <string name="unselect">Without Emissary</string>
     <string name="other">Other</string>
-    <string name="cost_is_unknown">The treasure\'s price is unknown</string>
+    <string name="presets">Presets</string>
 </resources>

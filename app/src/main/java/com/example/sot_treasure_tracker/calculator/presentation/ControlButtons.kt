@@ -1,18 +1,16 @@
 package com.example.sot_treasure_tracker.calculator.presentation
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.RemoveCircleOutline
-import androidx.compose.material.icons.outlined.ShoppingCart
-import androidx.compose.material3.FilledIconButton
+import androidx.compose.material.icons.automirrored.outlined.ArrowForward
+import androidx.compose.material.icons.outlined.RestartAlt
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 
 @Composable
@@ -21,32 +19,25 @@ fun ControlButtons(
     clearCalculator: () -> Unit,
     navigateToPresets: () -> Unit
 ) {
-    Row {
-        FilledIconButton(
-            onClick = { clearCalculator.invoke() },
-            modifier = Modifier
-                .padding(start = MaterialTheme.spacing.medium)
-                .background(
-                    MaterialTheme.colorScheme.primary,
-                    shape = RoundedCornerShape(50.dp)
-                )
+    Row(
+        modifier = modifier
+    ) {
+        IconButton(
+            onClick = { clearCalculator.invoke() }
         ) {
             Icon(
-                imageVector = Icons.Outlined.RemoveCircleOutline,
+                imageVector = Icons.Outlined.RestartAlt,
                 contentDescription = null
             )
         }
-        FilledIconButton(
-            onClick = { navigateToPresets.invoke() },
-            modifier = Modifier
-                .padding(start = MaterialTheme.spacing.medium)
-                .background(
-                    MaterialTheme.colorScheme.primary,
-                    shape = RoundedCornerShape(50.dp)
-                )
+
+        Spacer(modifier = Modifier.width(MaterialTheme.spacing.extraSmall))
+
+        IconButton(
+            onClick = { navigateToPresets.invoke() }
         ) {
             Icon(
-                imageVector = Icons.Outlined.ShoppingCart,
+                imageVector = Icons.AutoMirrored.Outlined.ArrowForward,
                 contentDescription = null
             )
         }

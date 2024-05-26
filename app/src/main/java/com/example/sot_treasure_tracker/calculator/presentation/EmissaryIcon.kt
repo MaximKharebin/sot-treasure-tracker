@@ -26,7 +26,7 @@ fun EmissaryIcon(
         painter = painterResource(id = drawableId),
         contentDescription = contentDescription,
         modifier = modifier
-            .background(MaterialTheme.colorScheme.inverseSurface)
+            .background(color = MaterialTheme.colorScheme.inverseSurface)
             .padding(all = MaterialTheme.spacing.small)
     )
 }

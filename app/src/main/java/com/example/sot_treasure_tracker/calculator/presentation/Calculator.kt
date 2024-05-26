@@ -4,28 +4,32 @@ import android.os.Bundle
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import com.example.compose.SotTreasureTrackerTheme
+import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.ScreenPresets
 import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
 import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
@@ -38,6 +42,7 @@ import com.example.sot_treasure_tracker.components.presentation.CostValues
 import com.example.sot_treasure_tracker.components.presentation.theme.spacing
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CalculatorRoot(
     navController: NavController,
@@ -95,25 +100,30 @@ fun CalculatorRoot(
             viewModel.setSelectedTab(pagerState.currentPage)
     }
 
-    Calculator(
-        treasureCatalog = treasureCatalog,
-        minGoldAmount = minGoldAmount,
-        maxGoldAmount = maxGoldAmount,
-        doubloonsAmount = doubloonsAmount,
-        emissaryValueAmount = emissaryValueAmount,
-        selectedEmissary = selectedEmissary,
-        emissaryGrade = emissaryGrade,
-        selectedTabIndex = selectedTabIndex,
-        pagerState = pagerState,
-        isLoading = isLoading,
-        
-        setItemQuantity = setItemQuantity,
-        setSelectedEmissary = setSelectedEmissary,
-        setSelectedTab = setSelectedTab,
-        setEmissaryGrade = setEmissaryGrade,
-        navigateToPresets = navigateToPresets,
-        clearCatalog = clearCatalog
-    )
+    Scaffold(
+
+    ) { innerPadding ->
+        Calculator(
+            treasureCatalog = treasureCatalog,
+            minGoldAmount = minGoldAmount,
+            maxGoldAmount = maxGoldAmount,
+            doubloonsAmount = doubloonsAmount,
+            emissaryValueAmount = emissaryValueAmount,
+            selectedEmissary = selectedEmissary,
+            emissaryGrade = emissaryGrade,
+            selectedTabIndex = selectedTabIndex,
+            pagerState = pagerState,
+            isLoading = isLoading,
+
+            setItemQuantity = setItemQuantity,
+            setSelectedEmissary = setSelectedEmissary,
+            setSelectedTab = setSelectedTab,
+            setEmissaryGrade = setEmissaryGrade,
+            navigateToPresets = navigateToPresets,
+            clearCatalog = clearCatalog,
+            modifier = Modifier.padding(innerPadding)
+        )
+    }
 }
 
 @Composable
@@ -134,10 +144,11 @@ private fun Calculator(
     setSelectedEmissary: (Int) -> Unit,
     setEmissaryGrade: (Int) -> Unit,
     navigateToPresets: () -> Unit,
-    clearCatalog: () -> Unit
+    clearCatalog: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier.padding(vertical = MaterialTheme.spacing.small)
+        modifier = modifier.padding(vertical = MaterialTheme.spacing.small)
     ) {
         ScrollableTabRow(selectedTabIndex = selectedTabIndex) {
             TabLayout(
@@ -195,7 +206,8 @@ private fun Calculator(
                 )
                 ControlButtons(
                     navigateToPresets = navigateToPresets,
-                    clearCalculator = clearCatalog
+                    clearCalculator = clearCatalog,
+                    modifier = Modifier.padding(start = MaterialTheme.spacing.medium)
                 )
             }
         }

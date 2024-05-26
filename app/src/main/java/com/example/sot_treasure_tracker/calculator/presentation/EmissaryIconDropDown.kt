@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
@@ -71,7 +72,7 @@ fun EmissaryDropDown(
                 },
                 text = {
                     Text(
-                        text = item.title,
+                        text = stringResource(id = item.title),
                         fontSize = MaterialTheme.fontSize.body,
                         fontWeight = FontWeight.Bold,
                     )
@@ -89,37 +90,37 @@ fun EmissaryDropDown(
 val dropDownItems = listOf(
     DropDownItem(
         id = 0,
-        title = "Gold Hoarders",
+        title = R.string.gold_hoarders,
         icon = R.drawable.logo_gh
     ),
     DropDownItem(
         id = 1,
-        title = "Order of Souls",
+        title = R.string.order_of_souls,
         icon = R.drawable.logo_oos
     ),
     DropDownItem(
         id = 2,
-        title = "Merchant Alliance",
+        title = R.string.merchant_alliance,
         icon = R.drawable.logo_ma
     ),
     DropDownItem(
         id = 3,
-        title = "Athena's Fortune",
+        title = R.string.athena_fortune,
         icon = R.drawable.logo_af
     ),
     DropDownItem(
         id = 4,
-        title = "Reaper's Bones",
+        title = R.string.reaper_bones,
         icon = R.drawable.logo_rb
     ),
     DropDownItem(
         id = 5,
-        title = "Guild",
+        title = R.string.guild,
         icon = R.drawable.logo_br
     ),
     DropDownItem(
         id = 6,
-        title = "Unselect",
+        title = R.string.unselect,
         icon = R.drawable.logo_br
     ),
 )
