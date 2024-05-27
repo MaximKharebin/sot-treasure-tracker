@@ -7,20 +7,12 @@
     <string name="emissary_value">Значение эмиссара</string>
     <string name="represented_emissary">Представляемый Эмиссар</string>
 
-<<<<<<< Updated upstream
-    <string name="apply">Применить</string>
-
-=======
->>>>>>> Stashed changes
     <string name="gold_hoarders">Златодержцы</string>
     <string name="order_of_souls">Орден Душ</string>
     <string name="merchant_alliance">Торговый Союз</string>
     <string name="athena_fortune">Сокровища Афины</string>
     <string name="reaper_bones">Кости Жнецов</string>
-<<<<<<< Updated upstream
-=======
     <string name="guild">Гильдия</string>
->>>>>>> Stashed changes
     <string name="other">Прочее</string>
     <string name="unselect">Без эмисарства</string>
 </resources>

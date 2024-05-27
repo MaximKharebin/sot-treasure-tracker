@@ -2,14 +2,6 @@ package com.example.sot_treasure_tracker.presentation.presets
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-<<<<<<< Updated upstream:app/src/main/java/com/example/sot_treasure_tracker/presets/presentation/PresetsViewModel.kt
-import com.example.sot_treasure_tracker.calculator.domain.models.Price
-import com.example.sot_treasure_tracker.components.domain.use_cases.GetTreasureCatalogUseCase
-import com.example.sot_treasure_tracker.presets.domain.models.PresetItem
-import com.example.sot_treasure_tracker.presets.domain.models.PresetReward
-import com.example.sot_treasure_tracker.presets.domain.use_cases.GetPresetsCatalogUseCase
-import com.example.sot_treasure_tracker.presets.presentation.models.CostValues
-=======
 import com.example.sot_treasure_tracker.domain.models.Price
 import com.example.sot_treasure_tracker.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.domain.use_cases.GetTreasureCatalogUseCase
@@ -17,7 +9,6 @@ import com.example.sot_treasure_tracker.domain.models.PresetItem
 import com.example.sot_treasure_tracker.domain.models.PresetReward
 import com.example.sot_treasure_tracker.domain.use_cases.GetPresetsCatalogUseCase
 import com.example.sot_treasure_tracker.presentation.presets.models.CostValues
->>>>>>> Stashed changes:app/src/main/java/com/example/sot_treasure_tracker/presentation/presets/PresetsViewModel.kt
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -93,35 +84,16 @@ class PresetsViewModel @Inject constructor(
         var maxGoldAmount = 0
         var doubloonsAmount = 0
 
-<<<<<<< Updated upstream:app/src/main/java/com/example/sot_treasure_tracker/presets/presentation/PresetsViewModel.kt
-        itemIds.forEach { treasureId ->
-            val itemIndex = itemIds.indexOf(treasureId)
-            treasureCatalog.forEach { catalog ->
-                catalog.forEach { category ->
-                    category.items.forEach { treasureItem ->
-                        if (treasureId == treasureItem.titleId) {
-                            for (i in 1..itemQuantities[itemIndex]) {
-                                when (treasureItem.price) {
-                                    is Price.Doubloons -> doubloonsAmount += treasureItem.price.doubloons * quantityDifference
-                                    is Price.GoldRange -> {
-                                        minGoldAmount += treasureItem.price.gold.first * quantityDifference
-                                        maxGoldAmount += treasureItem.price.gold.last * quantityDifference
-                                    }
-                                }
-
-                            }
-=======
         itemIds.forEachIndexed { itemIndex, treasureId ->
             loopForEachItemInTreasureCatalog { treasureItem ->
                 if (treasureId == treasureItem.titleId) {
                     val itemQuantity = itemQuantities[itemIndex]
                     when (val itemPrice = treasureItem.price) {
                         is Price.Doubloons ->
-                            doubloonsAmount += itemPrice.doubloons * itemQuantity * presetQuantityDifference
+                            doubloonsAmount += itemPrice.doubloons * itemQuantity * quantityDifference
                         is Price.GoldRange -> {
-                            minGoldAmount += itemPrice.gold.first * itemQuantity * presetQuantityDifference
-                            maxGoldAmount += itemPrice.gold.last * itemQuantity * presetQuantityDifference
->>>>>>> Stashed changes:app/src/main/java/com/example/sot_treasure_tracker/presentation/presets/PresetsViewModel.kt
+                            minGoldAmount += itemPrice.gold.first * itemQuantity * quantityDifference
+                            maxGoldAmount += itemPrice.gold.last * itemQuantity * quantityDifference
                         }
                     }
                 }
@@ -133,6 +105,16 @@ class PresetsViewModel @Inject constructor(
             maxGoldAmount = maxGoldAmount,
             doubloonsAmount = doubloonsAmount
         )
+    }
+
+    private fun loopForEachItemInTreasureCatalog(action: (TreasureItem) -> Unit) {
+        treasureCatalog.forEach { catalogCategories ->
+            catalogCategories.forEach { category ->
+                category.items.forEach { item ->
+                    action(item)
+                }
+            }
+        }
     }
 
     private fun assignValues(values: CostValues) {

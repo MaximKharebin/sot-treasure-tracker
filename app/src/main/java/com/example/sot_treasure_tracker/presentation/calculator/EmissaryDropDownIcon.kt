@@ -1,7 +1,5 @@
 package com.example.sot_treasure_tracker.presentation.calculator
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,29 +15,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-<<<<<<<< Updated upstream:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/EmissaryItem.kt
-import com.example.sot_treasure_tracker.calculator.presentation.models.DropDownItem
-import com.example.sot_treasure_tracker.components.presentation.theme.fontSize
-import com.example.sot_treasure_tracker.components.presentation.theme.spacing
-========
 import com.example.sot_treasure_tracker.R
 import com.example.sot_treasure_tracker.presentation.calculator.models.DropDownItem
 import com.example.sot_treasure_tracker.presentation.utils.theme.fontSize
 import com.example.sot_treasure_tracker.presentation.utils.theme.spacing
->>>>>>>> Stashed changes:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/EmissaryIconDropDown.kt
 
 @Composable
-fun EmissaryItem(
-    icon: Int,
-    dropDownItems: List<DropDownItem>,
+fun EmissaryDropDownIcon(
+    selectedEmissaryIndex: Int,
     modifier: Modifier = Modifier,
     onItemClick: (DropDownItem) -> Unit,
 ) {
@@ -49,17 +40,12 @@ fun EmissaryItem(
     var itemHeight by remember { mutableStateOf(0.dp) }
     val density = LocalDensity.current
 
-    Image(
-        painter = painterResource(id = icon),
+    EmissaryIcon(
+        drawableId = dropDownItems[selectedEmissaryIndex].icon,
         contentDescription = null,
-        contentScale = ContentScale.Fit,
-        modifier = Modifier
+        modifier = modifier
             .size(48.dp)
-            .background(
-                MaterialTheme.colorScheme.inverseSurface,
-                shape = RoundedCornerShape(topStart = 50.dp, bottomStart = 50.dp)
-            )
-            .padding(all = MaterialTheme.spacing.small)
+            .clip(shape = RoundedCornerShape(topStart = 50.dp, bottomStart = 50.dp))
             .onSizeChanged { itemHeight = with(density) { it.height.toDp() } }
             .pointerInput(true) {
                 detectTapGestures(
@@ -71,6 +57,7 @@ fun EmissaryItem(
             }
     )
 
+
     DropdownMenu(
         expanded = isContextMenuVisible,
         onDismissRequest = { isContextMenuVisible = false }
@@ -78,21 +65,17 @@ fun EmissaryItem(
         dropDownItems.forEach { item ->
             DropdownMenuItem(
                 leadingIcon = {
-                    Image(
-                        painter = painterResource(id = item.icon),
+                    EmissaryIcon(
+                        drawableId = item.icon,
                         contentDescription = null,
                         modifier = Modifier
                             .size(36.dp)
-                            .background(
-                                MaterialTheme.colorScheme.inverseSurface,
-                                shape = RoundedCornerShape(50.dp)
-                            )
-                            .padding(all = MaterialTheme.spacing.small)
+                            .clip(shape = RoundedCornerShape(50.dp))
                     )
                 },
                 text = {
                     Text(
-                        text = item.title,
+                        text = stringResource(id = item.title),
                         fontSize = MaterialTheme.fontSize.body,
                         fontWeight = FontWeight.Bold,
                     )
@@ -106,3 +89,41 @@ fun EmissaryItem(
         }
     }
 }
+
+val dropDownItems = listOf(
+    DropDownItem(
+        id = 0,
+        title = R.string.gold_hoarders,
+        icon = R.drawable.logo_gh
+    ),
+    DropDownItem(
+        id = 1,
+        title = R.string.order_of_souls,
+        icon = R.drawable.logo_oos
+    ),
+    DropDownItem(
+        id = 2,
+        title = R.string.merchant_alliance,
+        icon = R.drawable.logo_ma
+    ),
+    DropDownItem(
+        id = 3,
+        title = R.string.athena_fortune,
+        icon = R.drawable.logo_af
+    ),
+    DropDownItem(
+        id = 4,
+        title = R.string.reaper_bones,
+        icon = R.drawable.logo_rb
+    ),
+    DropDownItem(
+        id = 5,
+        title = R.string.guild,
+        icon = R.drawable.logo_br
+    ),
+    DropDownItem(
+        id = 6,
+        title = R.string.unselect,
+        icon = R.drawable.logo_br
+    ),
+)

@@ -28,33 +28,13 @@ fun CostValues(
     minGoldAmount: Int,
     maxGoldAmount: Int,
     doubloonsAmount: Int,
-<<<<<<< Updated upstream:app/src/main/java/com/example/sot_treasure_tracker/components/presentation/CostValues.kt
-    emissaryValueAmount: Int
-=======
     emissaryValueAmount: Int,
     doShowPrice: Boolean = false,
     doShowEmissaryValue: Boolean = false,
     modifier: Modifier = Modifier
->>>>>>> Stashed changes:app/src/main/java/com/example/sot_treasure_tracker/presentation/utils/CostValues.kt
 ) {
-    Column {
-        Row {
-<<<<<<< Updated upstream:app/src/main/java/com/example/sot_treasure_tracker/components/presentation/CostValues.kt
-            PriceWithCurrency(
-                currencyDrawable = R.drawable.img_currency_gold,
-                cost = "$minGoldAmount–$maxGoldAmount"
-            )
-
-            Spacer(modifier = Modifier.width(MaterialTheme.spacing.small))
-
-            PriceWithCurrency(
-                currencyDrawable = R.drawable.img_currency_doubloons,
-                cost = "$doubloonsAmount"
-            )
-        }
-
-        Spacer(modifier = Modifier.height(MaterialTheme.spacing.extraSmall))
-=======
+    Column(modifier = modifier) {
+        Row() {
             if ((minGoldAmount > 0 || maxGoldAmount > 0) || doShowPrice) {
                 PriceWithCurrency(
                     currencyDrawable = R.drawable.img_currency_gold,
@@ -72,26 +52,29 @@ fun CostValues(
 
         if (emissaryValueAmount > 0 || doShowEmissaryValue) {
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.extraSmall))
->>>>>>> Stashed changes:app/src/main/java/com/example/sot_treasure_tracker/presentation/utils/CostValues.kt
 
-        Text(
-            text = stringResource(
-                id = R.string.emissary_value,
-                formatArgs = arrayOf(emissaryValueAmount)
-            ),
-            fontWeight = FontWeight.Normal,
-            fontSize = MaterialTheme.fontSize.body
-        )
+            Text(
+                text = stringResource(
+                    id = R.string.emissary_value,
+                    formatArgs = arrayOf(emissaryValueAmount)
+                ),
+                fontWeight = FontWeight.Normal,
+                fontSize = MaterialTheme.fontSize.body
+            )
+        }
     }
+
 }
 
 @Composable
 private fun PriceWithCurrency(
     currencyDrawable: Int,
-    cost: String
+    cost: String,
+    modifier: Modifier = Modifier
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
     ) {
         Image(
             painter = painterResource(id = currencyDrawable),

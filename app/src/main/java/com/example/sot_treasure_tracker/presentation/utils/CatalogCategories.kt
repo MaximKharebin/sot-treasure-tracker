@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -103,11 +104,11 @@ private fun CategoryItem(
     maxGoldAmount: Int,
     doubloonsAmount: Int,
     emissaryValueAmount:Int,
-    setItemQuantity: (CategoryItem, Int) -> Unit
+    setItemQuantity: (CategoryItem, Int) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Card(
-        onClick = { Log.d("CardLog", "item quantity ${item.quantity}") },
-        modifier = Modifier.padding(horizontal = MaterialTheme.spacing.medium)
+        modifier = modifier.padding(horizontal = MaterialTheme.spacing.medium)
     ) {
         Row(modifier = Modifier.padding(all = MaterialTheme.spacing.small)) {
             Column(

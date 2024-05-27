@@ -1,17 +1,16 @@
 package com.example.sot_treasure_tracker.presentation.calculator
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sot_treasure_tracker.domain.models.EmissaryGrades
-import com.example.sot_treasure_tracker.domain.models.Emissaries
-import com.example.sot_treasure_tracker.domain.models.MultipliedValues
 import com.example.sot_treasure_tracker.domain.models.BaseValues
+import com.example.sot_treasure_tracker.domain.models.Emissaries
+import com.example.sot_treasure_tracker.domain.models.EmissaryGrades
+import com.example.sot_treasure_tracker.domain.models.MultipliedValues
 import com.example.sot_treasure_tracker.domain.models.SellBuckets
 import com.example.sot_treasure_tracker.domain.models.TreasureItem
-import com.example.sot_treasure_tracker.domain.use_cases.GetTreasureCatalogUseCase
 import com.example.sot_treasure_tracker.domain.use_cases.CalculateBaseValuesUseCase
 import com.example.sot_treasure_tracker.domain.use_cases.CalculateMultipliedValuesUseCase
+import com.example.sot_treasure_tracker.domain.use_cases.GetTreasureCatalogUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -50,6 +49,9 @@ class CalculatorViewModel @Inject constructor(
     private val _selectedTabIndex = MutableStateFlow(0)
     val selectedTabIndex = _selectedTabIndex.asStateFlow()
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading = _isLoading.asStateFlow()
+
 
     private var baseValues = BaseValues()
     private var multipliedValues = MultipliedValues()
@@ -62,24 +64,14 @@ class CalculatorViewModel @Inject constructor(
     fun setSelectedEmissary(emissary: Emissaries) {
         _selectedEmissary.value = emissary
 
-        multipliedValues = calculateMultipliedValuesUseCase
-            .execute(
-                selectedEmissary = selectedEmissary.value,
-                emissaryGrade = emissaryGrade.value,
-                baseValues = baseValues
-            )
+        assignMultipliedValues()
         assignValues(multipliedValues)
     }
 
     fun setEmissaryGrade(grade: EmissaryGrades) {
         _emissaryGrade.value = grade
 
-        multipliedValues = calculateMultipliedValuesUseCase
-            .execute(
-                selectedEmissary = selectedEmissary.value,
-                emissaryGrade = emissaryGrade.value,
-                baseValues = baseValues
-            )
+        assignMultipliedValues()
         assignValues(multipliedValues)
     }
 
@@ -87,21 +79,27 @@ class CalculatorViewModel @Inject constructor(
         val quantityDifference = newQuantity - treasureItem.quantity
         treasureItem.quantity += quantityDifference
 
+        assignBaseValues(treasureItem, quantityDifference)
+        assignMultipliedValues()
+        assignValues(multipliedValues)
+    }
+
+    private fun assignBaseValues(treasureItem: TreasureItem, quantityDifference: Int) {
         baseValues = calculateBaseValuesUseCase
             .execute(
                 baseValues = baseValues,
                 treasureItem = treasureItem,
                 quantityDifference = quantityDifference
             )
+    }
 
+    private fun assignMultipliedValues() {
         multipliedValues = calculateMultipliedValuesUseCase
             .execute(
                 selectedEmissary = selectedEmissary.value,
                 emissaryGrade = emissaryGrade.value,
                 baseValues = baseValues
             )
-
-        assignValues(multipliedValues)
     }
 
     private fun assignValues(values: MultipliedValues) {
@@ -140,30 +138,36 @@ class CalculatorViewModel @Inject constructor(
 
     fun clearCalculator() {
         viewModelScope.launch(Dispatchers.Default) {
-            catalog.value.forEach { catalogCategories ->
-                catalogCategories.forEach { category ->
-                    category.items.forEach { item ->
-                        setItemQuantity(treasureItem = item, newQuantity = 0)
-                    }
-                }
+            _isLoading.value = true
+            loopForEachItemInTreasureCatalog { item ->
+                setItemQuantity(treasureItem = item, newQuantity = 0)
             }
+            _isLoading.value = false
         }
     }
 
 
     fun applyPreset(treasureIds: List<Int>, treasureQuantities: List<Int>) {
         viewModelScope.launch(Dispatchers.Default) {
+            _isLoading.value = true
             treasureIds.forEachIndexed { itemIndex, requiredId ->
-                catalog.value.forEach { catalogCategories ->
-                    catalogCategories.forEach { category ->
-                        category.items.forEach { item ->
-                            val newQuantity = if (requiredId == item.titleId)
-                                item.quantity + treasureQuantities[itemIndex]
-                            else
-                                item.quantity
-                            setItemQuantity(treasureItem = item, newQuantity = newQuantity)
-                        }
-                    }
+                loopForEachItemInTreasureCatalog { item ->
+                    val newQuantity = if (requiredId == item.titleId)
+                        item.quantity + treasureQuantities[itemIndex]
+                    else
+                        item.quantity
+                    setItemQuantity(treasureItem = item, newQuantity = newQuantity)
+                }
+            }
+            _isLoading.value = false
+        }
+    }
+
+    private fun loopForEachItemInTreasureCatalog(action: (TreasureItem) -> Unit) {
+        catalog.value.forEach { catalogCategories ->
+            catalogCategories.forEach { category ->
+                category.items.forEach { item ->
+                    action(item)
                 }
             }
         }

@@ -1,12 +1,13 @@
 package com.example.compose
+
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
@@ -269,30 +270,33 @@ fun SotTreasureTrackerTheme(
     dynamicColor: Boolean = false,
     content: @Composable() () -> Unit
 ) {
-  val colorScheme = when {
-      dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-          val context = LocalContext.current
-          if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-      }
-      
-      darkTheme -> lightScheme
-      else -> lightScheme
-  }
-  val view = LocalView.current
-  if (!view.isInEditMode) {
-    SideEffect {
-      val window = (view.context as Activity).window
-      window.statusBarColor = colorScheme.surface.toArgb()
-      window.navigationBarColor = colorScheme.surface.toArgb()
-      WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
-      WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = !darkTheme
-    }
-  }
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
 
-    CompositionLocalProvider(values = arrayOf(
-        LocalSpacing provides Spacing(),
-        LocalFontSize provides FontSize(),
-    )) {
+        darkTheme -> lightScheme
+        else -> lightScheme
+    }
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as Activity).window
+            window.statusBarColor = colorScheme.surface.toArgb()
+            window.navigationBarColor = colorScheme.surface.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars =
+                !darkTheme
+        }
+    }
+
+    CompositionLocalProvider(
+        values = arrayOf(
+            LocalSpacing provides Spacing(),
+            LocalFontSize provides FontSize(),
+        )
+    ) {
         MaterialTheme(
             colorScheme = colorScheme,
             typography = Typography,

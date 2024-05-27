@@ -1,56 +1,40 @@
 package com.example.sot_treasure_tracker.presentation.calculator
 
 import android.os.Bundle
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.os.bundleOf
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import androidx.navigation.toRoute
 import com.example.compose.SotTreasureTrackerTheme
-<<<<<<< Updated upstream:app/src/main/java/com/example/sot_treasure_tracker/calculator/presentation/Calculator.kt
-import com.example.sot_treasure_tracker.ScreenCalculator
-import com.example.sot_treasure_tracker.ScreenPresets
-import com.example.sot_treasure_tracker.components.data.TreasureCatalogInstance
-import com.example.sot_treasure_tracker.calculator.domain.models.Emissaries
-import com.example.sot_treasure_tracker.calculator.domain.models.EmissaryGrades
-import com.example.sot_treasure_tracker.calculator.domain.models.TreasureItem
-import com.example.sot_treasure_tracker.components.domain.models.CatalogCategory
-import com.example.sot_treasure_tracker.components.domain.models.CategoryItem
-import com.example.sot_treasure_tracker.components.presentation.CatalogCategories
-import com.example.sot_treasure_tracker.components.presentation.CostValues
-import com.example.sot_treasure_tracker.components.presentation.theme.spacing
-=======
-import com.example.sot_treasure_tracker.presentation.ScreenPresets
-import com.example.sot_treasure_tracker.domain.models.Emissaries
-import com.example.sot_treasure_tracker.domain.models.EmissaryGrades
-import com.example.sot_treasure_tracker.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.data.treasure.TreasureCatalogInstance
 import com.example.sot_treasure_tracker.domain.models.CatalogCategory
 import com.example.sot_treasure_tracker.domain.models.CategoryItem
+import com.example.sot_treasure_tracker.domain.models.Emissaries
+import com.example.sot_treasure_tracker.domain.models.EmissaryGrades
+import com.example.sot_treasure_tracker.domain.models.TreasureItem
+import com.example.sot_treasure_tracker.presentation.ScreenPresets
 import com.example.sot_treasure_tracker.presentation.utils.CatalogCategories
 import com.example.sot_treasure_tracker.presentation.utils.CostValues
 import com.example.sot_treasure_tracker.presentation.utils.theme.spacing
->>>>>>> Stashed changes:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/Calculator.kt
 
 
 @Composable
@@ -80,6 +64,7 @@ fun CalculatorRoot(
         selectedEmissary = viewModel.selectedEmissary.collectAsState().value,
         emissaryGrade = viewModel.emissaryGrade.collectAsState().value,
         selectedTabIndex = viewModel.selectedTabIndex.collectAsState().value,
+        isLoading = viewModel.isLoading.collectAsState().value,
         setItemQuantity = { categoryItem, newQuantity ->
             (categoryItem as? TreasureItem)?.let {
                 viewModel.setItemQuantity(it, newQuantity)
@@ -110,6 +95,8 @@ private fun Calculator(
     selectedEmissary: Emissaries,
     emissaryGrade: EmissaryGrades,
     selectedTabIndex: Int,
+    isLoading: Boolean,
+
     setSelectedTabIndex: (Int) -> Unit,
     setItemQuantity: (CategoryItem, Int) -> Unit,
     setSelectedEmissary: (Int) -> Unit,
@@ -140,17 +127,29 @@ private fun Calculator(
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
 
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-        ) { currentPageIndex ->
-            CatalogCategories(
-                categories = treasureCatalog[currentPageIndex],
-                setItemQuantity = setItemQuantity,
-            )
+        if (!isLoading) {
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+            ) { currentPageIndex ->
+                CatalogCategories(
+                    categories = treasureCatalog[currentPageIndex],
+                    setItemQuantity = setItemQuantity,
+                )
+            }
+        } else {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+            ) {
+                CircularProgressIndicator()
+            }
         }
+
 
         Column(
             modifier = Modifier.padding(
@@ -163,26 +162,27 @@ private fun Calculator(
                 minGoldAmount = minGoldAmount,
                 maxGoldAmount = maxGoldAmount,
                 doubloonsAmount = doubloonsAmount,
-<<<<<<< Updated upstream:app/src/main/java/com/example/sot_treasure_tracker/calculator/presentation/Calculator.kt
-                emissaryValueAmount = emissaryValueAmount
-=======
                 emissaryValueAmount = emissaryValueAmount,
                 doShowPrice = true,
                 doShowEmissaryValue = true,
                 modifier = Modifier.padding(vertical = MaterialTheme.spacing.small)
->>>>>>> Stashed changes:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/Calculator.kt
             )
 
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.small))
 
-            EmissarySelector(
-                selectedEmissary = selectedEmissary,
-                emissaryGrade = emissaryGrade,
-                setSelectedEmissary = setSelectedEmissary,
-                setEmissaryGrade = setEmissaryGrade,
-                navigateToPresets = navigateToPresets,
-                clearCalculator = clearCalculator,
-            )
+            Row {
+                EmissarySelector(
+                    selectedEmissary = selectedEmissary,
+                    emissaryGrade = emissaryGrade,
+                    setSelectedEmissary = setSelectedEmissary,
+                    setEmissaryGrade = setEmissaryGrade,
+                    modifier = Modifier.weight(1f)
+                )
+                ControlButtons(
+                    navigateToPresets = navigateToPresets,
+                    clearCalculator = clearCalculator
+                )
+            }
         }
     }
 }
@@ -200,6 +200,7 @@ private fun CalculatorPreview() {
             selectedTabIndex = 0,
             selectedEmissary = Emissaries.GOLD_HOARDERS,
             emissaryGrade = EmissaryGrades.SECOND_GRADE,
+            isLoading = false,
             setItemQuantity = { _, _ -> },
             setSelectedEmissary = { },
             setEmissaryGrade = { },
