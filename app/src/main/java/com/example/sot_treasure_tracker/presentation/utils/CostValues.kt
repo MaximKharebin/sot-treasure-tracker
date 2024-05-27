@@ -29,12 +29,12 @@ fun CostValues(
     maxGoldAmount: Int,
     doubloonsAmount: Int,
     emissaryValueAmount: Int,
+    modifier: Modifier = Modifier,
     doShowPrice: Boolean = false,
     doShowEmissaryValue: Boolean = false,
-    modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
-        Row() {
+        Row {
             if ((minGoldAmount > 0 || maxGoldAmount > 0) || doShowPrice) {
                 PriceWithCurrency(
                     currencyDrawable = R.drawable.img_currency_gold,
@@ -53,14 +53,24 @@ fun CostValues(
         if (emissaryValueAmount > 0 || doShowEmissaryValue) {
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.extraSmall))
 
-            Text(
-                text = stringResource(
-                    id = R.string.emissary_value,
-                    formatArgs = arrayOf(emissaryValueAmount)
-                ),
-                fontWeight = FontWeight.Normal,
-                fontSize = MaterialTheme.fontSize.body
-            )
+            Row {
+                Text(
+                    text = stringResource(
+                        id = R.string.emissary_value,
+                        formatArgs = arrayOf(emissaryValueAmount)
+                    ),
+                    fontWeight = FontWeight.Normal,
+                    fontSize = MaterialTheme.fontSize.body
+                )
+
+                Spacer(modifier = Modifier.width(MaterialTheme.spacing.extraSmall))
+
+                Text(
+                    text = emissaryValueAmount.toString(),
+                    fontWeight = FontWeight.Normal,
+                    fontSize = MaterialTheme.fontSize.body
+                )
+            }
         }
     }
 

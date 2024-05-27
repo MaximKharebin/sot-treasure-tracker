@@ -4,7 +4,7 @@
     <string name="presets">Заготовки</string>
 
     <string name="price_range">%1$d–%2$d</string>
-    <string name="emissary_value">Значение эмиссара</string>
+    <string name="emissary_value">Значение эмиссара:</string>
     <string name="represented_emissary">Представляемый Эмиссар</string>
 
     <string name="gold_hoarders">Златодержцы</string>
