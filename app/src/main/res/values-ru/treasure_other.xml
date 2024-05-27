@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_gem_stones">Драгоценные Камни</string>
-    <string name="sapphire_gems">Сапфир русалки, &#xA;Сапфир сирены</string>
-    <string name="emerald_gems">Изумруд русалки, &#xA;Изумруд сирены</string>
-    <string name="ruby_gems">Рубин русалки, &#xA;Рубин сирены</string>
+    <string name="sapphire_gems">Сапфир русалки,\nСапфир сирены</string>
+    <string name="emerald_gems">Изумруд русалки,\nИзумруд сирены</string>
+    <string name="ruby_gems">Рубин русалки,\nРубин сирены</string>
 
     <string name="title_treasure_chests">Сундуки с сокровищами</string>
     <string name="treasure_chest">Сундук с сокровищами</string>
@@ -24,5 +24,6 @@
 
     <string name="title_standalone_treasure">Отдельные Сокровища</string>
     <string name="box_of_wondrous_secrets">Шкатулка Чудесных Тайн</string>
+    <string name="trident_of_dark_tides">Трезубец Тёмных Вод</string>
     <string name="skull_of_siren_song">Черепа Песни Серен</string>
 </resources>

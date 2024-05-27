@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_regular_chests">Regular &amp; Shipwrecked Chests</string>
-    <string name="gh_captains_chest">"Captain's Chest"</string>
-    <string name="gh_marauders_chest">"Marauder's Chest"</string>
-    <string name="gh_seafarers_chest">"Seafarer's Chest"</string>
-    <string name="gh_castaways_chest">"Castaway's Chest"</string>
-    <string name="gh_sailors_chest">"Sailor's Chest"</string>
-    <string name="gh_sea_masters_chest">"Sea Master's Chest"</string>
-    <string name="gh_admirals_chest">"Admiral's Chest"</string>
-    <string name="gh_barons_chest">"Baron's Chest"</string>
-    <string name="gh_kings_chest">"King's Chest"</string>
+    <string name="gh_captains_chest">Captain\'s Chest</string>
+    <string name="gh_marauders_chest">Marauder\'s Chest</string>
+    <string name="gh_seafarers_chest">Seafarer\'s Chest</string>
+    <string name="gh_castaways_chest">Castaway\'s Chest</string>
+    <string name="gh_sailors_chest">Sailor\'s Chest</string>
+    <string name="gh_sea_masters_chest">Sea Master\'s Chest</string>
+    <string name="gh_admirals_chest">Admiral\'s Chest</string>
+    <string name="gh_barons_chest">Baron\'s Chest</string>
+    <string name="gh_kings_chest">King\'s Chest</string>
 
     <string name="title_regular_artefacts">Regular Artefacts</string>
     <string name="gh_crown_of_hope">Crown of Hope</string>
-    <string name="gh_cradle_od_virture">Cradle of Virtue</string>
+    <string name="gh_cradle_of_virtue">Cradle of Virtue</string>
     <string name="gh_vestige_of_power">Vestige of Power</string>
-    <string name="gh_bronze_regular_artefacts">Mysterious Vessel,&#xA;Bronze Secret-Keeper,&#xA;Ancient Goblet</string>
-    <string name="gh_silver_regular_artefacts">Decorative Coffer,&#xA;Elaborate Flagon,&#xA;Silvered Cup</string>
-    <string name="gh_gold_regular_artefacts">Golden Reliquary,&#xA;Ornate Carafe,&#xA;Gilded Chalice</string>
-    <string name="gh_jeweled_regular_artefacts">Peculiar Relic,&#xA;Opulent Curio,&#xA;Adorned Receptacle</string>
+    <string name="gh_bronze_regular_artefacts">Mysterious Vessel,\nBronze Secret-Keeper,\nAncient Goblet</string>
+    <string name="gh_silver_regular_artefacts">Decorative Coffer,\nElaborate Flagon,\nSilvered Cup</string>
+    <string name="gh_gold_regular_artefacts">Golden Reliquary,\nOrnate Carafe,\nGilded Chalice</string>
+    <string name="gh_jeweled_regular_artefacts">Peculiar Relic,\nOpulent Curio,\nAdorned Receptacle</string>
 
     <string name="title_encounter_and_quest_chests">Encounter and Quest Chests</string>
     <string name="gh_chest_of_the_damned">Chest of the Damned</string>
-    <string name="gh_skeleton_captains_chest">"Skeleton Captain's Chest"</string>
+    <string name="gh_skeleton_captains_chest">Skeleton Captain\'s Chest</string>
     <string name="gh_stronghold_chest">Stronghold Chest</string>
     <string name="gh_chest_of_ancient_tributes">Chest of Ancient Tributes</string>
     <string name="gh_chest_of_fortune">Chest of Fortune</string>
@@ -35,32 +35,34 @@
     <string name="gh_chest_of_a_thousand_grogs">Chest of a Thousand Grogs</string>
 
     <string name="title_raid_treasures">Raid Treasures</string>
-    <string name="gh_hoarders_reliquary">"Hoarder's Reliquary"</string>
-    <string name="gh_prosperous_hoarders_reliquary">"Prosperous Hoarder's Reliquary"</string>
-    <string name="gh_glittering_hoarders_reliquary">"Glittering Hoarder's Reliquary"</string>
+    <string name="gh_hoarders_reliquary">Hoarder\'s Reliquary</string>
+    <string name="gh_prosperous_hoarders_reliquary">Prosperous Hoarder\'s Reliquary</string>
+    <string name="gh_glittering_hoarders_reliquary">Glittering Hoarder\'s Reliquary</string>
 
     <string name="title_ashen_chests">Ashen Chests</string>
-    <string name="gh_ashen_captains_chest">"Ashen Captain's Chest"</string>
-    <string name="gh_ashen_marauders_chest">"Ashen Marauder's Chest"</string>
-    <string name="gh_ashen_seafarers_chest">"Ashen Seafarer's Chest"</string>
-    <string name="gh_ashen_castaways_chest">"Ashen Castaway's Chest"</string>
-    <string name="gh_ashen_sailors_chest">"Ashen Sailor's Chest"</string>
-    <string name="gh_ashen_sea_masters_chest">"Ashen Sea Master's Chest"</string>
-    <string name="gh_ashen_admirals_chest">"Ashen Admiral's Chest"</string>
-    <string name="gh_ashen_barons_chest">"Ashen Baron's Chest"</string>
-    <string name="gh_ashen_kings_chest">"Ashen King's Chest"</string>
+    <string name="gh_ashen_captains_chest">Ashen Captain\'s Chest</string>
+    <string name="gh_ashen_marauders_chest">Ashen Marauder\'s Chest</string>
+    <string name="gh_ashen_seafarers_chest">Ashen Seafarer\'s Chest</string>
+    <string name="gh_ashen_castaways_chest">Ashen Castaway\'s Chest</string>
+    <string name="gh_ashen_sailors_chest">Ashen Sailor\'s Chest</string>
+    <string name="gh_ashen_sea_masters_chest">Ashen Sea Master\'s Chest</string>
+    <string name="gh_ashen_admirals_chest">Ashen Admiral\'s Chest</string>
+    <string name="gh_ashen_barons_chest">Ashen Baron\'s Chest</string>
+    <string name="gh_ashen_kings_chest">Ashen King\'s Chest</string>
 
-    <string name="title_devils_roar_artefacts">"Devil's Roar Artefacts"</string>
+    <string name="title_devils_roar_artefacts">Devil\'s Roar Artefacts</string>
+    <string name="gh_ashes_of_ruin">Ashes of Ruin</string>
+    <string name="gh_vessel_of_fire">Vessel of Fire</string>
     <string name="gh_roaring_goblet">Roaring Goblet</string>
     <string name="gh_brimstone_casket">Brimstone Casket</string>
-    <string name="gh_devils_remnant">"Devil's Remnant"</string>
-    <string name="gh_magmas_grail">"Magma's Grail"</string>
+    <string name="gh_devils_remnant">Devil\'s Remnant</string>
+    <string name="gh_magmas_grail">Magma\'s Grail</string>
 
     <string name="title_coral_chests">Coral Chests</string>
-    <string name="gh_coral_captains_chest">"Coral Captain's Chest"</string>
-    <string name="gh_coral_marauders_chest">"Coral Marauder's Chest"</string>
-    <string name="gh_coral_seafarers_chest">"Coral Seafarer's Chest"</string>
-    <string name="gh_coral_castaways_chest">"Coral Castaway's Chest"</string>
+    <string name="gh_coral_captains_chest">Coral Captain\'s Chest</string>
+    <string name="gh_coral_marauders_chest">Coral Marauder\'s Chest</string>
+    <string name="gh_coral_seafarers_chest">Coral Seafarer\'s Chest</string>
+    <string name="gh_coral_castaways_chest">Coral Castaway\'s Chest</string>
 
     <string name="title_coral_artefacts">Coral Artefacts</string>
     <string name="gh_mysterious_coral_vessel">Mysterious Coral Vessel</string>

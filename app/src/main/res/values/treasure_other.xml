@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_gem_stones">Gem Stones</string>
-    <string name="sapphire_gems">Sapphire Mermaid Gem&#xA;Sapphire Siren Gem</string>
-    <string name="emerald_gems">Emerald Mermaid Gem&#xA;Emerald Siren Gem</string>
-    <string name="ruby_gems">Ruby Mermaid Gem&#xA;Ruby Siren Gem</string>
+    <string name="sapphire_gems">Sapphire Mermaid Gem,\nSapphire Siren Gem</string>
+    <string name="emerald_gems">Emerald Mermaid Gem,\nEmerald Siren Gem</string>
+    <string name="ruby_gems">Ruby Mermaid Gem,\nRuby Siren Gem</string>
 
     <string name="title_treasure_chests">Treasure Chests</string>
     <string name="treasure_chest">Treasure Chest</string>
@@ -24,5 +24,6 @@
 
     <string name="title_standalone_treasure">Standalone Treasure</string>
     <string name="box_of_wondrous_secrets">Box of Wondrous Secrets</string>
+    <string name="trident_of_dark_tides">Trident of Dark Tides</string>
     <string name="skull_of_siren_song">Skull of Siren Song</string>
 </resources>

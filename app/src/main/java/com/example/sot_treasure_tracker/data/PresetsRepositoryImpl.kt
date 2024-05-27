@@ -1,0 +1,11 @@
+package com.example.sot_treasure_tracker.data
+
+import com.example.sot_treasure_tracker.domain.PresetsRepository
+import javax.inject.Inject
+
+class PresetsRepositoryImpl @Inject constructor(
+    private val presetsCatalog: PresetsCatalog
+): PresetsRepository {
+
+    override fun getPresetsCatalog() = presetsCatalog.catalog
+}
