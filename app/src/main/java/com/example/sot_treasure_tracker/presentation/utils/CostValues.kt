@@ -25,11 +25,11 @@ import com.example.sot_treasure_tracker.presentation.utils.theme.spacing
 
 @Composable
 fun CostValues(
+    modifier: Modifier = Modifier,
     minGoldAmount: Int,
     maxGoldAmount: Int,
     doubloonsAmount: Int,
-    emissaryValueAmount: Int,
-    modifier: Modifier = Modifier,
+    emissaryValueAmount: Int = 0,
     doShowPrice: Boolean = false,
     doShowEmissaryValue: Boolean = false,
 ) {

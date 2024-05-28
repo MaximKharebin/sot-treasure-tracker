@@ -1,13 +1,10 @@
 package com.example.sot_treasure_tracker.di
 
-import com.example.sot_treasure_tracker.data.TreasureRepositoryImpl
-import com.example.sot_treasure_tracker.data.TreasureCatalog
 import com.example.sot_treasure_tracker.data.treasure.TreasureCatalogInstance
-import com.example.sot_treasure_tracker.domain.TreasureRepository
-import com.example.sot_treasure_tracker.data.PresetsCatalog
+import com.example.sot_treasure_tracker.data.CatalogStorage
 import com.example.sot_treasure_tracker.data.presets.PresetsCatalogInstance
-import com.example.sot_treasure_tracker.data.PresetsRepositoryImpl
-import com.example.sot_treasure_tracker.domain.PresetsRepository
+import com.example.sot_treasure_tracker.data.RepositoryImpl
+import com.example.sot_treasure_tracker.domain.Repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,29 +17,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTreasureCatalog(): TreasureCatalog {
-        return object : TreasureCatalog {
-            override val catalog = TreasureCatalogInstance
+    fun provideCatalogStorage(): CatalogStorage {
+        return object : CatalogStorage {
+            override val treasureCatalog = TreasureCatalogInstance
+            override val presetCatalog = PresetsCatalogInstance
         }
     }
 
     @Provides
     @Singleton
-    fun provideTreasureRepository(treasureCatalog: TreasureCatalog): TreasureRepository {
-        return TreasureRepositoryImpl(treasureCatalog)
-    }
-
-    @Provides
-    @Singleton
-    fun providePresetCatalog(): PresetsCatalog {
-        return object : PresetsCatalog {
-            override val catalog = PresetsCatalogInstance
-        }
-    }
-
-    @Provides
-    @Singleton
-    fun providePresetRepository(presetsCatalog: PresetsCatalog): PresetsRepository {
-        return PresetsRepositoryImpl(presetsCatalog)
+    fun provideRepository(catalogStorage: CatalogStorage): Repository {
+        return RepositoryImpl(catalogStorage)
     }
 }

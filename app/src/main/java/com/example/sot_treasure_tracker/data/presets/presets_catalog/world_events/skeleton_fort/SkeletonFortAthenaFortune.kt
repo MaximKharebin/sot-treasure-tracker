@@ -6,7 +6,7 @@ import com.example.sot_treasure_tracker.data.presets.models.PresetRewardDto
 
 object SkeletonFortAthenaFortune {
     val item = PresetItemDto(
-        titleId = R.string.preset_sea_fort_af,
+        titleId = R.string.preset_skeleton_fort_af,
         items = listOf(
             PresetRewardDto(
                 treasureId = R.string.oos_villainous_bounty_skull,
@@ -22,7 +22,7 @@ object SkeletonFortAthenaFortune {
             ),
             PresetRewardDto(
                 treasureId = R.string.ashen_chest,
-                quantity = 2
+                quantity = 1
             ),
             PresetRewardDto(
                 treasureId = R.string.rag_and_bone_crates,

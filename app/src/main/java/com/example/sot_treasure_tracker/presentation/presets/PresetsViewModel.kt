@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PresetsViewModel @Inject constructor(
     getPresetsCatalogUseCase: GetPresetsCatalogUseCase,
-    private val getTreasureCatalogUseCase: GetTreasureCatalogUseCase
+    getTreasureCatalogUseCase: GetTreasureCatalogUseCase
 ) : ViewModel() {
 
     private val _presetCatalog = MutableStateFlow(getPresetsCatalogUseCase.execute())

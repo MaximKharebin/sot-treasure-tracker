@@ -24,21 +24,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.example.sot_treasure_tracker.R
-<<<<<<<< HEAD:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/EmissaryIconDropDown.kt
-import com.example.sot_treasure_tracker.calculator.presentation.models.DropDownItem
-import com.example.sot_treasure_tracker.components.presentation.theme.fontSize
-import com.example.sot_treasure_tracker.components.presentation.theme.spacing
-
-@Composable
-fun EmissaryDropDown(
-========
 import com.example.sot_treasure_tracker.presentation.calculator.models.DropDownItem
 import com.example.sot_treasure_tracker.presentation.utils.theme.fontSize
 import com.example.sot_treasure_tracker.presentation.utils.theme.spacing
 
 @Composable
 fun EmissaryDropDownIcon(
->>>>>>>> feat-treasure_presets:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/EmissaryDropDownIcon.kt
     selectedEmissaryIndex: Int,
     modifier: Modifier = Modifier,
     onDropDownItemClick: (DropDownItem) -> Unit,
@@ -51,13 +42,9 @@ fun EmissaryDropDownIcon(
 
     EmissaryIcon(
         drawableId = dropDownItems[selectedEmissaryIndex].icon,
-<<<<<<<< HEAD:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/EmissaryIconDropDown.kt
-========
         contentDescription = null,
->>>>>>>> feat-treasure_presets:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/EmissaryDropDownIcon.kt
         modifier = modifier
             .size(48.dp)
-            .clip(shape = RoundedCornerShape(topStart = 50.dp, bottomStart = 50.dp))
             .onSizeChanged { itemHeight = with(density) { it.height.toDp() } }
             .pointerInput(true) {
                 detectTapGestures(
@@ -79,10 +66,7 @@ fun EmissaryDropDownIcon(
                 leadingIcon = {
                     EmissaryIcon(
                         drawableId = item.icon,
-<<<<<<<< HEAD:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/EmissaryIconDropDown.kt
-========
                         contentDescription = null,
->>>>>>>> feat-treasure_presets:app/src/main/java/com/example/sot_treasure_tracker/presentation/calculator/EmissaryDropDownIcon.kt
                         modifier = Modifier
                             .size(36.dp)
                             .clip(shape = RoundedCornerShape(50.dp))
@@ -105,7 +89,7 @@ fun EmissaryDropDownIcon(
     }
 }
 
-val dropDownItems = listOf(
+private val dropDownItems = listOf(
     DropDownItem(
         id = 0,
         title = R.string.gold_hoarders,
@@ -140,5 +124,5 @@ val dropDownItems = listOf(
         id = 6,
         title = R.string.unselect,
         icon = R.drawable.logo_br
-    ),
+    )
 )

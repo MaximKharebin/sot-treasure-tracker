@@ -42,7 +42,6 @@ fun PresetsRoot(
 
     val storedTreasureIds = viewModel.storedTreasureIds.collectAsState().value
     val storedTreasureQuantities = viewModel.storedTreasureQuantities.collectAsState().value
-
     val navigateToCalculator = { ids: List<Int>, quantities: List<Int> ->
 
         val bundle = bundleOf(
@@ -54,6 +53,19 @@ fun PresetsRoot(
             ?.savedStateHandle
             ?.set("bundle", bundle)
         navController.popBackStack()
+    }
+
+    val presetsCatalog = viewModel.presetCatalog.collectAsState().value
+    val minGoldAmount = viewModel.minGoldAmount.collectAsState().value
+    val maxGoldAmount = viewModel.maxGoldAmount.collectAsState().value
+    val doubloonsAmount = viewModel.doubloonsAmount.collectAsState().value
+    val setItemQuantity = { item: CategoryItem, quantity: Int ->
+        (item as? PresetItem)?.let {
+            viewModel.setItemQuantity(it, quantity)
+        }
+    }
+    val calculateValues = { items: List<PresetReward> ->
+        viewModel.getPresetRewardCost(items)
     }
 
 
@@ -92,18 +104,12 @@ fun PresetsRoot(
         }
     ) { innerPadding ->
         Presets(
-            presetsCatalog = viewModel.presetCatalog.collectAsState().value,
-            minGoldAmount = viewModel.minGoldAmount.collectAsState().value,
-            maxGoldAmount = viewModel.maxGoldAmount.collectAsState().value,
-            doubloonsAmount = viewModel.doubloonsAmount.collectAsState().value,
-            setItemQuantity = { categoryItem, newQuantity ->
-                (categoryItem as? PresetItem)?.let {
-                    viewModel.setItemQuantity(it, newQuantity)
-                }
-            },
-            calculateValues = {
-                viewModel.getPresetRewardCost(it)
-            },
+            presetsCatalog = presetsCatalog,
+            minGoldAmount = minGoldAmount,
+            maxGoldAmount = maxGoldAmount,
+            doubloonsAmount = doubloonsAmount,
+            setItemQuantity = { item, quantity -> setItemQuantity.invoke(item, quantity) },
+            calculateValues = { items -> calculateValues.invoke(items) },
             modifier = Modifier.padding(innerPadding)
         )
     }
@@ -140,7 +146,6 @@ private fun Presets(
                 minGoldAmount = minGoldAmount,
                 maxGoldAmount = maxGoldAmount,
                 doubloonsAmount = doubloonsAmount,
-                emissaryValueAmount = 0,
                 doShowPrice = true
             )
         }
@@ -150,16 +155,26 @@ private fun Presets(
 @Preview(showBackground = true)
 @Composable
 private fun PresetsPreview() {
+
+    val presetsCatalog = PresetsCatalogInstance.catalog
+    val minGoldAmount = 10000
+    val maxGoldAmount = 500000
+    val doubloonsAmount = 2000
+    val setItemQuantity = { _: CategoryItem, _: Int -> }
+    val calculateValues = { _: List<PresetReward> ->
+        CostValues(minGoldAmount, maxGoldAmount, doubloonsAmount)
+    }
+
     SotTreasureTrackerTheme {
         Presets(
-            presetsCatalog = PresetsCatalogInstance.catalog,
-            setItemQuantity = { _, _ -> },
-            minGoldAmount = 10000,
-            maxGoldAmount = 500000,
-            doubloonsAmount = 2000,
-            calculateValues = {
-                CostValues(100, 500, 25)
-            },
+            presetsCatalog = presetsCatalog,
+            minGoldAmount = minGoldAmount,
+            maxGoldAmount = maxGoldAmount,
+            doubloonsAmount = doubloonsAmount,
+            setItemQuantity = { item, quantity ->  setItemQuantity.invoke(item, quantity) },
+            calculateValues = { items ->
+                calculateValues.invoke(items)
+            }
         )
     }
 }

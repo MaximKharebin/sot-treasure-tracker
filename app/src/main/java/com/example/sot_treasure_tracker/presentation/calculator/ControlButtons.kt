@@ -15,9 +15,9 @@ import com.example.sot_treasure_tracker.presentation.utils.theme.spacing
 
 @Composable
 fun ControlButtons(
-    modifier: Modifier = Modifier,
     clearCalculator: () -> Unit,
-    navigateToPresets: () -> Unit
+    navigateToPresets: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier

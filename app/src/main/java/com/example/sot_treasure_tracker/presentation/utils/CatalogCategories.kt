@@ -28,17 +28,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.SotTreasureTrackerTheme
-import com.example.sot_treasure_tracker.data.treasure.TreasureCatalogInstance
-import com.example.sot_treasure_tracker.domain.models.Price
-import com.example.sot_treasure_tracker.domain.models.CatalogCategory
-import com.example.sot_treasure_tracker.domain.models.TreasureItem
-import com.example.sot_treasure_tracker.domain.models.CategoryItem
-import com.example.sot_treasure_tracker.presentation.utils.theme.fontSize
-import com.example.sot_treasure_tracker.presentation.utils.theme.spacing
 import com.example.sot_treasure_tracker.data.presets.PresetsCatalogInstance
+import com.example.sot_treasure_tracker.data.treasure.TreasureCatalogInstance
+import com.example.sot_treasure_tracker.domain.models.CatalogCategory
+import com.example.sot_treasure_tracker.domain.models.CategoryItem
 import com.example.sot_treasure_tracker.domain.models.PresetItem
 import com.example.sot_treasure_tracker.domain.models.PresetReward
+import com.example.sot_treasure_tracker.domain.models.Price
+import com.example.sot_treasure_tracker.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.presentation.presets.models.CostValues
+import com.example.sot_treasure_tracker.presentation.utils.theme.fontSize
+import com.example.sot_treasure_tracker.presentation.utils.theme.spacing
 
 @Composable
 fun CatalogCategories(
@@ -103,7 +103,7 @@ private fun CategoryItem(
     minGoldAmount: Int,
     maxGoldAmount: Int,
     doubloonsAmount: Int,
-    emissaryValueAmount:Int,
+    emissaryValueAmount: Int,
     setItemQuantity: (CategoryItem, Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -166,7 +166,8 @@ private fun TreasureItemCounter(
         Text(
             text = categoryItem.quantity.toString(),
             fontSize = MaterialTheme.fontSize.heading,
-            fontWeight = FontWeight.Bold,)
+            fontWeight = FontWeight.Bold,
+        )
 
         IconButton(
             onClick = { setTreasureItemQuantity(categoryItem, categoryItem.quantity - 1) },

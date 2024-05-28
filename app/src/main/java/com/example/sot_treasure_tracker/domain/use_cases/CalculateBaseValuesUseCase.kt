@@ -3,7 +3,7 @@ package com.example.sot_treasure_tracker.domain.use_cases
 import com.example.sot_treasure_tracker.domain.models.Price
 import com.example.sot_treasure_tracker.domain.models.TreasureItem
 import com.example.sot_treasure_tracker.domain.models.BaseValues
-import com.example.sot_treasure_tracker.domain.models.SellBuckets
+import com.example.sot_treasure_tracker.domain.models.SellBucket
 import javax.inject.Inject
 
 class CalculateBaseValuesUseCase @Inject constructor() {
@@ -19,7 +19,7 @@ class CalculateBaseValuesUseCase @Inject constructor() {
         val doubloonsPerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
         val emissaryValuePerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)
 
-        SellBuckets.entries.forEach {
+        SellBucket.entries.forEach {
             minGoldPerFraction[it.ordinal] = baseValues.minGold[it.ordinal]
             maxGoldPerFraction[it.ordinal] = baseValues.maxGold[it.ordinal]
             doubloonsPerFraction[it.ordinal] = baseValues.doubloons[it.ordinal]

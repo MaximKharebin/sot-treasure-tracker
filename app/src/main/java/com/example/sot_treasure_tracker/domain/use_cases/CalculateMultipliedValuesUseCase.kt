@@ -1,10 +1,10 @@
 package com.example.sot_treasure_tracker.domain.use_cases
 
 import com.example.sot_treasure_tracker.domain.models.BaseValues
-import com.example.sot_treasure_tracker.domain.models.Emissaries
-import com.example.sot_treasure_tracker.domain.models.EmissaryGrades
+import com.example.sot_treasure_tracker.domain.models.Emissary
+import com.example.sot_treasure_tracker.domain.models.EmissaryGrade
 import com.example.sot_treasure_tracker.domain.models.MultipliedValues
-import com.example.sot_treasure_tracker.domain.models.SellBuckets
+import com.example.sot_treasure_tracker.domain.models.SellBucket
 import javax.inject.Inject
 
 class CalculateMultipliedValuesUseCase @Inject constructor() {
@@ -15,12 +15,12 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
     private val emissaryValuePerFraction = mutableListOf(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f)
 
     fun execute(
-        selectedEmissary: Emissaries,
-        emissaryGrade: EmissaryGrades,
+        selectedEmissary: Emissary,
+        emissaryGrade: EmissaryGrade,
         baseValues: BaseValues
     ): MultipliedValues {
 
-        SellBuckets.entries.forEach { emissary ->
+        SellBucket.entries.forEach { emissary ->
             minGoldPerFraction[emissary.ordinal] = baseValues.minGold[emissary.ordinal]
             maxGoldPerFraction[emissary.ordinal] = baseValues.maxGold[emissary.ordinal]
             doubloonsPerFraction[emissary.ordinal] = baseValues.doubloons[emissary.ordinal]
@@ -28,20 +28,20 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
         }
 
         return when (selectedEmissary) {
-            Emissaries.GOLD_HOARDERS,
-            Emissaries.MERCHANT_ALLIANCE,
-            Emissaries.ORDER_OF_SOULS -> {
+            Emissary.GOLD_HOARDERS,
+            Emissary.MERCHANT_ALLIANCE,
+            Emissary.ORDER_OF_SOULS -> {
 
                 val multiplier = when (emissaryGrade) {
-                    EmissaryGrades.FIRST_GRADE -> FIRST_GRADE_MULTIPLIER
-                    EmissaryGrades.SECOND_GRADE -> SECOND_GRADE_MULTIPLIER
-                    EmissaryGrades.THIRD_GRADE -> THIRD_GRADE_MULTIPLIER
-                    EmissaryGrades.FORTH_GRADE -> FORTH_GRADE_MULTIPLIER
-                    EmissaryGrades.FIFTH_GRADE -> FIFTH_GRADE_MULTIPLIER
+                    EmissaryGrade.FIRST_GRADE -> FIRST_GRADE_MULTIPLIER
+                    EmissaryGrade.SECOND_GRADE -> SECOND_GRADE_MULTIPLIER
+                    EmissaryGrade.THIRD_GRADE -> THIRD_GRADE_MULTIPLIER
+                    EmissaryGrade.FORTH_GRADE -> FORTH_GRADE_MULTIPLIER
+                    EmissaryGrade.FIFTH_GRADE -> FIFTH_GRADE_MULTIPLIER
                 }
 
                 multiplyValuesPerEmissary(selectedEmissary, multiplier)
-                multiplyValuesPerEmissary(SellBuckets.SHARED, multiplier)
+                multiplyValuesPerEmissary(SellBucket.SHARED, multiplier)
 
                 MultipliedValues(
                     minGold = minGoldPerFraction,
@@ -51,14 +51,14 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
                 )
             }
 
-            Emissaries.ATHENAS_FORTUNE -> {
+            Emissary.ATHENAS_FORTUNE -> {
 
                 val multiplier = when (emissaryGrade) {
-                    EmissaryGrades.FIRST_GRADE -> FIRST_GRADE_MULTIPLIER
-                    EmissaryGrades.SECOND_GRADE -> SECOND_GRADE_MULTIPLIER
-                    EmissaryGrades.THIRD_GRADE -> THIRD_GRADE_MULTIPLIER
-                    EmissaryGrades.FORTH_GRADE -> FORTH_GRADE_MULTIPLIER
-                    EmissaryGrades.FIFTH_GRADE -> FIFTH_GRADE_MULTIPLIER
+                    EmissaryGrade.FIRST_GRADE -> FIRST_GRADE_MULTIPLIER
+                    EmissaryGrade.SECOND_GRADE -> SECOND_GRADE_MULTIPLIER
+                    EmissaryGrade.THIRD_GRADE -> THIRD_GRADE_MULTIPLIER
+                    EmissaryGrade.FORTH_GRADE -> FORTH_GRADE_MULTIPLIER
+                    EmissaryGrade.FIFTH_GRADE -> FIFTH_GRADE_MULTIPLIER
                 }
 
                 multiplyValuesPerEmissary(selectedEmissary, multiplier)
@@ -71,18 +71,18 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
                 )
             }
 
-            Emissaries.REAPERS_BONES -> {
+            Emissary.REAPERS_BONES -> {
 
                 val multiplier = when (emissaryGrade) {
-                    EmissaryGrades.FIRST_GRADE -> FIRST_GRADE_MULTIPLIER
-                    EmissaryGrades.SECOND_GRADE -> SECOND_GRADE_MULTIPLIER
-                    EmissaryGrades.THIRD_GRADE -> THIRD_GRADE_MULTIPLIER
-                    EmissaryGrades.FORTH_GRADE -> FORTH_GRADE_MULTIPLIER
-                    EmissaryGrades.FIFTH_GRADE -> FIFTH_GRADE_MULTIPLIER
+                    EmissaryGrade.FIRST_GRADE -> FIRST_GRADE_MULTIPLIER
+                    EmissaryGrade.SECOND_GRADE -> SECOND_GRADE_MULTIPLIER
+                    EmissaryGrade.THIRD_GRADE -> THIRD_GRADE_MULTIPLIER
+                    EmissaryGrade.FORTH_GRADE -> FORTH_GRADE_MULTIPLIER
+                    EmissaryGrade.FIFTH_GRADE -> FIFTH_GRADE_MULTIPLIER
                 }
 
-                for (emissary in SellBuckets.entries) {
-                    if (emissary == SellBuckets.UNIQUE) continue
+                for (emissary in SellBucket.entries) {
+                    if (emissary == SellBucket.UNIQUE) continue
                     multiplyValuesPerEmissary(emissary, multiplier)
                 }
 
@@ -94,18 +94,18 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
                 )
             }
 
-            Emissaries.GUILD -> {
+            Emissary.GUILD -> {
 
                 val multiplier = when (emissaryGrade) {
-                    EmissaryGrades.FIRST_GRADE -> FIRST_GRADE_GUILD_MULTIPLIER
-                    EmissaryGrades.SECOND_GRADE -> SECOND_GRADE_GUILD_MULTIPLIER
-                    EmissaryGrades.THIRD_GRADE -> THIRD_GRADE_GUILD_MULTIPLIER
-                    EmissaryGrades.FORTH_GRADE -> FORTH_GRADE_GUILD_MULTIPLIER
-                    EmissaryGrades.FIFTH_GRADE -> FIFTH_GRADE_GUILD_MULTIPLIER
+                    EmissaryGrade.FIRST_GRADE -> FIRST_GRADE_GUILD_MULTIPLIER
+                    EmissaryGrade.SECOND_GRADE -> SECOND_GRADE_GUILD_MULTIPLIER
+                    EmissaryGrade.THIRD_GRADE -> THIRD_GRADE_GUILD_MULTIPLIER
+                    EmissaryGrade.FORTH_GRADE -> FORTH_GRADE_GUILD_MULTIPLIER
+                    EmissaryGrade.FIFTH_GRADE -> FIFTH_GRADE_GUILD_MULTIPLIER
                 }
 
-                for (emissary in SellBuckets.entries) {
-                    if (emissary == SellBuckets.REAPERS_BONES || emissary == SellBuckets.UNIQUE) continue
+                for (emissary in SellBucket.entries) {
+                    if (emissary == SellBucket.REAPERS_BONES || emissary == SellBucket.UNIQUE) continue
                     multiplyValuesPerEmissary(emissary, multiplier)
                 }
 
@@ -117,7 +117,7 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
                 )
             }
 
-            Emissaries.UNSELECTED -> MultipliedValues(
+            Emissary.UNSELECTED -> MultipliedValues(
                 minGold = baseValues.minGold,
                 maxGold = baseValues.maxGold,
                 doubloons = baseValues.doubloons,
@@ -126,14 +126,14 @@ class CalculateMultipliedValuesUseCase @Inject constructor() {
         }
     }
 
-    private fun multiplyValuesPerEmissary(emissary: SellBuckets, multiplier: Float) {
+    private fun multiplyValuesPerEmissary(emissary: SellBucket, multiplier: Float) {
         minGoldPerFraction[emissary.ordinal] *= multiplier
         maxGoldPerFraction[emissary.ordinal] *= multiplier
         doubloonsPerFraction[emissary.ordinal] *= multiplier
         emissaryValuePerFraction[emissary.ordinal] *= multiplier
     }
 
-    private fun multiplyValuesPerEmissary(emissary: Emissaries, multiplier: Float) {
+    private fun multiplyValuesPerEmissary(emissary: Emissary, multiplier: Float) {
         minGoldPerFraction[emissary.ordinal] *= multiplier
         maxGoldPerFraction[emissary.ordinal] *= multiplier
         doubloonsPerFraction[emissary.ordinal] *= multiplier
