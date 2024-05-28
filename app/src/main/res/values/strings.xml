@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">SoT Treasure Tracker</string>
+    <string name="presets">Presets</string>
 
     <string name="price_range">%1$d–%2$d</string>
     <string name="emissary_value">Emissary Value:</string>
     <string name="represented_emissary">Represented Emissary</string>
 
-    <string name="apply_preset">Apply Preset</string>
 
     <string name="gold_hoarders">Gold Hoarders</string>
     <string name="order_of_souls">Order of Souls</string>
@@ -13,7 +13,6 @@
     <string name="athena_fortune">"Athena's Fortune"</string>
     <string name="reaper_bones">"Reaper's Bones"</string>
     <string name="guild">Guild</string>
-    <string name="unselect">Without Emissary</string>
     <string name="other">Other</string>
-    <string name="presets">Presets</string>
+    <string name="unselect">Without Emissary</string>
 </resources>

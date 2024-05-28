@@ -7,7 +7,7 @@
     <string name="ma_crate_of_rare_tea">Crate of Rare Tea</string>
     <string name="ma_crate_of_fine_sugar">Crate of Fine Sugar</string>
 
-    <string name="title_devils_roar_crates">"Devil's Roar Crates"</string>
+    <string name="title_devils_roar_crates">Devil\'s Roar Crates</string>
     <string name="ma_crate_of_precious_gemstones">Crate of Precious Gemstones</string>
     <string name="ma_crate_of_extraordinary_minerals">Crate of Extraordinary Minerals</string>
     <string name="ma_crate_of_fine_ore">Crate of Fine Ore</string>
@@ -18,9 +18,9 @@
     <string name="ma_ashes_of_the_damned">Ashes of the Damned</string>
 
     <string name="title_resource_crates">Resource Crates</string>
-    <string name="ma_special_resource_crates">Firework Crate&#xA;Firebomb Crate</string>
-    <string name="ma_ghostly_resource_crates">Storage Crate of the Damned&#xA;Cannonball Crate of the Damned</string>
-    <string name="ma_basic_resource_crates">Wood Crate&#xA;Cannonball Crate&#xA;Fruit Crate</string>
+    <string name="ma_special_resource_crates">Firework Crate,\nFirebomb Crate</string>
+    <string name="ma_ghostly_resource_crates">Storage Crate of the Damned,\nCannonball Crate of the Damned</string>
+    <string name="ma_basic_resource_crates">Wood Crate,\nCannonball Crate,\nFruit Crate</string>
     <string name="ma_crate_of_the_dark_brethren">Crate of the Dark Brethren</string>
     <string name="ma_ammo_crate">Ammo Crate</string>
 
@@ -46,15 +46,15 @@
     <string name="ma_stronghold_gunpowder_barrel">Stronghold Gunpowder Barrel</string>
 
     <string name="title_cargo">Regular Cargo</string>
-    <string name="ma_kings_cargo">Crate of Exotic Plants&#xA;Crate of Elegant Cloth&#xA;Crate of The Finest Rum</string>
-    <string name="ma_regular_cargo">Crate of Plants&#xA;Crate of Luxurious Cloth&#xA;Crate of Rum Bottles</string>
-    <string name="ma_devils_roar_cargo">"Crate of Devil's Plants"&#xA;"Crate of Devil's Luxurious Cloth"&#xA;"Crate of Devil's Rum Bottles"</string>
+    <string name="ma_kings_cargo">Crate of Exotic Plants,\nCrate of Elegant Cloth,\nCrate of The Finest Rum</string>
+    <string name="ma_regular_cargo">Crate of Plants,\nCrate of Luxurious Cloth,\nCrate of Rum Bottles</string>
+    <string name="ma_devils_roar_cargo">Crate of Devil\'s Plants,\nCrate of Devil\'s Luxurious Cloth,\nCrate of Devil\'s Rum Bottles</string>
 
     <string name="title_animals">Animals</string>
-    <string name="ma_tier1_animals">White Feathered Chicken&#xA;Pink Pig&#xA;Red Striped Snake</string>
-    <string name="ma_tier2_animals">Red Speckled Chicken&#xA;Pink and Black Spotted Pig&#xA;Blue Dappled Snake</string>
-    <string name="ma_tier3_animals">Black Plumed Chicken&#xA;Black Coated Pig&#xA;Black Scaled Snake</string>
-    <string name="ma_tier4_animals">Golden Chicken&#xA;Gold Striped Pig&#xA;Golden Snake</string>
+    <string name="ma_tier1_animals">White Feathered Chicken,\nPink Pig,\nRed Striped Snake</string>
+    <string name="ma_tier2_animals">Red Speckled Chicken\nPink and Black Spotted Pig,\nBlue Dappled Snake</string>
+    <string name="ma_tier3_animals">Black Plumed Chicken,\nBlack Coated Pig,\nBlack Scaled Snake</string>
+    <string name="ma_tier4_animals">Golden Chicken,\nGold Striped Pig,\nGolden Snake</string>
 
     <string name="title_commodities">Commodities</string>
     <string name="ma_raw_sugar">Raw Sugar</string>

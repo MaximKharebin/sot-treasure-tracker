@@ -13,12 +13,12 @@
 
     <string name="title_regular_artefacts">Обыкновенные Артефакты</string>
     <string name="gh_crown_of_hope">Венец Надежды</string>
-    <string name="gh_cradle_od_virture">Колыбель Добродетели</string>
+    <string name="gh_cradle_of_virtue">Колыбель Добродетели</string>
     <string name="gh_vestige_of_power">Отголосок Могущества</string>
-    <string name="gh_bronze_regular_artefacts">Загадочный Сосуд,&#xA;Бронзовый Хранитель Секретов,&#xA;Древний Кубок</string>
-    <string name="gh_silver_regular_artefacts">Декоративный Сундук,&#xA;Искусно Сделанный Кувшин,&#xA;Посеребрённая Чаша</string>
-    <string name="gh_gold_regular_artefacts">Золотой Ковчег,&#xA;Изукрашенный Графин,&#xA;Позолоченный Кубок</string>
-    <string name="gh_jeweled_regular_artefacts">Необычная Реликвия,&#xA;Разукрашенный Ящик,&#xA;Богато Украшенная Диковинка</string>
+    <string name="gh_bronze_regular_artefacts">Загадочный Сосуд,\nБронзовый Хранитель Секретов,\nДревний Кубок</string>
+    <string name="gh_silver_regular_artefacts">Декоративный Сундук,\nИскусно Сделанный Кувшин,\nПосеребрённая Чаша</string>
+    <string name="gh_gold_regular_artefacts">Золотой Ковчег,\nИзукрашенный Графин,\nПозолоченный Кубок</string>
+    <string name="gh_jeweled_regular_artefacts">Необычная Реликвия,\nРазукрашенный Ящик,\nБогато Украшенная Диковинка</string>
 
     <string name="title_encounter_and_quest_chests">Сундуки Сталкновений и Квестов</string>
     <string name="gh_chest_of_the_damned">Сундук Проклятых</string>
@@ -51,6 +51,8 @@
     <string name="gh_ashen_kings_chest">Пламенеющий Королевский Сундук</string>
 
     <string name="title_devils_roar_artefacts">Артефакты Дьявольской Глотки</string>
+    <string name="gh_ashes_of_ruin">Пепел Руин</string>
+    <string name="gh_vessel_of_fire">Сосуд Огня</string>
     <string name="gh_roaring_goblet">Ревущий Кубок</string>
     <string name="gh_brimstone_casket">Серная Шкатулка</string>
     <string name="gh_devils_remnant">Частица Преисподней</string>

@@ -18,9 +18,9 @@
     <string name="ma_ashes_of_the_damned">Прах Проклятого</string>
 
     <string name="title_resource_crates">Ящики с Ресурсами</string>
-    <string name="ma_special_resource_crates">Ящик с Фейерверками&#xA;Ящик с Зажигательными Бомбами</string>
-    <string name="ma_ghostly_resource_crates">Проклятый Ящик для Хранения&#xA;Ящик с Ядрами Проклятых</string>
-    <string name="ma_basic_resource_crates">Ящик с Досками&#xA;Ящик с Ядрами&#xA;Ящик с Фруктами</string>
+    <string name="ma_special_resource_crates">Ящик с Фейерверками,\nЯщик с Зажигательными Бомбами</string>
+    <string name="ma_ghostly_resource_crates">Проклятый Ящик для Хранения,\nЯщик с Ядрами Проклятых</string>
+    <string name="ma_basic_resource_crates">Ящик с Досками,\nЯщик с Ядрами,\nЯщик с Фруктами</string>
     <string name="ma_crate_of_the_dark_brethren">Ящик Тёмного Братства</string>
     <string name="ma_ammo_crate">Ящик с Боеприпасами</string>
 
@@ -46,15 +46,15 @@
     <string name="ma_stronghold_gunpowder_barrel">Пороховая Бочка из Цитадели</string>
 
     <string name="title_cargo">Грузы</string>
-    <string name="ma_kings_cargo">Ящик с Экзотическими Растениями&#xA;Ящик с Элегентной Одеждой&#xA;Ящик с Лучшим Ромом</string>
-    <string name="ma_regular_cargo">Ящик с Растениями&#xA;Ящик с Роскошными Тканями&#xA;Ящик с Бутылками</string>
-    <string name="ma_devils_roar_cargo">Ящик с Дьявольскими Растениями&#xA;Ящик с Дьявольскими Роскошными Тканями&#xA;Ящик с Дьявольскими Бутылками</string>
+    <string name="ma_kings_cargo">Ящик с Экзотическими Растениями,\nЯщик с Элегентной Одеждой,\nЯщик с Лучшим Ромом</string>
+    <string name="ma_regular_cargo">Ящик с Растениями,\nЯщик с Роскошными Тканями,\nЯщик с Бутылками</string>
+    <string name="ma_devils_roar_cargo">Ящик с Дьявольскими Растениями,\nЯщик с Дьявольскими Роскошными Тканями,\nЯщик с Дьявольскими Бутылками</string>
 
     <string name="title_animals">Животные</string>
-    <string name="ma_tier1_animals">Белая Курица&#xA;Розовая Свинья&#xA;Красно-белая Змея</string>
-    <string name="ma_tier2_animals">Пятнистая Курица&#xA;Пятнистая Свинья&#xA;Сине-чёрная Змея</string>
-    <string name="ma_tier3_animals">Чёрная Курица&#xA;Чёрная Свинья&#xA;Чёрная Змея</string>
-    <string name="ma_tier4_animals">Золотая Курица&#xA;Золотая Свинья&#xA;Золотая Змея</string>
+    <string name="ma_tier1_animals">Белая Курица,\nРозовая Свинья,\nКрасно-белая Змея</string>
+    <string name="ma_tier2_animals">Пятнистая Курица,\nПятнистая Свинья,\nСине-чёрная Змея</string>
+    <string name="ma_tier3_animals">Чёрная Курица,\nЧёрная Свинья,\nЧёрная Змея</string>
+    <string name="ma_tier4_animals">Золотая Курица,\nЗолотая Свинья,\nЗолотая Змея</string>
 
     <string name="title_commodities">Торговые Грузы</string>
     <string name="ma_raw_sugar">Сахар-Сырец</string>

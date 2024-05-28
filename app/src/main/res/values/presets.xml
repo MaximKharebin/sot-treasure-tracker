@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preset_title_emergency">Emergent Activities</string>
+    <string name="preset_skeleton_ship">Skeleton Ship</string>
+    <string name="preset_megalodon">Megalodon</string>
+    <string name="preset_kraken">Kraken</string>
+
+    <string name="preset_title_sea_forts">Raids on a Sea Fort</string>
+    <string name="preset_sea_fort_regular">A Raid on a Sea Fort</string>
+    <string name="preset_sea_fort_gh">A Raid on a Sea Fort as Gold Hoarder</string>
+    <string name="preset_sea_fort_oos">A Raid on a Sea Fort as Order of Souls</string>
+    <string name="preset_sea_fort_ma">A Raid on a Sea Fort as Merchant Alliance</string>
+    <string name="preset_sea_fort_af">"A Raid on a Sea Fort as Athena's Fortune"</string>
+
+    <string name="preset_title_sunken_shrine">Adventures in a Sunken Shrine</string>
+    <string name="preset_sunken_shrine_regular">An Adventure to a Sunken Shrine</string>
+    <string name="preset_sunken_shrine_gh">An Adventure in a Sunken Shrine as Gold Hoarder</string>
+    <string name="preset_sunken_shrine_oos">An Adventure in a Sunken Shrine as Order of Souls</string>
+    <string name="preset_sunken_shrine_ma">An Adventure in a Sunken Shrine as Merchant Alliance</string>
+    <string name="preset_sunken_shrine_af">An Adventure in a Sunken Shrine as Athena\'s Fortune</string>
+
+    <string name="preset_title_sunken_treasury">Raids on a Sunken Treasury</string>
+    <string name="preset_sunken_treasury_regular">A Raid on a Sunken Treasury</string>
+    <string name="preset_sunken_treasury_gh">A Raid on a Sunken Treasury as Gold Hoarder</string>
+    <string name="preset_sunken_treasury_oos">A Raid on a Sunken Treasury as Order of Souls</string>
+    <string name="preset_sunken_treasury_ma">A Raid on a Sunken Treasury as Merchant Alliance</string>
+    <string name="preset_sunken_treasury_af">A Raid on a Sunken Treasury as Athena\'s Fortune</string>
+
+    <string name="preset_title_ashen_lord">Duels with an Ashen Lord</string>
+    <string name="preset_ashen_lord_regular">A Duel with an Ashen Lord</string>
+    <string name="preset_ashen_lord_gh">A Duel with an Ashen Lord as Gold Hoarder</string>
+    <string name="preset_ashen_lord_oos">A Duel with an Ashen Lord as Order of Souls</string>
+    <string name="preset_ashen_lord_ma">A Duel with an Ashen Lord as Merchant Alliance</string>
+    <string name="preset_ashen_lord_af">A Duel with an Ashen Lord as Athena\'s Fortune</string>
+
+    <string name="preset_title_skeleton_fort">Raids on a Skeleton Fort</string>
+    <string name="preset_skeleton_fort_regular">A Raid on a Skeleton Fort</string>
+    <string name="preset_skeleton_fort_gh">A Raid on a Skeleton Fort as Gold Hoarder</string>
+    <string name="preset_skeleton_fort_oos">A Raid on a Skeleton Fort as Order of Souls</string>
+    <string name="preset_skeleton_fort_ma">A Raid on a Skeleton Fort as Merchant Alliance</string>
+    <string name="preset_skeleton_fort_af">A Raid on a Skeleton Fort as Athena\'s Fortune</string>
+
+    <string name="preset_title_skeleton_fleet">Battles with a Skeleton Fleet</string>
+    <string name="preset_skeleton_fleet_regular">A Battle with a Skeleton Fleet</string>
+    <string name="preset_skeleton_fleet_gh">A Battle with a Skeleton Fleet as Gold Hoarder</string>
+    <string name="preset_skeleton_fleet_oos">A Battle with a Skeleton Fleet as Order of Souls</string>
+    <string name="preset_skeleton_fleet_ma">A Battle with a Skeleton Fleet as Merchant Alliance</string>
+    <string name="preset_skeleton_fleet_af">A Battle with a Skeleton Fleet as Athena\'s Fortune</string>
+
+    <string name="preset_title_ghost_armada">Battles with the Burning Blade\'s Armada</string>
+    <string name="preset_ghost_armada_regular">A Battle with the Burning Blade\'s Armada</string>
+    <string name="preset_ghost_armada_gh">A Battle with the Burning Blade\'s Armada as Gold Hoarder</string>
+    <string name="preset_ghost_armada_oos">A Battle with the Burning Blade\'s Armada as Order of Souls</string>
+    <string name="preset_ghost_armada_ma">A Battle with the Burning Blade\'s Armada as Merchant Alliance</string>
+    <string name="preset_ghost_armada_af">A Battle with the Burning Blade\'s Armada as Athena\'s Fortune</string>
+
+    <string name="preset_title_gh_voyages">Voyages as Gold Hoarders</string>
+    <string name="preset_gh_pirate_map">A Pirate\'s Treasure Map</string>
+    <string name="preset_gh_captain_map">A Captain\'s Treasure Map</string>
+    <string name="preset_gh_pirate_riddle">A Pirate\'s Riddle Quest</string>
+    <string name="preset_gh_captain_riddle">A Captain\'s Riddle Quest</string>
+    <string name="preset_gh_ashen_pirate_map">An Ashen Pirate\'s Treasure Map</string>
+    <string name="preset_gh_ashen_captain_map">An Ashen Captain\'s Treasure Map</string>
+    <string name="preset_gh_ashen_pirate_riddle">An Ashen Pirate\'s Riddle Quest</string>
+    <string name="preset_gh_ashen_captain_riddle">An Ashen Captain\'s Riddle Quest</string>
+    <string name="preset_gh_pirate_vault">A Pirate\'s Treasure Vault</string>
+    <string name="preset_gh_captain_vault">A Captain\'s Treasure Vault</string>
+    <string name="preset_gh_ashen_pirate_vault">An Ashen Pirate\'s Treasure Vault</string>
+    <string name="preset_gh_ashen_captain_vault">An Ashen Captain\'s Treasure Vault</string>
+
+    <string name="preset_title_oos_voyages">Voyages as Order of Souls</string>
+    <string name="preset_oos_skeleton_crew">A Bounty for a Skeleton Crew</string>
+    <string name="preset_oos_skeleton_captains">A Bounty for Skeleton Captains</string>
+    <string name="preset_oos_skeleton_lord">A Bounty for a Skeleton Lord</string>
+    <string name="preset_oos_ashen_skeleton_crew">An Ashen Bounty for a Skeleton Crew</string>
+    <string name="preset_oos_ashen_skeleton_captains">An Ashen Bounty for Skeleton Captains</string>
+    <string name="preset_oos_ashen_skeleton_lord">An Ashen Bounty for a Skeleton Lord</string>
+    <string name="preset_oos_armada">A Battle with a Ghost Armada</string>
+    <string name="preset_oos_ashen_armada">An Ashen Battle with a Ghost Armada</string>
+
+    <string name="preset_title_ma_voyages">Voyages as Merchant Alliance</string>
+    <string name="preset_ma_founder_contract">A Founder\'s Merchant Contract</string>
+    <string name="preset_executive_founder_contract">An Executive\'s Merchant Contract</string>
+    <string name="preset_ma_founder_cargo">A Founder\'s Cargo Run</string>
+    <string name="preset_ma_executive_cargo">An Executive\'s Cargo Run</string>
+    <string name="preset_ma_ashen_founder_cargo">An Ashen Founder\'s Cargo Run</string>
+    <string name="preset_ma_ashen_executive_cargo">An Ashen Executive\'s Cargo Run</string>
+    <string name="preset_ma_lost_shipment">An Executive\'s Lost Shipment</string>
+    <string name="preset_ma_ashen_lost_shipment">An Ashen Executive\'s Lost Shipment</string>
+
+    <string name="preset_title_af_voyages">Voyages as Athena\'s Fortune</string>
+    <string name="preset_af_veil">Legend of the Veil</string>
+    <string name="preset_af_voyage_of_legends">A Voyage of Legends</string>
+    <string name="preset_af_ashen_voyage_of_legends">An Ashen Voyage of Legends</string>
+    <string name="preset_af_cursed_treasure">A Legendary Search for Cursed Treasure</string>
+    <string name="preset_af_skull_of_destiny">A Legendary Search for the Skull of Destiny</string>
+</resources>
