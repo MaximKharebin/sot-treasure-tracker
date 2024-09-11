@@ -8,7 +8,10 @@ object SunkenTreasuryRegular {
     val item = PresetItemDto(
         titleId = R.string.preset_sunken_treasury_regular,
         items = listOf(
-
+            PresetRewardDto(
+                treasureId = R.string.gh_chest_of_ancient_tributes,
+                quantity = 1
+            )
         )
     )
 }

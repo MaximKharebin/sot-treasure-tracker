@@ -5,6 +5,7 @@ import com.example.sot_treasure_tracker.data.presets.models.PresetCategoryDto
 import com.example.sot_treasure_tracker.data.presets.presets_catalog.world_events.skeleton_fort.SkeletonFortAthenaFortune
 import com.example.sot_treasure_tracker.data.presets.presets_catalog.world_events.skeleton_fort.SkeletonFortGoldHoarder
 import com.example.sot_treasure_tracker.data.presets.presets_catalog.world_events.skeleton_fort.SkeletonFortMerchantAlliance
+import com.example.sot_treasure_tracker.data.presets.presets_catalog.world_events.skeleton_fort.SkeletonFortOfFortune
 import com.example.sot_treasure_tracker.data.presets.presets_catalog.world_events.skeleton_fort.SkeletonFortOrderOfSouls
 import com.example.sot_treasure_tracker.data.presets.presets_catalog.world_events.skeleton_fort.SkeletonFortRegular
 
@@ -12,6 +13,7 @@ object SkeletonFortCategory {
     val items = PresetCategoryDto(
         titleId = R.string.preset_title_skeleton_fort,
         items = listOf(
+            SkeletonFortOfFortune.item,
             SkeletonFortRegular.item,
             SkeletonFortGoldHoarder.item,
             SkeletonFortOrderOfSouls.item,

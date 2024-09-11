@@ -13,16 +13,20 @@ object SunkenShrineGoldHoarder {
                 quantity = 3
             ),
             PresetRewardDto(
-                treasureId = R.string.gh_coral_captains_chest,
+                treasureId = R.string.gh_vestige_of_power,
                 quantity = 3
             ),
             PresetRewardDto(
-                treasureId = R.string.gh_cradle_of_virtue,
-                quantity = 3
+                treasureId = R.string.gh_coral_seafarers_chest,
+                quantity = 1
             ),
             PresetRewardDto(
-                treasureId = R.string.gh_peculiar_coral_relic,
-                quantity = 2
+                treasureId = R.string.trident_of_dark_tides,
+                quantity = 1
+            ),
+            PresetRewardDto(
+                treasureId = R.string.treasure_chest,
+                quantity = 1
             )
         )
     )

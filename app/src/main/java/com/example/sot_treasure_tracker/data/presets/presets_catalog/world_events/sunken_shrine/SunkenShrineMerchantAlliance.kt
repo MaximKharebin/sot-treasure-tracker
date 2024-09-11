@@ -8,7 +8,18 @@ object SunkenShrineMerchantAlliance {
     val item = PresetItemDto(
         titleId = R.string.preset_sunken_shrine_ma,
         items = listOf(
-
+            PresetRewardDto(
+                treasureId = R.string.ma_crate_of_exotic_silks,
+                quantity = 5
+            ),
+            PresetRewardDto(
+                treasureId = R.string.ma_crate_of_immaculate_diamonds,
+                quantity = 2
+            ),
+            PresetRewardDto(
+                treasureId = R.string.treasure_chest,
+                quantity = 1
+            ),
         )
     )
 }
