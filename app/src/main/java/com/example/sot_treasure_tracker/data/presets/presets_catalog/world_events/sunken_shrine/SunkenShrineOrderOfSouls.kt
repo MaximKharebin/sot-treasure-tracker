@@ -8,7 +8,22 @@ object SunkenShrineOrderOfSouls {
     val item = PresetItemDto(
         titleId = R.string.preset_sunken_shrine_oos,
         items = listOf(
-
+            PresetRewardDto(
+                treasureId = R.string.oos_corrupted_bounty_skull,
+                quantity = 2
+            ),
+            PresetRewardDto(
+                treasureId = R.string.oos_dark_bounty_skull,
+                quantity = 3
+            ),
+            PresetRewardDto(
+                treasureId = R.string.oos_villainous_bounty_skull,
+                quantity = 6
+            ),
+            PresetRewardDto(
+                treasureId = R.string.treasure_chest,
+                quantity = 1
+            )
         )
     )
 }

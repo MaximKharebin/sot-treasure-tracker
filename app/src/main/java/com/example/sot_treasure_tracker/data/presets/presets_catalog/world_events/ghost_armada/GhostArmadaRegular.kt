@@ -8,7 +8,22 @@ object GhostArmadaRegular {
     val item = PresetItemDto(
         titleId = R.string.preset_ghost_armada_regular,
         items = listOf(
-
+            PresetRewardDto(
+                treasureId = R.string.ma_ashes_of_the_damned,
+                quantity = 14
+            ),
+            PresetRewardDto(
+                treasureId = R.string.oos_skull_of_the_damned,
+                quantity = 14
+            ),
+            PresetRewardDto(
+                treasureId = R.string.gh_chest_of_the_damned,
+                quantity = 14
+            ),
+            PresetRewardDto(
+                treasureId = R.string.oos_captain_skull_of_the_damned,
+                quantity = 1
+            ),
         )
     )
 }

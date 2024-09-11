@@ -8,7 +8,10 @@ object SkeletonFleetAthenaFortune {
     val item = PresetItemDto(
         titleId = R.string.preset_skeleton_fleet_af,
         items = listOf(
-
+            PresetRewardDto(
+                treasureId = R.string.treasure_chest,
+                quantity = 1
+            ),
         )
     )
 }

@@ -23,6 +23,10 @@ object SunkenTreasuryGoldHoarder {
             PresetRewardDto(
                 treasureId = R.string.gh_peculiar_coral_relic,
                 quantity = 2
+            ),
+            PresetRewardDto(
+                treasureId = R.string.treasure_chest,
+                quantity = 1
             )
         )
     )

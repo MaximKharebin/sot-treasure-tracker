@@ -13,12 +13,20 @@ object SeaFortMerchantAlliance {
                 quantity = 2
             ),
             PresetRewardDto(
-                treasureId = R.string.ma_crate_of_fine_sugar,
+                treasureId = R.string.ma_crate_of_exquisite_spices,
+                quantity = 1
+            ),
+            PresetRewardDto(
+                treasureId = R.string.ma_crate_of_rare_tea,
                 quantity = 2
             ),
             PresetRewardDto(
+                treasureId = R.string.ma_crate_of_fine_sugar,
+                quantity = 3
+            ),
+            PresetRewardDto(
                 treasureId = R.string.treasure_chest,
-                quantity = 1
+                quantity = 2
             ),
         )
     )

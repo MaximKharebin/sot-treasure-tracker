@@ -8,7 +8,22 @@ object AshenLordOrderOfSouls {
     val item = PresetItemDto(
         titleId = R.string.preset_ashen_lord_oos,
         items = listOf(
-
+            PresetRewardDto(
+                treasureId = R.string.oos_eye_of_souls,
+                quantity = 1
+            ),
+            PresetRewardDto(
+                treasureId = R.string.oos_corrupted_bounty_skull,
+                quantity = 1
+            ),
+            PresetRewardDto(
+                treasureId = R.string.oos_dark_bounty_skull,
+                quantity = 1
+            ),
+            PresetRewardDto(
+                treasureId = R.string.oos_ashen_winds_skull,
+                quantity = 1
+            ),
         )
     )
 }

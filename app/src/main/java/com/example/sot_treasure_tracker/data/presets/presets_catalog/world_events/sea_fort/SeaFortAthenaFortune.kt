@@ -8,7 +8,22 @@ object SeaFortAthenaFortune {
     val item = PresetItemDto(
         titleId = R.string.preset_sea_fort_af,
         items = listOf(
-
+            PresetRewardDto(
+                treasureId = R.string.crate_of_legendary_voyages,
+                quantity = 3
+            ),
+            PresetRewardDto(
+                treasureId = R.string.chalice_of_ancient_fortune,
+                quantity = 3
+            ),
+            PresetRewardDto(
+                treasureId = R.string.skull_of_ancient_fortune,
+                quantity = 3
+            ),
+            PresetRewardDto(
+                treasureId = R.string.treasure_chest,
+                quantity = 2
+            )
         )
     )
 }
